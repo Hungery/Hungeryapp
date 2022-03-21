@@ -65,6 +65,14 @@ public class Main {
     return "hello";
   }
 
+  @RequestMapping("/testi")
+  String testi(Map<String, Object> model) {
+    RelativisticModel.select();
+    Amount<Mass> m = Amount.valueOf("pööööööööö").to(KILOGRAM);
+    model.put("testi", "pööööööööö" + m.toString());
+    return "testi";
+  }
+
   @RequestMapping("/db")
   String db(Map<String, Object> model) {
     try (Connection connection = dataSource.getConnection()) {
