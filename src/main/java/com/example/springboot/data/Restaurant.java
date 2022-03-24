@@ -30,8 +30,8 @@ public class Restaurant {
     @Column(name = "kuva")
     public Byte kuva;
 
-    @Column(name = "kayttajatunnus")
-    public String kayttajatunnus;
+    @Column(name = "sahkoposti")
+    public String sahkoposti;
 
     @JsonIgnore
     @Column(name = "salasana")

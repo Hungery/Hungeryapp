@@ -1,7 +1,5 @@
 package com.example.springboot.data;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 
 @Entity
@@ -24,13 +22,29 @@ public class Customer {
     @Column(name = "osoite")
     public String osoite;
 
-    @Column(name = "kayttajatunnus")
-    public String kayttajatunnus;
+    @Column(name = "sahkoposti")
+    public String sahkoposti;
 
-    @JsonIgnore
     @Column(name = "salasana")
     public String salasana;
 
+    @Column(name = "role")
+    @Enumerated(EnumType.STRING)
+    public Role role;
 
-    public Customer(){}
+    public Customer() {
+    }
+
+    public Customer(Long customerid, String etunimi, String sukunimi, String puhnro, String osoite, String sahkoposti, String salasana, Role role) {
+        this.customerid = customerid;
+        this.etunimi = etunimi;
+        this.sukunimi = sukunimi;
+        this.puhnro = puhnro;
+        this.osoite = osoite;
+        this.sahkoposti = sahkoposti;
+        this.salasana = salasana;
+        this.role = role;
+    }
+    public Customer(String subject, Object o, Role role){}
+
 }

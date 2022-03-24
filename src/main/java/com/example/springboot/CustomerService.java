@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CustomerService {
@@ -16,13 +15,14 @@ public class CustomerService {
 
     @PostConstruct
     public void init(){
-        List<Customer> customers = customerRepo.findAll();
+        List<Customer> customers = customerRepo.getCustomersBySearch("t");
 
-                for (Customer c : customers){
-                    System.out.println("**************"+c.sukunimi);
-                }
+        for(Customer c : customers){
+            System.out.println("*******"+c.sahkoposti);
+        }
     }
-    public List<Customer> getCustomers(){
-        return customerRepo.findAll();
+    public Customer getCustomers(String sahkoposti){
+        customerRepo.findById(sahkoposti).orElse(null);
+        return null;
     }
 }
