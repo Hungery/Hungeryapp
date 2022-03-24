@@ -1,5 +1,4 @@
 [{
-    "id": 1,
     "name": "Mission Chinese Food",
     "neighborhood": "Manhattan",
     "photograph": "1.jpg",
@@ -20,7 +19,6 @@
     }
     
   }, {
-    "id": 2,
     "name": "Emily",
     "neighborhood": "Brooklyn",
     "photograph": "2.jpg",
@@ -40,7 +38,6 @@
       "Sunday": "12:00 pm - 3:00 pm, 5:00 pm - 11:00 pm"
     }
   }, {
-    "id": 3,
     "name": "Kang Ho Dong Baekjeong",
     "neighborhood": "Manhattan",
     "photograph": "3.jpg",
@@ -61,7 +58,6 @@
     }
     
   }, {
-    "id": 4,
     "name": "Katz's Delicatessen",
     "neighborhood": "Manhattan",
     "photograph": "4.jpg",
@@ -81,7 +77,6 @@
       "Sunday": "Sat - 10:30 pm"
     }
   }, {
-    "id": 5,
     "name": "Roberta's Pizza",
     "neighborhood": "Brooklyn",
     "photograph": "5.jpg",
@@ -101,7 +96,6 @@
       "Sunday": "10:00 am - 12:00 am"
     }
   }, {
-    "id": 6,
     "name": "Hometown BBQ",
     "neighborhood": "Brooklyn",
     "photograph": "6.jpg",
@@ -121,7 +115,6 @@
       "Sunday": "12:00 pm - 9:00 pm"
     }
   }, {
-    "id": 7,
     "name": "Superiority Burger",
     "neighborhood": "Manhattan",
     "photograph": "7.jpg",
@@ -141,7 +134,6 @@
       "Sunday": "11:30 am - 10:00 pm"
     }
   }, {
-    "id": 8,
     "name": "The Dutch",
     "neighborhood": "Manhattan",
     "photograph": "8.jpg",
@@ -161,7 +153,6 @@
       "Sunday": "10:00 am - 3:00 pm, 5:30 pm - 11:00 pm"
     }
   }, {
-    "id": 9,
     "name": "Mu Ramen",
     "neighborhood": "Queens",
     "photograph": "9.jpg",
@@ -181,7 +172,6 @@
       "Sunday": "5:00 pm - 10:00 pm"
     }
   }, {
-    "id": 10,
     "name": "Casa Enrique",
     "neighborhood": "Queens",
     "photograph": "10.jpg",

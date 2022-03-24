@@ -3,9 +3,15 @@ import Kirjautumisnakyma from './Kirjautumisnakyma'
 import { BrowserRouter , Routes , Route } from 'react-router-dom'
 import './App.css'
 import restaurants from './data.json'
-import Ravintolanakyma from './Ravintolanakyma'
+import RavintolaIDnakyma from './RavintolaIDnakyma'
+import { v4 as uuidv4 } from 'uuid';
 
-const App = () => (
+
+const ravintolat = restaurants.map(ravintola => {
+  return { ...ravintola, idd: uuidv4() }
+})
+
+const App = () =>(
   <BrowserRouter>
   <div>
     <div className="logopalkki">
@@ -14,8 +20,8 @@ const App = () => (
     </div>
     <Routes> 
       <Route path="/" element = { <Kirjautumisnakyma/> } />
-      <Route path="/Paanakyma" element = { <Paanakyma ravintolat = {restaurants}/> } />
-      <Route path="/Ravintolanakyma" element = { <Ravintolanakyma ravintolat = {restaurants}/> } />
+      <Route path="/Paanakyma" element = { <Paanakyma ravintolat = {ravintolat}/> } />
+      <Route path="/Paanakyma/:idd" element = { <RavintolaIDnakyma ravintolat = {ravintolat}/> } />
     </Routes>
   </div>
   </BrowserRouter>
