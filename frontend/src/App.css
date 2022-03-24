@@ -1,0 +1,26 @@
+.logopalkki{
+    display: flex;
+    background-color: lightgrey;
+
+}
+
+.logopalkki > * {
+    margin-right: 10px;
+}
+
+.logo{
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.ravintolaListaElementti{
+    padding: 5px;
+    border-top: 1px solid lightgrey;
+}
+
+.ravintolaListaElementti:hover{
+    background-color: lightyellow;
+    color: red;
+
+}
