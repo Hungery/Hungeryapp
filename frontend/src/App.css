@@ -1,6 +1,7 @@
 .logopalkki{
     display: flex;
     background-color: lightgrey;
+    
 
 }
 
@@ -23,4 +24,10 @@
     background-color: lightyellow;
     color: red;
 
+}
+
+.filtteriPalkki{
+    display: flex;
+    padding: 5px;
+    background-color: lightgreen;
 }
