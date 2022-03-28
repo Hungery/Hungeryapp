@@ -1,6 +1,6 @@
-package com.example.springboot;
+package com.hungery.hungeryapp;
 
-import com.example.springboot.data.*;
+import com.hungery.hungeryapp.data.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

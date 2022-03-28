@@ -1,8 +1,8 @@
-package com.example.springboot.data;
+package com.hungery.hungeryapp.data;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface OrderRepository extends JpaRepository<OrderHistory,Long> {
+public interface MenuRepository extends JpaRepository<Menu,Long> {
 }

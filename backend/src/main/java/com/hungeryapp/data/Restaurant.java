@@ -1,4 +1,4 @@
-package com.example.springboot.data;
+package com.hungery.hungeryapp.data;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -7,10 +7,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "restaurant")
 public class Restaurant {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long restaurantid;
 
     @Column(name = "nimi")
     public String nimi;
@@ -30,8 +26,9 @@ public class Restaurant {
     @Column(name = "kuva")
     public Byte kuva;
 
-    @Column(name = "kayttajatunnus")
-    public String kayttajatunnus;
+    @Id
+    @Column(name = "sahkoposti")
+    public String sahkoposti;
 
     @JsonIgnore
     @Column(name = "salasana")

@@ -1,4 +1,4 @@
-package com.example.springboot.data;
+package com.hungery.hungeryapp.data;
 
 import javax.persistence.*;
 import java.math.BigInteger;
@@ -19,6 +19,8 @@ public class OrderHistory {
 
     @Column(name = "kpl")
     public BigInteger kpl;
+
+
 
     public OrderHistory(){}
 }

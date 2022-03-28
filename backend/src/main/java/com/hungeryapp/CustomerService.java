@@ -1,13 +1,12 @@
-package com.example.springboot;
+package com.hungery.hungeryapp;
 
-import com.example.springboot.data.Customer;
-import com.example.springboot.data.CustomerRepository;
+import com.hungery.hungeryapp.data.Customer;
+import com.hungery.hungeryapp.data.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CustomerService {
@@ -16,12 +15,22 @@ public class CustomerService {
 
     @PostConstruct
     public void init(){
+
         List<Customer> customers = customerRepo.findAll();
 
-                for (Customer c : customers){
-                    System.out.println("**************"+c.sukunimi);
-                }
+        for(Customer c : customers){
+            System.out.println("Asiakas: "+c.etunimi +" " +c.sukunimi);
+        }
     }
+
+    //customerSecurityService
+    public Customer getCustomers(String sahkoposti){
+        customerRepo.findById(sahkoposti).orElse(null);
+
+        return null;
+    }
+
+    //customerRestAPI
     public List<Customer> getCustomers(){
         return customerRepo.findAll();
     }

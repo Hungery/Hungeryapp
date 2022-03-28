@@ -1,9 +1,9 @@
-package com.example.springboot;
+package com.hungery.hungeryapp;
 
-import com.example.springboot.data.Customer;
-import com.example.springboot.data.Menu;
-import com.example.springboot.data.MenuRepository;
-import com.example.springboot.data.OrderHistory;
+import com.hungery.hungeryapp.data.Customer;
+import com.hungery.hungeryapp.data.Menu;
+import com.hungery.hungeryapp.data.MenuRepository;
+import com.hungery.hungeryapp.data.OrderHistory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,14 +1,16 @@
-package com.example.springboot;
+package com.hungery.hungeryapp;
 
-import com.example.springboot.data.Customer;
-import com.example.springboot.data.Restaurant;
+import com.hungery.hungeryapp.data.Customer;
+import com.hungery.hungeryapp.data.Restaurant;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 public class RestaurantRestAPI {
     @Autowired
     RestaurantService restaurantService;
