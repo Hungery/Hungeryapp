@@ -5,10 +5,7 @@ import com.example.springboot.security.CustomerSecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,29 +19,38 @@ public class CustomerRestAPI {
     @Autowired
     CustomerSecurityService customerSecurity;
 
+    @PostMapping("/loginbasic")
+    public ResponseEntity<Map<String,String>> loginBasic(@RequestHeader("Authorization") String basicAuthHeader){
+        System.out.println(basicAuthHeader);
+        String token = customerSecurity.checkBasicAuthentication(basicAuthHeader);
+
+        if(token == null){
+            System.out.println("kirjautuminen epäonnistui");
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+        System.out.println("Kirjautuminen onnistui");
+        return new ResponseEntity<>( Map.of( "token", token ), HttpStatus.OK );
+    }
+
     @PostMapping("/login")
     public ResponseEntity<Map<String, String>> login(@RequestBody Map<String, String> credentials) {
         String token = customerSecurity.checkAuthentication(
                 credentials.get("sahkoposti"),
                 credentials.get("salasana"));
+
         if (token == null) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
-
         return new ResponseEntity<>(Map.of("token", token), HttpStatus.OK);
     }
 
-/*
-    @GetMapping("/customers")
-    public Map<String, Object> getCustomers(){
+    @PostMapping("/loginform")
+    public ResponseEntity<Map<String,String>> loginForm(@RequestParam String sahkoposti, @RequestParam String salasana){
+        String token = customerSecurity.checkAuthentication(sahkoposti,salasana);
 
-        Customer c = customerService.getCustomers("1");
-
-        Map<String, Object> json = new HashMap<>();
-        json.put("sahkoposti", c.sahkoposti);
-
-        return json;
+        if(token == null){
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+        return new ResponseEntity<>( Map.of( "token", token ), HttpStatus.OK );
     }
-
-*/
 }

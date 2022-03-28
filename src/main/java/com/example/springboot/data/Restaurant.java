@@ -10,7 +10,7 @@ public class Restaurant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long restaurantid;
+    public String sahkoposti;
 
     @Column(name = "nimi")
     public String nimi;
@@ -29,9 +29,6 @@ public class Restaurant {
 
     @Column(name = "kuva")
     public Byte kuva;
-
-    @Column(name = "sahkoposti")
-    public String sahkoposti;
 
     @JsonIgnore
     @Column(name = "salasana")

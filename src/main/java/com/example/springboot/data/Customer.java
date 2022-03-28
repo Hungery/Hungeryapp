@@ -8,7 +8,7 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long customerid;
+    public String sahkoposti;
 
     @Column(name = "etunimi")
     public String etunimi;
@@ -22,9 +22,6 @@ public class Customer {
     @Column(name = "osoite")
     public String osoite;
 
-    @Column(name = "sahkoposti")
-    public String sahkoposti;
-
     @Column(name = "salasana")
     public String salasana;
 
@@ -35,8 +32,7 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(Long customerid, String etunimi, String sukunimi, String puhnro, String osoite, String sahkoposti, String salasana, Role role) {
-        this.customerid = customerid;
+    public Customer(String etunimi, String sukunimi, String puhnro, String osoite, String sahkoposti, String salasana, Role role) {
         this.etunimi = etunimi;
         this.sukunimi = sukunimi;
         this.puhnro = puhnro;
