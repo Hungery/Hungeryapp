@@ -3,6 +3,7 @@ package com.example.springboot;
 import com.example.springboot.data.Customer;
 import com.example.springboot.data.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -13,6 +14,10 @@ import java.util.Map;
 public class CustomerService {
     @Autowired
     CustomerRepository customerRepo;
+
+    CustomerRepository customerRepository;
+
+    PasswordEncoder passwordEncoder;
 
     @PostConstruct
     public void init(){
@@ -27,8 +32,9 @@ public class CustomerService {
         return customerRepo.findAll();
     }
     public Customer getCustomer(String sahkoposti){
-        customerRepo.findById(sahkoposti).orElse(null);
-        return null;
+        Customer customer;
+        customer = customerRepo.findById(sahkoposti).orElse(null);
+        return customer;
     }
 
 }

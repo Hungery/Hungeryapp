@@ -44,12 +44,13 @@ public class CustomerSecurityService {
 
         public String checkAuthentication(String sahkoposti, String salasana) {
         Customer c = customerService.getCustomer(sahkoposti);
+
         if (c == null) {
             return null;
         }
 
-        return encoder.matches(salasana, c.salasana) ? createToken(c) : null;
 
+        return encoder.matches(salasana, c.salasana) ? createToken(c) : null;
     }
 
     public String createToken(Customer customer) {

@@ -25,10 +25,10 @@ public class CustomerRestAPI {
         String token = customerSecurity.checkBasicAuthentication(basicAuthHeader);
 
         if(token == null){
-            System.out.println("kirjautuminen epäonnistui");
+            System.out.println("login failed");
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
-        System.out.println("Kirjautuminen onnistui");
+        System.out.println("login success");
         return new ResponseEntity<>( Map.of( "token", token ), HttpStatus.OK );
     }
 
@@ -41,6 +41,8 @@ public class CustomerRestAPI {
         if (token == null) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
+
+
         return new ResponseEntity<>(Map.of("token", token), HttpStatus.OK);
     }
 
