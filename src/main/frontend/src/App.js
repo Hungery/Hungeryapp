@@ -5,8 +5,21 @@ import Ostoskori from './components/Ostoskori';
 import Menunakyma from './components/Menunakyma';
 import React, {useState, useEffect} from "react";
 
-const App = (props) => {
-  const {onAdd, cartItems} = props;
+const App = () => {
+  const [cartItems, setCartItems] = useState([]);
+  
+  const onAdd = (menu) => {
+    const exist = cartItems.find((x) => x.menuid === menu.menuid)
+    if(exist) {
+      setCartItems(
+        cartItems.map((x) => 
+          x.menuid === menu.menuid ? {...exist, qty: exist.qty +1} : x
+        )
+      );
+    } else {
+      setCartItems([...cartItems, {...menu, qty: 1 }]);
+    }
+  };
   
   return(
   <BrowserRouter>

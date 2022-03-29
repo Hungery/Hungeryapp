@@ -5,13 +5,13 @@ import axios from "axios";
 
 
 export default function Ostoskori(props) {
-    const {cartItems} = props;
+    const {cartItems, onAdd} = props;
 
     return (
         <aside className="block col-1">
             <h2>Ostoskorissa: </h2> 
             <div>
-                {cartItems.length === 0 && <div>Ostoskori on tyhjä</div>}
+                
             </div>
         </aside>
     

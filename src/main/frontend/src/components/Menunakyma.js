@@ -16,7 +16,7 @@ const MenuRavintola = (props) => {
   useEffect(() => {
     fetchMenuRavintola();
   }, []);
-
+/*
   const [cartItems, setCartItems] = useState([]);
   
   const onAdd = (menut) => {
@@ -35,6 +35,8 @@ const MenuRavintola = (props) => {
   useEffect(() => {
     onAdd();
   }, []);
+
+  */
 
   return menut.map((menu, menut) => {
     const {onAdd} = props;
