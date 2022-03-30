@@ -14,10 +14,7 @@ const ravintolat = restaurants.map(ravintola => {
 const App = () =>(
   <BrowserRouter>
   <div>
-    <div className="logopalkki">
-      <div className="logo"> Tässä logo </div>
-      <div> kirjautumisnappi</div>
-    </div>
+    
     <Routes> 
       <Route path="/" element = { <Kirjautumisnakyma/> } />
       <Route path="/Paanakyma" element = { <Paanakyma ravintolat = {ravintolat}/> } />

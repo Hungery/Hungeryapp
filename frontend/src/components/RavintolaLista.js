@@ -20,22 +20,26 @@ export default function RavintolaLista(props) {
   return (
     <div>
         <div className="filtteriPalkki">
-         <button onClick={() => setShowAll(!showAll)}>
-          {showAll ? 'Näyttää kaikki ravintolat' : 'Hakee ravintolaa hakusanalla' }
+         <button onClick={() => setShowAll(!showAll)} className="nappi">
+          {showAll ? 'Hae ravintolaa' : 'Hae ravintolaa' }
          </button>
-
-         <form>
-            <input value = {newNote2}
+         <form >
+            <input value = {newNote2} className="tekstikentta"
             onChange = {handleNoteChange2}/>
-            </form>       
+         </form> 
+         <button className="nappi">Asian</button> 
+         <button className="nappi">Mexican</button>
+         <button className="nappi">American</button>     
         </div>
         
-
+        <div className="ravintolaElementti">
         { ravintolatToShow.map(ravintola =>
-            <Link to={ ravintola.idd} key = {ravintola.idd}>
-                <div className="ravintolaListaElementti">Ravintola:{ravintola.name} || Tyyli: {ravintola.cuisine_type} </div>
+            <Link to={ ravintola.idd} key = {ravintola.idd} className="ravintolaListaElementti" >
+                <div><h1>{ravintola.name}</h1></div>
+                <div> <h2>{ravintola.cuisine_type} </h2> </div> 
             </Link>
-            )}  
+            )} 
+        </div> 
     </div>
   )
 }
