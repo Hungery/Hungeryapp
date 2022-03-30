@@ -27,9 +27,11 @@ export default function RavintolaLista(props) {
             <input value = {newNote2} className="tekstikentta"
             onChange = {handleNoteChange2}/>
          </form> 
+         <div className="filtteriPalkkiElementti">
          <button className="nappi">Asian</button> 
          <button className="nappi">Mexican</button>
-         <button className="nappi">American</button>     
+         <button className="nappi">American</button>  
+         </div>   
         </div>
         
         <div className="ravintolaElementti">

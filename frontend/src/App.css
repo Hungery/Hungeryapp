@@ -63,7 +63,8 @@
     font-weight: bold;
     padding: 10px 34px;
     font-family: 'Courier New', Courier, monospace;
-    color:rgb(5, 4, 0)
+    color:rgb(5, 4, 0);
+    margin: 5px
     
 }
 .nappi:hover{
@@ -84,6 +85,7 @@
     background-color: white;
     background-position: 10px 10px; 
     background-repeat: no-repeat;
-    padding: 12px 20px 12px 40px;
+    padding: 8px 8px 8px 8px;
     font-family: 'Courier New', Courier, monospace;
+    font-size: 24px;
 }
