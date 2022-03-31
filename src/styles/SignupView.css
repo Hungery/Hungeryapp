@@ -1,0 +1,15 @@
+body{
+  background-color: #282c34;
+  color: white;
+  padding: 40px;
+  font-family: Arial;
+  text-align: center;
+}
+h2{
+  text-align: -300
+}
+.kayttajanLuonti{
+  color: rgb(36, 255, 36);
+  font-size: 25px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
