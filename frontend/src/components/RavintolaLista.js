@@ -13,9 +13,11 @@ export default function RavintolaLista(props) {
         setNewNote2(event.target.value)
       }
 
+    //  console.log(ravintolat)
+
     const ravintolatToShow = showAll
     ? ravintolat
-    : ravintolat.filter(note => note.name.includes(newNote2))
+    : ravintolat.filter(note => note.nimi.toLowerCase().includes(newNote2) || note.nimi.toUpperCase().includes(newNote2))
 
   return (
     <div>
@@ -35,10 +37,10 @@ export default function RavintolaLista(props) {
         </div>
         
         <div className="ravintolaElementti">
-        { ravintolatToShow.map(ravintola =>
-            <Link to={ ravintola.idd} key = {ravintola.idd} className="ravintolaListaElementti" >
-                <div><h1>{ravintola.title}</h1></div>
-                <div> <h2>{ravintola.cuisine_type} </h2> </div> 
+        { ravintolatToShow.map(ravintolat =>
+            <Link to={ ravintolat.nimi} key = {ravintolat.nimi} className="ravintolaListaElementti" >
+                <div><h1>{ravintolat.nimi}</h1></div>
+                <div> <h2>{ravintolat.tyyppi} </h2> </div> 
             </Link>
             )} 
         </div> 

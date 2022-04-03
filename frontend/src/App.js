@@ -13,25 +13,25 @@ import {useEffect, useState} from 'react'
 
 const App = () =>{
 
-  const [ravintolat1, setRavintolat] = useState([]);
+  const [ravintolat, setRavintolat] = useState([]);
   
   useEffect(() =>{
     const getRavintolat = async () => {
-      const raflat = await axios.get('https://dummyjson.com/products')
+      const raflat = await axios.get('http://localhost:8080/ravintolat')
 
-      setRavintolat(raflat.data.products);
-      console.log(raflat.data.products);
+      setRavintolat(raflat.data);
+      console.log(raflat.data);
 
     }
 
       getRavintolat();
 
    }, []);
-
-
-  const ravintolat = ravintolat1.map(ravintola => {
-    return { ...ravintola, idd: uuidv4() }
-  })
+console.log(ravintolat);
+ /*const ravintolat = ravintolat1.map(ravintola => {
+    return { ...ravintola, id: uuidv4() }
+    
+  })*/
 
 return(
   <BrowserRouter>
@@ -40,7 +40,7 @@ return(
     <Routes> 
       <Route path="/" element = { <Kirjautumisnakyma/> } />
       <Route path="/Paanakyma" element = { <Paanakyma ravintolat = {ravintolat}/> } />
-      <Route path="/Paanakyma/:idd" element = { <RavintolaIDnakyma ravintolat = {ravintolat}/> } />
+      <Route path="/Paanakyma/:nimi" element = { <RavintolaIDnakyma ravintolat = {ravintolat}/> } />
     </Routes>
   </div>
   </BrowserRouter>
