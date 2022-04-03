@@ -37,7 +37,7 @@ export default function RavintolaLista(props) {
         <div className="ravintolaElementti">
         { ravintolatToShow.map(ravintola =>
             <Link to={ ravintola.idd} key = {ravintola.idd} className="ravintolaListaElementti" >
-                <div><h1>{ravintola.name}</h1></div>
+                <div><h1>{ravintola.title}</h1></div>
                 <div> <h2>{ravintola.cuisine_type} </h2> </div> 
             </Link>
             )} 

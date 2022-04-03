@@ -11,8 +11,8 @@ export default function RavintolaIDnakyma(props) {
     }
   return (
       <div>
-          <div>Täältä löytyy ravintola {ravintola.name}  tiedot.
-                {ravintola.address}
+          <div>Täältä löytyy ravintola {ravintola.title}  tiedot.
+               Hintana {ravintola.price} €
           </div>
       </div>
     
