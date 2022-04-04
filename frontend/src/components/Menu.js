@@ -1,14 +1,12 @@
 import React from 'react'
-import TuoteItem from './TuoteItem'
+import Tuote from './Tuote'
 
 export default function Menu(props) {
-
-    
 
   return (
     <div>
         <div className='menu'>
-                { props.tuotteet.map( p => <TuoteItem title={p.title} description={p.description} price={p.price} qty={p.qty}/>) }    
+                { props.tuotteet.map( p => <Tuote title={p.title} description={p.description} price={p.price} qty={p.qty}/>) }    
         </div>
     </div>
   )

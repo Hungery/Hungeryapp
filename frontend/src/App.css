@@ -5,17 +5,49 @@ body {
 .yläpalkki {
   background-color: rgb(157, 255, 157);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   height: 150px;
-  align-items: center;
+  align-content: center;
+  padding: 20px;
+}
+
+.ruokakoribtn {
+  background-color: rgb(255, 232, 205);
+  width: 100px;
+  height: 50px;
+  margin: 50px 0px 50px 20px;
+  border-width: 10px;
+  border-color: rgb(252, 244, 235);
+  cursor: pointer;
+}
+
+.ruokakoribtn:hover {
+  background-color: rgb(188, 255, 188);
+  border: 10px solid rgb(107, 255, 107);
+}
+
+.edellinenbtn {
+  background-color: rgb(255, 232, 205);
+  width: 100px;
+  height: 50px;
+  margin: 50px 20px 50px 0px;
+  border-width: 10px;
+  border-color: rgb(252, 244, 235);
+  cursor: pointer;
+}
+
+.edellinenbtn:hover {
+  background-color: rgb(188, 255, 188);
+  border: 10px solid rgb(107, 255, 107);
 }
 
 .header {
   text-align: center;
-  padding-top: 25px;
   font-size: 400%;
   font-weight: bolder;
-  height: 150px;
+  height: auto;
+  width: 20000px;
+  margin: auto;
 }
 
 .alapalkki {
@@ -32,21 +64,21 @@ body {
 }
 
 .kuva {
-  padding: 150px 200px;
   border-width: 10px;
   border-style: solid;
   border-color: rgb(255, 232, 205);
+  margin-bottom: 5px;
 }
 
 .menu {
-  padding: 50px;
+  padding: 10px;
 }
 
 .slider{
   width: 10%;
 }
 
-.TuoteItem {
+.Tuote {
   width: 500px;
   height: auto;
   margin-bottom: 25px;
@@ -57,17 +89,17 @@ body {
   border: 10px solid rgb(255, 232, 205);
 }
 
-.TuoteItem:hover {
+.Tuote:hover {
   background-color: rgb(188, 255, 188);
   border: 10px solid rgb(157, 255, 157);
 }
 
-.tuoteitemright {
+.tuoteright {
   text-align: right;
   width: 450px;
 }
 
-.tuoteitemleft {
+.tuoteleft {
   display: flex;
   flex-direction: row;
   text-align: left;
@@ -97,3 +129,4 @@ body {
   font-size: 16px;
   padding: 5px 10px;
 }
+
