@@ -39,7 +39,7 @@ function App() {
 
   return (
     <UserAuthContext.Provider value={ userAuthData }>
-      <Logopalkki/>
+
       
 
       <BrowserRouter>

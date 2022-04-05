@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Constants from './Constants.json';
 import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom'
 
 
 
@@ -51,7 +52,7 @@ export default function SignupView() {
       break;
 
     case "error":
-      signupUIControls = <span style={{color: 'red'}}>Virhe käyttäjää luodessa</span>
+      signupUIControls = <span style={{color: 'red'}}>Käyttäjän luonti epäonnistui tai se on jo olemassa</span>
       break;
 
     default:
@@ -87,10 +88,13 @@ export default function SignupView() {
         </div>
         <div>
           Salasana<br />
-          <input type="text" name="salasana" />
+          <input type="password" name="salasana" />
         </div>
         <div>
           { signupUIControls }
+          <h2>Saitko luotua käyttäjän vai oliko sinulla sittenkin jo sellainen?
+            <Link to="login">Mene kirjautumaan tästä</Link><br />
+            </h2>
         </div>
       </form>
     </div>

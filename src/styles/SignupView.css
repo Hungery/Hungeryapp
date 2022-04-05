@@ -6,10 +6,10 @@ body{
   text-align: center;
 }
 h2{
-  text-align: -300
+  text-align: -300;
 }
 .kayttajanLuonti{
   color: rgb(36, 255, 36);
   font-size: 25px;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family:'Segoe UI', Tahoma, Verdana, sans-serif;
 }

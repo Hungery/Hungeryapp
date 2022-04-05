@@ -18,12 +18,12 @@ export default function Home(props) {
     event.preventDefault();
     setLoginProcessState("processing");
     try {
-      const result = await axios.post("http://localhost:8080/loginbasic", {
-        auth: {
-          sahkoposti: event.target.sahkoposti.value,
-          salasana: event.target.salasana.value
+      const json = JSON.stringify({sahkoposti: event.target.sahkoposti.value, salasana: event.target.salasana.value})
+      const result = await axios.post(Constants.API_ADDRESS + "/login", json,  {
+        headers: {
+          'Content-Type': 'application/json'
         }
-      })
+      });
       console.log(result);
       console.log(result.data);
       setLoginProcessState("success");
@@ -46,7 +46,7 @@ export default function Home(props) {
       break;
 
     case "processing":
-      loginUIControls = <span style={{color: 'blue'}}>Tarkastetaan käyttäjää...</span>
+      loginUIControls = <span style={{color: 'blue'}}>Kirjaudutaan sisään...</span>
       break;
 
     case "success":
@@ -70,10 +70,10 @@ export default function Home(props) {
       <div1>Kirjaudu sisään</div1>
       <form onSubmit={ onSubmit }>
         <div2>
-          Sähköposti<input type="text" name="sahkoposti"/>
+        Sähköposti <input type="text" name="sahkoposti"/>
         </div2>
         <div>
-          Salasana <input type="password" name="salasana"/>
+        Salasana <input type="text" name="salasana"/>
         </div>
         <div>
           { loginUIControls }
