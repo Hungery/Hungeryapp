@@ -4,6 +4,8 @@ import axios from 'axios';
 import Constants from './Constants.json';
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faPhone,faEnvelope,faLock,faUndo,faUserPlus,faUser,faHome} from "@fortawesome/free-solid-svg-icons"
 
 
 
@@ -40,7 +42,7 @@ export default function SignupView() {
   let signupUIControls = null;
   switch(signupProcessState) {
     case "idle":
-      signupUIControls = <button type="submit">Luo käyttäjä</button>
+      signupUIControls = <button class="signupbutton" type="submit">Luo käyttäjä</button>
       break;
 
     case "processing":
@@ -56,7 +58,7 @@ export default function SignupView() {
       break;
 
     default:
-      signupUIControls = <button type="submit">Luo käyttäjä</button>
+      signupUIControls = <button class="signupbutton" type="submit">Luo käyttäjä</button>
   }
 
   return (
@@ -67,34 +69,29 @@ export default function SignupView() {
       <span className="kayttajanLuonti"> Käyttäjän luonti </span>
       <form onSubmit={ handleSignupSubmit }>
         <div>
-          Etunimi<br />
-          <input type="text" name="etunimi" />
+          Etunimi <FontAwesomeIcon icon={faUser} /> <input type="text" name="etunimi" />
         </div>
         <div>
-          Sukunimi<br />
-          <input type="text" name="sukunimi" />
+          Sukunimi <FontAwesomeIcon icon={faUser} /> <input type="text" name="sukunimi" />
         </div>
         <div>
-          Puhelinnumero<br />
-          <input type="text" name="puhnro" />
+          Puhelinnumero <FontAwesomeIcon icon={faPhone} /> <input type="text" name="puhnro" />
         </div>
         <div>
-          Osoite<br />
-          <input type="text" name="osoite" />
+          Osoite <FontAwesomeIcon icon={faHome} /> <input type="text" name="osoite" />
         </div>
         <div>
-          Sähköposti<br />
-          <input type="text" name="sahkoposti" />
+          Sähköposti <FontAwesomeIcon icon={faEnvelope} /> <input type="text" name="sahkoposti" />
         </div>
         <div>
-          Salasana<br />
-          <input type="password" name="salasana" />
+          Salasana <FontAwesomeIcon icon={faLock} /> <input type="password" name="salasana" />
         </div>
-        <div>
           { signupUIControls }
-          <h2>Saitko luotua käyttäjän vai oliko sinulla sittenkin jo sellainen?
+          <div/>
+          <div>
+          Saitko luotua käyttäjän vai oliko sinulla sittenkin jo sellainen?
             <Link to="login">Mene kirjautumaan tästä</Link><br />
-            </h2>
+            <div/>
         </div>
       </form>
     </div>

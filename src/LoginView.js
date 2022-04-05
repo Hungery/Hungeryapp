@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Constants from './Constants.json';
 import {UserAuthContext} from './Contexts'
-import SignupView from './SignupView';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faSignInAlt,faEnvelope,faLock,faUndo} from "@fortawesome/free-solid-svg-icons"
 
 
 export default function Home(props) {
@@ -30,7 +31,7 @@ export default function Home(props) {
       setTimeout(() => {
         setLoginProcessState("idle")
         UserAuthContextValue.login(result.data.token);
-        navigate("/signup", { replace: true });
+        navigate("/", { replace: true });
       }, 1500);
     } catch (error) {
       console.error(error.message);
@@ -42,7 +43,7 @@ export default function Home(props) {
   let loginUIControls = null;
   switch(loginProcessState) {
     case "idle":
-      loginUIControls = <button type="submit">Kirjaudu</button>
+      loginUIControls = <button class="loginbutton" type="submit"> Kirjaudu <FontAwesomeIcon icon={faSignInAlt}/></button>
       break;
 
     case "processing":
@@ -58,7 +59,7 @@ export default function Home(props) {
       break;
 
     default:
-      loginUIControls = <button type="submit">Kirjaudu</button>
+      loginUIControls = <button style={{color: 'green'}}name="loginbutton" type="submit">Kirjaudu</button>
   }
 
 
@@ -67,27 +68,25 @@ export default function Home(props) {
       <span className="welcome">
       <h1><h2>Hungery</h2> Vegaanista kasviruokaa jokaiselle</h1>
       </span>
-      <div1>Kirjaudu sisään</div1>
+      <div>
+        <span className="login">Kirjaudu sisään</span>
+      </div>
       <form onSubmit={ onSubmit }>
-        <div2>
-        Sähköposti <input type="text" name="sahkoposti"/>
-        </div2>
         <div>
-        Salasana <input type="text" name="salasana"/>
+          <span className="email">
+        Sähköposti <FontAwesomeIcon icon={faEnvelope} /><input className="passbox1" type="text" name="sahkoposti"/>
+        </span>
+        </div>
+        <div>
+        <span className="password">
+        Salasana <FontAwesomeIcon icon={faLock} /><input className="passbox2" type="password" name="salasana"/>
+        </span>
         </div>
         <div>
           { loginUIControls }
         </div>
         <div>
-        { UserAuthContextValue.jwt != null ?
-          <Link to="protected">Go to protected view</Link>
-          :
-          <>
-           <h2>Eikö sinulla ole vielä käyttäjää?
-            <Link to="signup">Luo sellainen tästä</Link><br />
-            </h2>
-          </>
-        }
+           <span className="register">Eikö sinulla ollutkaan vielä käyttäjää? <Link to="signup" class="reglink"> Luo sellainen tästä</Link></span>
       </div>
       </form>
     </div>

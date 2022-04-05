@@ -1,11 +1,11 @@
-import './styles/App.css';
 import LoginView from './LoginView';
 import ProtectedView from './ProtectedView';
 import SignupView from './SignupView';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { UserAuthContext } from './Contexts';
-import Logopalkki from './components/Logopalkki'
+import Logopalkki from './components/Logopalkki';
+import Home from './Home';
 
 const jwtFromStorage = window.localStorage.getItem('appAuthData');
 
@@ -39,16 +39,17 @@ function App() {
 
   return (
     <UserAuthContext.Provider value={ userAuthData }>
-
+      <UserAuthContext.Consumer>
+      { value => (<div>Auth status: { value.jwt != null ? "Logged in": "Not logged in" }</div>) }
+      </UserAuthContext.Consumer>
       
-
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<LoginView />} />
+          <Route path="/" element={<Home />} />
           {
             authRoutes
           }
-          <Route path="*" element={<LoginView />} />
+          <Route path="*" element={<Home />} />
 
         </Routes>
       </BrowserRouter>
