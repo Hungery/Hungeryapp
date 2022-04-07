@@ -2,11 +2,10 @@ import Paanakyma from './Paanakyma';
 import Kirjautumisnakyma from './Kirjautumisnakyma'
 import { BrowserRouter , Routes , Route } from 'react-router-dom'
 import './App.css'
-//import restaurants from './data.json'
 import RavintolaIDnakyma from './RavintolaIDnakyma'
-import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios'
 import {useEffect, useState} from 'react'
+import Kayttaja from './Kayttaja'
 
 
 
@@ -28,10 +27,6 @@ const App = () =>{
 
    }, []);
 console.log(ravintolat);
- /*const ravintolat = ravintolat1.map(ravintola => {
-    return { ...ravintola, id: uuidv4() }
-    
-  })*/
 
 return(
   <BrowserRouter>
@@ -41,6 +36,7 @@ return(
       <Route path="/" element = { <Kirjautumisnakyma/> } />
       <Route path="/Paanakyma" element = { <Paanakyma ravintolat = {ravintolat}/> } />
       <Route path="/Paanakyma/:nimi" element = { <RavintolaIDnakyma ravintolat = {ravintolat}/> } />
+      <Route path="/kayttaja" element = { <Kayttaja/> } />
     </Routes>
   </div>
   </BrowserRouter>
