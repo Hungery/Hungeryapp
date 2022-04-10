@@ -17,7 +17,15 @@ export default function SignupView() {
     event.preventDefault();
     setSignupProcessState("processing");
     try {
-      const result = await axios.post(Constants.API_ADDRESS + '/registerBasic', {
+      /*
+      const json = JSON.stringify({etunimi: event.target.etunimi.value, sukunimi: event.target.sukunimi.value, puhnro: event.target.puhnro.value, osoite: event.target.osoite.value, sahkoposti: event.target.sahkoposti.value, role: "ASIAKAS", salasana: event.target.salasana.value})
+      const result = await axios.post(Constants.API_ADDRESS + "/register", json,  {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      */
+      const result = await axios.post(Constants.API_ADDRESS + '/register', {
         etunimi: event.target.etunimi.value,
         sukunimi: event.target.sukunimi.value,
         puhnro: event.target.puhnro.value,
