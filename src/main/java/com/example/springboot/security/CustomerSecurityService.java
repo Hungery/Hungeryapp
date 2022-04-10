@@ -10,8 +10,13 @@ import com.example.springboot.data.Customer;
 import com.example.springboot.data.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 
+import java.util.Arrays;
 import java.util.Base64;
 
 @Service
@@ -24,6 +29,24 @@ public class CustomerSecurityService {
 
     @Value("${jwt.secret}")
     private String jwtSecret;
+
+    public String registerUser(String etunimi, String sukunimi, String puhnro, String osoite, String sahkoposti, String role, String salasana){
+
+        Customer customer = new Customer(
+                etunimi,
+                sukunimi,
+                puhnro,
+                osoite,
+                sahkoposti,
+                encoder.encode(salasana),
+                Role.valueOf(role)
+        );
+
+        customerService.addNewCustomer(customer);
+
+        return "Customer added";
+    }
+
 
 
     public String checkBasicAuthentication(String basicAuthHeader) {
@@ -44,11 +67,9 @@ public class CustomerSecurityService {
 
         public String checkAuthentication(String sahkoposti, String salasana) {
         Customer c = customerService.getCustomer(sahkoposti);
-
         if (c == null) {
             return null;
         }
-
 
         return encoder.matches(salasana, c.salasana) ? createToken(c) : null;
     }

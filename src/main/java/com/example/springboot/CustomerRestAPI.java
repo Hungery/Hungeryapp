@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+@CrossOrigin(origins={ "http://localhost:3000"})
 @RestController
 public class CustomerRestAPI {
     @Autowired
@@ -32,7 +32,7 @@ public class CustomerRestAPI {
         return new ResponseEntity<>( Map.of( "token", token ), HttpStatus.OK );
     }
 
-    @PostMapping("/login")
+    @RequestMapping("/login")
     public ResponseEntity<Map<String, String>> login(@RequestBody Map<String, String> credentials) {
         String token = customerSecurity.checkAuthentication(
                 credentials.get("sahkoposti"),
@@ -55,4 +55,21 @@ public class CustomerRestAPI {
         }
         return new ResponseEntity<>( Map.of( "token", token ), HttpStatus.OK );
     }
+    @PostMapping("/register")
+    public ResponseEntity<String> registerCustomer(@RequestBody Map<String,String> credentials){
+
+        customerSecurity.registerUser(
+                credentials.get("etunimi"),
+                credentials.get("sukunimi"),
+                credentials.get("puhnro"),
+                credentials.get("osoite"),
+                credentials.get("sahkoposti"),
+                credentials.get("role"),
+                credentials.get("salasana")
+        );
+
+        return new ResponseEntity<>( "User registered", HttpStatus.OK );
+    }
+
+
 }

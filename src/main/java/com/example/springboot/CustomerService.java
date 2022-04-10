@@ -5,6 +5,7 @@ import com.example.springboot.data.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -36,5 +37,10 @@ public class CustomerService {
         customer = customerRepo.findById(sahkoposti).orElse(null);
         return customer;
     }
+    public Boolean addNewCustomer(Customer customer){
+        customerRepo.save(customer);
+        return true;
+    }
+
 
 }

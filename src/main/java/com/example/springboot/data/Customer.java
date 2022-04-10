@@ -7,7 +7,6 @@ import javax.persistence.*;
 public class Customer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public String sahkoposti;
 
     @Column(name = "etunimi")
