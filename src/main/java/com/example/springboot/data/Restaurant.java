@@ -1,16 +1,11 @@
 package com.example.springboot.data;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "restaurant")
 public class Restaurant {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public String sahkoposti;
 
     @Column(name = "nimi")
     public String nimi;
@@ -27,12 +22,26 @@ public class Restaurant {
     @Column(name = "hintataso")
     public String hintataso;
 
-    @Column(name = "kuva")
-    public Byte kuva;
+    @Id
+    @Column(name = "sahkoposti")
+    public String sahkoposti;
 
-    @JsonIgnore
     @Column(name = "salasana")
     public String salasana;
 
-    public Restaurant(){}
+    @Column(name = "role")
+    @Enumerated(EnumType.STRING)
+    public Role role;
+
+    public Restaurant() {
+    }
+
+    public Restaurant(String nimi, String sahkoposti, String salasana, Role role) {
+        this.nimi = nimi;
+        this.sahkoposti = sahkoposti;
+        this.salasana = salasana;
+        this.role = role;
+    }
+    public Restaurant(String subject, Object o, Role role){}
+
 }

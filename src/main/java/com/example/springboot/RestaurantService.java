@@ -1,10 +1,9 @@
 package com.example.springboot;
 
-import com.example.springboot.data.Menu;
-import com.example.springboot.data.OrderHistory;
 import com.example.springboot.data.Restaurant;
 import com.example.springboot.data.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -15,15 +14,31 @@ public class RestaurantService {
     @Autowired
     RestaurantRepository restaurantRepo;
 
+    RestaurantRepository restaurantRepository;
+
+    PasswordEncoder passwordEncoder;
+
     @PostConstruct
     public void init(){
-        List<Restaurant> restaurants = restaurantRepo.findAll();
+        List<Restaurant> restaurants = restaurantRepo.getRestaurantsBySearch("t");
 
-        for (Restaurant c : restaurants){
-            System.out.println("**************"+c.nimi);
+        for(Restaurant c : restaurants){
+            System.out.println("*******"+c.sahkoposti);
         }
     }
+
     public List<Restaurant> getRestaurants(){
         return restaurantRepo.findAll();
     }
+    public Restaurant getRestaurant(String sahkoposti){
+        Restaurant restaurant;
+        restaurant = restaurantRepo.findById(sahkoposti).orElse(null);
+        return restaurant;
+    }
+    public Boolean addNewRestaurant(Restaurant restaurant){
+        restaurantRepo.save(restaurant);
+        return true;
+    }
+
+
 }
