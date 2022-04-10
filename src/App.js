@@ -1,6 +1,8 @@
 import LoginView from './LoginView';
+import LoginViewRestaurant from './LoginViewRestaurant';
 import ProtectedView from './ProtectedView';
 import SignupView from './SignupView';
+import SignupViewRestaurant from './SignupViewRestaurant';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { UserAuthContext } from './Contexts';
@@ -31,6 +33,8 @@ function App() {
   let authRoutes = <>
             <Route path="/login" element={ <LoginView /> } />
             <Route path="/signup" element={ <SignupView /> } />
+            <Route path="/signupRestaurant" element={ <SignupViewRestaurant /> } />
+            <Route path="/loginRestaurant" element={ <LoginViewRestaurant /> } />
           </>
 
   if(userAuthData.jwt) {

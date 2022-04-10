@@ -1,4 +1,4 @@
-import './styles/SignupView.css';
+import './styles/SignupViewRestaurant.css';
 import React, { useState } from 'react';
 import axios from 'axios';
 import Constants from './Constants.json';
@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faPhone,faEnvelope,faLock,faUndo,faUserPlus,faUser,faHome} from "@fortawesome/free-solid-svg-icons"
-import SignupViewRestaurant from './SignupViewRestaurant';
 
 
 
@@ -18,14 +17,11 @@ export default function SignupView() {
     event.preventDefault();
     setSignupProcessState("processing");
     try {
-      const result = await axios.post(Constants.API_ADDRESS + '/register', {
-        etunimi: event.target.etunimi.value,
-        sukunimi: event.target.sukunimi.value,
-        puhnro: event.target.puhnro.value,
-        osoite: event.target.osoite.value,
+      const result = await axios.post(Constants.API_ADDRESS + '/registerRestaurant', {
+        nimi: event.target.nimi.value,
         sahkoposti: event.target.sahkoposti.value,
-        role: "ASIAKAS",
-        salasana: event.target.salasana.value
+        salasana: event.target.salasana.value,
+        role: "RAVINTOLA"
       })
       console.log(result);
       setSignupProcessState("success");
@@ -68,47 +64,29 @@ export default function SignupView() {
       <span className="welcome">
       <h1><h2>Hungery</h2> Vegaanista kasviruokaa jokaiselle</h1>
       </span>
-      <div><span className="kayttajanLuonti"> Käyttäjän luonti </span></div>
+      <div><span className="kayttajanLuonti"> Ravintolan käyttäjätunnuksen luonti </span></div>
       <form onSubmit={ handleSignupSubmit }>
         <div>
-        <span className="firstname">
-          Etunimi <FontAwesomeIcon icon={faUser} /> <input className="passbox1" type="text" name="etunimi" />
-          </span>
-        </div>
-        <div>
-        <span className="lastname">
-          Sukunimi <FontAwesomeIcon icon={faUser} /> <input className="passbox2" type="text" name="sukunimi" />
-          </span>
-        </div>
-        <div>
-        <span className="phone">
-          Puhelinnumero <FontAwesomeIcon icon={faPhone} /> <input className="passbox3" type="text" name="puhnro" />
-          </span>
-        </div>
-        <div>
-        <span className="address">
-          Osoite <FontAwesomeIcon icon={faHome} /> <input className="passbox4" type="text" name="osoite" />
+          <span className="name">
+          Ravintolan nimi <FontAwesomeIcon icon={faHome} /> <input className="passbox1" type="text" name="nimi" />
           </span>
         </div>
         <div>
         <span className="email">
-          Sähköposti <FontAwesomeIcon icon={faEnvelope} /> <input className="passbox5" type="text" name="sahkoposti" />
+          Sähköposti <FontAwesomeIcon icon={faEnvelope} /> <input className="passbox2" type="text" name="sahkoposti" />
           </span>
         </div>
         <div>
         <span className="password">
-          Salasana <FontAwesomeIcon icon={faLock} /> <input className="passbox6" type="password" name="salasana" />
+          Salasana <FontAwesomeIcon icon={faLock} /> <input className="passbox3" type="password" name="salasana" />
           </span>
         </div>
           { signupUIControls }
           <div/>
           <div>
-           Onko sinulla sittenkin jo käyttäjätunnus?
-            <Link to="/login"style={{color: 'lightgreen'}}> Mene kirjautumaan tästä</Link><br />
+          Oliko sinulla sittenkin jo ravintolallesi tunnukset?
+            <Link to="/loginRestaurant"style={{color: 'lightgreen'}}> Mene kirjautumaan tästä</Link><br />
             <div/>
-            <div>Tahdotko luoda uuden tunnuksen ravintolallesi?
-              <Link to="/signupRestaurant"style={{color: 'lightgreen'}}> Luo sellainen tästä</Link>
-            </div>
         </div>
       </form>
     </div>

@@ -7,7 +7,6 @@ import Constants from './Constants.json';
 import {UserAuthContext} from './Contexts'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faSignInAlt,faEnvelope,faLock,faUndo,faHome} from "@fortawesome/free-solid-svg-icons"
-import LoginViewRestaurant from './LoginViewRestaurant'
 
 
 export default function Home(props) {
@@ -21,7 +20,7 @@ export default function Home(props) {
     setLoginProcessState("processing");
     try {
       const json = JSON.stringify({sahkoposti: event.target.sahkoposti.value, salasana: event.target.salasana.value})
-      const result = await axios.post(Constants.API_ADDRESS + "/login", json,  {
+      const result = await axios.post(Constants.API_ADDRESS + "/loginRestaurant", json,  {
         headers: {
           'Content-Type': 'application/json'
         }
@@ -71,7 +70,7 @@ export default function Home(props) {
       <h1><h2>Hungery</h2> Vegaanista kasviruokaa jokaiselle</h1>
       </span>
       <div>
-        <span className="login">Kirjaudu sisään</span>
+        <span className="login">Ravintolan sisäänkirjautuminen</span>
       </div>
       <form onSubmit={ onSubmit }>
         <div>
@@ -89,9 +88,6 @@ export default function Home(props) {
         </div>
         <div>
            <span className="register">Eikö sinulla ollutkaan vielä käyttäjää? <Link to="/signup" class="reglink"> Luo sellainen tästä</Link></span>
-      </div>
-      <div>
-      <span className="register">Ravintolan kirjautuminen: <Link to="/loginRestaurant" class="reglink"> Siirry kirjautumaan tästä</Link></span>
       </div>
       </form>
     </div>
