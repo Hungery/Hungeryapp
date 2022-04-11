@@ -18,9 +18,9 @@ export default function Tuote(props) {
         </div>
 
         <div className='tuoteright'>
-          <div className='title'>{ props.title }</div>
-          <div>{ props.description }</div>
-          <div>${ props.price }</div>
+          <div className='title'>{ props.nimi }</div>
+          <div>{ props.kuvaus }</div>
+          <div>${ props.hinta }</div>
         </div>
 
       </div>

@@ -130,3 +130,7 @@ body {
   padding: 5px 10px;
 }
 
+.title {
+  font-size: larger;
+  font-weight: bold;
+}

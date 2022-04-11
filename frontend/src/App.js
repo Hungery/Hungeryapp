@@ -4,32 +4,26 @@ import React from 'react'
 import Menu from './components/Menu'
 import alepa from './components/Alepa_Tripla.jpg';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 import Paanakyma from './components/Paanakyma';
 import Ostoskori from './components/Ostoskori';
 
 function App() {
 
-  const [ tuotteet, setTuotteet ] = useState([
-      {
-          id: 1,
-          title: "Kaljaa",
-          description: "Vehnäistä kaljaa tölkistä",
-          price: 2.90,
-          thumbnail: false,
-          isChecked: false,
-          qty: 0,
-      },
-      {
-          id: 2,
-          title: "Sipsii",
-          description: "Estrella grilli sipsi",
-          price: 4.90,
-          thumbnail: false,
-          isChecked: false,
-          qty: 0,
-      },
-  ]);
+  const [ menus, setMenus ] = useState([]);
 
+  useEffect(() =>{
+    const getMenus = async () => {
+      const menus = await axios.get('http://localhost:8080/menus')
+
+      setMenus(menus.data);
+    }
+
+      getMenus();
+
+   }, []);
+
+/*
   const handleItemCheckedToggle = (item) => {
       let newTuotteet = [...tuotteet];
       let itemClickedIndex = newTuotteet.findIndex(i => item.title == i.title);
@@ -41,9 +35,15 @@ function App() {
           setTuotteet(newTuotteet);
       }
   }
-
+*/
   return (
     <BrowserRouter>
+
+      <Routes>
+        <Route path="/paanakyma" element={ <Paanakyma/> }/>
+        <Route path="/ostoskori" element={ <Ostoskori/> }/>
+      </Routes> 
+
     <div className="App">
       
       <div className='yläpalkki'>
@@ -58,15 +58,12 @@ function App() {
             <img src={alepa} alt="RAVINTOLAN KUVA" width="550" height="400"/>
         </div>
         <div className='menu'>
-        <Menu tuotteet={ tuotteet } itemClickedEvent={ handleItemCheckedToggle }/>
+        <Menu menus={ menus } /*itemClickedEvent={ handleItemCheckedToggle }*/ />
         </div>
       </div>
-      <Routes>
-        <Route path="/paanakyma" element={ <Paanakyma/> }/>
-        <Route path="/ostoskori" element={ <Ostoskori/> }/>
-      </Routes>
-
+      
     </div>
+
     </BrowserRouter>
   );
 }
