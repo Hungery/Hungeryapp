@@ -3,34 +3,41 @@ import './App.css'
 import Header from './components/Header';
 import Ostoskori from './components/Ostoskori';
 import Menunakyma from './components/Menunakyma';
+import axios from "axios";
 import React, {useState, useEffect} from "react";
 
 
 const App = (props) => {
   
   const {cartItems, onAdd} = props;
- 
+
+
   return(
-  <BrowserRouter>
-  <div className="App">
-    <Header></Header>
-    <div className="row">
-      <Routes> 
-        <Route path="/menuravintola" element = { <Menunakyma>onAdd={onAdd}</Menunakyma> } />
-      </Routes>
-      <Ostoskori onAdd={onAdd} cartItems={cartItems}></Ostoskori>
-    </div>
-    <div>
-      <Routes>
-        <Route path="/ostoskori" element = { <Ostoskori /> } />
-      </Routes>
-    </div>
+    <BrowserRouter>
+    <div className="App">
+      <Header></Header>
+      <div className="row">
+        <Routes> 
+          <Route path="/menuravintola" element = 
+            { <Menunakyma Ostoskori addToCart
+            ></Menunakyma> } />
+        </Routes>
+      </div>
+      <div>
+        <Routes>
+        </Routes>
+      </div>
   </div>
   </BrowserRouter>
-  )
-}
+)
+};
 
 export default App
+
+//<Route path="/menuravintola" element = { <Menunakyma>onAdd={onAdd}</Menunakyma> } />
+//{ <Ostoskori onAdd= {onAdd} cartItems={cartItems}/>}
+//<Route path="/ostoskori" element = { <Ostoskori /> } />
+
 
 
 /*
@@ -56,6 +63,8 @@ class App extends React.Component {
     }
     this.setState({cartItems});
   };
+
+
 
   return(
     <BrowserRouter>
