@@ -52,15 +52,9 @@ function App() {
         <Link to="/ostoskori"><button className='ruokakoribtn'>ostoskori</button></Link>
       </div>
 
-      <div className='alapalkki'>
-        <div className='ravintolannimi'>RAVINTOLAN NIMI</div>
-        <div className='kuva'>
-            <img src={alepa} alt="RAVINTOLAN KUVA" width="550" height="400"/>
-        </div>
-        <div className='menu'>
+        <div>
         <Menu menus={ menus } /*itemClickedEvent={ handleItemCheckedToggle }*/ />
         </div>
-      </div>
       
     </div>
 
