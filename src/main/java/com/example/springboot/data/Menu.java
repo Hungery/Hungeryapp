@@ -9,11 +9,11 @@ public class Menu {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long menuid;
 
+    @Column(name = "nimi")
+    public String nimi;
+
     @Column(name = "kuvaus")
     public String kuvaus;
-
-    @Column(name = "hinta")
-    public Double hinta;
 
     @Column(name = "kuva")
     public Byte kuva;
@@ -21,5 +21,17 @@ public class Menu {
     @Column(name = "tuotekategoria")
     public String tuotekategoria;
 
+    @Column(name = "restaurant")
+    public static String restaurant;
+
+    @Column(name = "nimiravintola")
+    public String nimiravintola;
+
+    @Column(name = "hinta")
+    public Double hinta;
+
+
+
     public Menu(){}
+
 }

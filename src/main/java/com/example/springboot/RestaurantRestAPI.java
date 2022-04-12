@@ -1,5 +1,6 @@
 package com.example.springboot;
 
+import com.example.springboot.data.OrderHistory;
 import com.example.springboot.data.Restaurant;
 import com.example.springboot.security.RestaurantSecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,5 +66,10 @@ public class RestaurantRestAPI {
         );
 
         return new ResponseEntity<>( "Restaurant registered", HttpStatus.OK );
+    }
+
+    @GetMapping("/ravintolat")
+    public List<Restaurant> getRestaurants(){
+        return restaurantService.getRestaurants();
     }
 }

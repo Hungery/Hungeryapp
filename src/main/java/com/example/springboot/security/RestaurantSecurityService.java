@@ -26,7 +26,7 @@ public class RestaurantSecurityService {
     @Value("${jwt.secret}")
     private String jwtSecret;
 
-    public String registerRestaurant(String nimi, /*String osoite, String tyyppi, String aukioloajat, String hintataso, Byte kuva,*/ String sahkoposti, String salasana, String role){
+    public String registerRestaurant(String nimi, String sahkoposti, String salasana, String role){
 
         Restaurant restaurant = new Restaurant(
                 nimi,

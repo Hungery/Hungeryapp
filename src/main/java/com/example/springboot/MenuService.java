@@ -23,7 +23,11 @@ public class MenuService {
             System.out.println("**************"+c.tuotekategoria);
         }
     }
-    public List<Menu> getMenus(){
-        return menuRepo.findAll();
-    }
+    public List<Menu> getMenus(){return menuRepo.findAll();}
+
+    public Menu getMenu(String nimiravintola){
+        Menu menu;
+        menu = menuRepo.findById(nimiravintola).orElse(null);
+        return menu;
+       }
 }
