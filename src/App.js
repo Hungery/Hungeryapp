@@ -4,7 +4,7 @@ import Header from './components/Header';
 import Ostoskori from './components/Ostoskori';
 import Menunakyma from './components/Menunakyma';
 import axios from "axios";
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, Fragment, } from "react";
 
 
 const App = (props) => {
@@ -18,9 +18,14 @@ const App = (props) => {
       <Header></Header>
       <div className="row">
         <Routes> 
-          <Route path="/menuravintola" element = 
-            { <Menunakyma Ostoskori addToCart
-            ></Menunakyma> } />
+          <Route path='/menuravintola'
+              element={
+                <Fragment>
+                    < Menunakyma />
+                    < Ostoskori />
+                </Fragment>
+              }
+            />
         </Routes>
       </div>
       <div>
@@ -37,6 +42,9 @@ export default App
 //<Route path="/menuravintola" element = { <Menunakyma>onAdd={onAdd}</Menunakyma> } />
 //{ <Ostoskori onAdd= {onAdd} cartItems={cartItems}/>}
 //<Route path="/ostoskori" element = { <Ostoskori /> } />
+
+//<Route path="/menuravintola" element = 
+//{ <Menunakyma /> } />
 
 
 

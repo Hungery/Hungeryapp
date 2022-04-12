@@ -10,7 +10,7 @@ export default function Header(props) {
                 </a>
             </div>
             <div>
-                <a href="/ostoskori"><button className="nappiOstoskori">Ostoskori</button></a> <a href="/kirjaudu"><button className="nappiKirjaudu">Kirjaudu</button></a> 
+                <a href="/ostoskori"><button className="button header">Ostoskori</button></a> <a href="/kirjaudu"><button className="button header">Kirjaudu</button></a> 
             </div>
         </header>
     )

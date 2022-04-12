@@ -3,49 +3,72 @@ import { Link } from 'react-router-dom'
 import Menunakyma from './Menunakyma';
 import formatCurrency from '../util';
 
-export default class Cart extends Component {
-  render() {
-      const {cartItems} = this.props;
+export default function Ostoskori(props) {
+
+    const [total, setTotal] = useState([]);
+    const {cartItems, setCartItems} = props;
+
+      const removeFromCart = (menuid) => {
+            
+        const deleted = cartItems.filter((cart) => cart.menuid !== menuid);
+        setCartItems(deleted);
+        setTotal(cartItems.length - 1);
+       
+        
+        console.log ("Total of items: ", total);
+       };
+
+       const pay = (maksu) => {
+         const today = new Date();
+         const date = `${today.getDate()}/${today.getMonth()+1}/${today.getFullYear()}`;
+
+         let tilaaja = " ";
+         let tuotteet = " ";
+
+          for(let i = 0; i < cartItems.length; i++) {
+            let summa = {...Ostoskori[i]}
+            tilaaja = tilaaja + ", " +summa.nimi +" qty: " + summa.qty + " ";
+            tuotteet += summa.qty
+          }
+       }
+
     return (
       <div>
-          {cartItems.length === 0 ? (
-            <div className='ostoskori ostoskori-header'>Ostoskori on tyhjä </div>
-           ) : (
-            <div className='ostoskori ostoskori-header'>
-                Sinulla on {cartItems.length} tuotetta ostoskorissa{" "}
-            </div>
-           )}
-            <div>
-                <div className='ostoskori'>
-                    <ul className='cart-items'>
-                        {cartItems.map((item) => (
-                            <li key={item.menuid}>
-                                <div>
-                                    <img src={item.kuva} alt={item.nimi}></img>
-                                </div>
-                                <div>
-                                    <div>{item.nimi}</div>
-                                    <div className='right'>
-                                        {formatCurrency(item.hinta)} x {item.count} {" "}
-                                        <button
-                                            className='button'
-                                            onClick={() => this.props.removeFromCart(item)}>
-                                            Poista
-                                        </button>
-                                    </div>
-                                </div>   
-                                                        
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-                    {cartItems.length !== 0 && (
+                  {cartItems.length === 0 ? (
+                    <div className='ostoskori ostoskori-header'>Ostoskori on tyhjä </div>
+                  ) : (
+                    <div className='ostoskori ostoskori-header'>
+                        Sinulla on {cartItems.length} tuotetta ostoskorissa{" "}
+                  </div>
+                    )}
+
+                    <div>
+                      <div className='ostoskori'>
+                          <ul className='cart-items'>
+                              {cartItems.map((ruoat) => (
+                                  <li key={ruoat.menuid}>
+                                      <div>
+                                          <div>{ruoat.nimi}</div>
+                                          <div className='right'>
+                                              {(ruoat.hinta)} € x {ruoat.qty} {" "}
+                                              <button
+                                                  className='button'
+                                                  onClick={() => removeFromCart(ruoat.menuid)}>
+                                                  Poista
+                                              </button>
+                                          </div>
+                                      </div>   
+                                                              
+                                  </li>
+                              ))}
+                          </ul>
+                      </div>
+                      {cartItems.length !== 0 && (
                         <div className='ostoskori'>
                             <div className='yhteensa'>
                                 <div>
                                     Yhteensä:{" "}
-                                    {formatCurrency(
-                                    cartItems.reduce((a,c) => a + c.hinta + c.count, 0)
+                                    {(cartItems.reduce((a,c) => a + c.hinta + c.qty, 0)
                                     )}
                                 </div>
                                 <button className='button primary'>
@@ -53,12 +76,11 @@ export default class Cart extends Component {
                                 </button>
                             </div>
                         </div>
-                    )}
+                      )}
                 </div>
       </div>
-    );
+    )
   }
-}
 
 /*
 export default function Ostoskori() {

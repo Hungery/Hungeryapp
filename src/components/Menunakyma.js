@@ -1,11 +1,10 @@
 import React, {useState, useEffect} from "react";
 import { Link } from 'react-router-dom'
-import axios from "axios";
-import Ostoskori from "./Ostoskori";
 import formatCurrency from "../util";
+import Ostoskori from "./Ostoskori";
 
   
-  export default function Menunakyma() {
+  export default function Menunakyma(props) {
 
       const url = "http://localhost:8080/menus"
       const[ruoat, setMenuRavintola] = useState([])
@@ -31,20 +30,18 @@ import formatCurrency from "../util";
         let alreadyInCart = false;
         cartItems.forEach((ruoat) => {
           if(ruoat.menuid === cart.menuid) {
-            ruoat.count++;
+            ruoat.qty++;
             alreadyInCart = true;
-          } setCartItems(cartItems)
+          }
         });
           if(!alreadyInCart) {
-            cartItems.push({...cart, count: 1});
+            cartItems.push({...cart, qty: 1});
         }
         setCartItems(cart);
       }
 
-
-        
-    
         return (
+          
           <div>
                 <ul className="menus">
 
@@ -61,7 +58,7 @@ import formatCurrency from "../util";
                                 <div className="menu-price">
                                 <div>{(ruoat.hinta)} €</div>
                                 <button 
-                                    onClick={() => addToCart(ruoat.menuid, ruoat.nimi, ruoat.hinta)} 
+                                    onClick={() => addToCart(ruoat.menuid, ruoat.nimi, ruoat.hinta, ruoat.qty)} 
                                     className="button primary">
                                     Lisää ostoskoriin
                                 </button>
@@ -70,49 +67,8 @@ import formatCurrency from "../util";
                         </li>
                         ))}
                 </ul>
-
-                
-                  {cartItems.length === 0 ? (
-                    <div className='ostoskori ostoskori-header'>Ostoskori on tyhjä </div>
-                  ) : (
-                    <div className='ostoskori ostoskori-header'>
-                        Sinulla on {cartItems.length} tuotetta ostoskorissa{" "}
-                  </div>
-                    )}
-
-                    <div>
-                      <div className='ostoskori'>
-                          <ul className='cart-items'>
-                              {cartItems.map((ruoat) => (
-                                  <li key={ruoat.menuid}>
-                                      <div>
-                                          <div>{ruoat.nimi}</div>
-                                          <div className='right'>
-                                              {(ruoat.hinta)} x {ruoat.count} {" "}
-                                              <button
-                                                  className='button'
-                                                  onClick={() => this.props.removeFromCart(ruoat)}>
-                                                  Poista
-                                              </button>
-                                          </div>
-                                      </div>   
-                                                              
-                                  </li>
-                              ))}
-                          </ul>
-                      </div>
-
-
-            </div>
-                
-
-
-
           </div>
-
-
         )
-
   }
   /*
     return(
