@@ -1,0 +1,76 @@
+body{
+  background-color: #282c34;
+  color: white;
+  padding: 40px;
+  font-family: Arial;
+  text-align: center;
+}
+h2{
+  text-align: -300;
+}
+.kayttajanLuonti{
+  color: lightgreen;
+  font-size: 25px;
+  font-family:'Segoe UI', Tahoma, Verdana, sans-serif;
+}
+.signupbutton{
+  width: 200px;
+  margin-top: 5px;
+  size: 100px;
+  margin-left: 40px;
+  margin-bottom: 25px;
+  font-size: 18px;
+  background-color: lightgreen;
+  border-color: black;
+  color: black;
+  border-radius: 100px;
+}
+.passbox1{
+  margin-left: 3px;
+  margin-top: 5px;
+  width: 200px;
+}
+.passbox2{
+  margin-left: 3px;
+  width: 200px;
+}
+.passbox3{
+  margin-left: 3px;
+  width: 200px;
+}
+.passbox4{
+  margin-left: 3px;
+  width: 200px;
+}
+.passbox5{
+  margin-left: 3px;
+  width: 200px;
+}
+.passbox6{
+  margin-left: 3px;
+  width: 200px;
+}
+.firstname{
+  margin-left: -60px;
+  font-size: 20px;
+}
+.lastname{
+  margin-left: -74px;
+  font-size: 20px;
+}
+.phone{
+  margin-left: -129px;
+  font-size: 20px;
+}
+.address{
+  margin-left: -54px;
+  font-size: 20px;
+}
+.email{
+  margin-left: -117px;
+  font-size: 20px;
+}
+.password{
+  margin-left: -100px;
+  font-size: 20px;
+}

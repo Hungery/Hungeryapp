@@ -1,0 +1,95 @@
+.logopalkki{
+    display: flex;
+    background-color: rgb(206, 192, 192);
+    height: flex;
+    align-items: center;
+  }
+  
+  .logopalkki > * {
+    margin-right: 10px;
+  }
+  
+  .logo{
+    margin-left: auto;
+    margin-right: auto;
+    
+  }
+  
+  .ravintolaListaElementti{
+    width: 200px;
+    padding: 15px;
+    margin: 5px;
+    border: 2px solid lightgrey;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    background-color: rgb(175, 122, 122);
+    transition-duration: 0.9s;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    
+  }
+  
+  .ravintolaListaElementti:hover{
+    background-color: rgb(224, 255, 239);
+    color: rgb(190, 64, 15);
+    
+  }
+  
+  .ravintolaElementti{
+    display: flex;
+    flex-wrap: wrap;
+  
+  }
+  
+  .filtteriPalkki{
+    display: flex;
+    height: flex;
+    padding: 5px;
+    background-color: lightgreen;
+    align-items: center;
+  }
+  
+  .tausta{
+    background-color: rgb(134, 134, 241)
+    
+  }
+  
+  .nappi{
+    background-color: rgb(204, 201, 186);
+    border-radius: 12px;
+    border: 2px solid black;
+    transition-duration: 0.6s;
+    font-weight: bold;
+    padding: 10px 34px;
+    font-family: 'Courier New', Courier, monospace;
+    color:rgb(5, 4, 0);
+    margin: 5px
+    
+  }
+  .nappi:hover{
+    background-color: rgb(235, 111, 111);
+    box-shadow: 0 8px 9px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  }
+  
+  .nappi:focus{
+    background-color: red;
+  }
+  
+  .tekstikentta{
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 8px 8px 8px 8px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 24px;
+  }
+  .restaurantname{
+      font-size: 30px;
+  }
