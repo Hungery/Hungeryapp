@@ -9,6 +9,7 @@ export default function Logopalkki() {
       <div className="logopalkki">
       <button className="nappi" onClick={() => userAuthContextValue.logout()} >Kirjaudu ulos</button>
       <div className="logo"> <h3> Tässä logo </h3></div>
+      <Link to="/orderhistory" className="nappi"> Tilaushistoria</Link>
       <Link to="/Kayttaja" className="nappi"> Käyttäjä</Link>
       </div>
     </div>

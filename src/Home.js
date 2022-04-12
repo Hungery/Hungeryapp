@@ -3,8 +3,9 @@ import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { UserAuthContext } from './Contexts';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faSignInAlt,faUser, faHome} from "@fortawesome/free-solid-svg-icons"
+import {faSignInAlt,faUserAlt, faHome} from "@fortawesome/free-solid-svg-icons"
 import { useNavigate } from 'react-router-dom';
+import logoo from './img/logoo.png';
 
 export default function Home(props) {
 
@@ -18,13 +19,8 @@ if(userAuthContextValue.jwt != null){
 else{
   return (
     <div>
-      <div><span className="home"> <Link to="/"style={{color: 'lightgreen'}}><FontAwesomeIcon icon={faHome}/>Etusivu</Link></span></div>
-      <div>
-        <span className="otsikko1">Hungery</span>
-      </div>
-      <div>
-      <span className="otsikko2">Vegaanista kasviruokaa jokaiselle</span>
-      </div>
+      <div><span className="nappix"> <Link to="/"style={{color: 'black'}}><FontAwesomeIcon icon={faHome}/>ETUSIVU</Link></span></div>
+      <img alt="logox" className="logox" src={logoo} />
       <div>
       <div><span className="welcome">Tervetuloa Hungeryyn!</span></div>
       </div>
@@ -32,10 +28,17 @@ else{
       <div className="mustdo">Tilataksesi ruokaa sinun täytyy kirjautua sisään:</div>
       </div>
       <div>
-            <Link to="/login"style={{color: 'lightgreen'}}>Kirjaudu sisään tästä <FontAwesomeIcon icon={faSignInAlt}/></Link>
-            <div><span> Tai jos sinulla ei ole vielä käyttäjää, </span>
-            <span className="register">
-            <Link to="/signup"style={{color: 'lightgreen'}}>luo käyttäjä tästä <FontAwesomeIcon icon={faUser} /></Link></span></div>
+            <span className="nappixy">
+            <Link to="/login"style={{color: 'black'}}>Kirjaudu sisään tästä <FontAwesomeIcon icon={faSignInAlt}/></Link></span>
+            <div>.</div>
+            <div>
+              <span className="mustdo"> Tai jos sinulla ei ole vielä käyttäjää: </span>
+            </div>
+            <div>.</div>
+            <div>
+            <span className="nappixy">
+            <Link to="/signup"style={{color: 'black'}}>Luo käyttäjä tästä <FontAwesomeIcon icon={faUserAlt} /></Link></span>
+            </div>
       </div>
     </div>
     )

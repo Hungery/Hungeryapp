@@ -10,7 +10,7 @@ body{
 .otsikko2{
   font-size: 30px;
   color: white;
-  margin-bottom: 100px;
+  margin-bottom: 10px;
 }
 .otsikko1{
   font-size: 100px;
@@ -42,7 +42,7 @@ body{
   margin-top: 5px;
   size: 100px;
   margin-left: 40px;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   font-size: 18px;
   background-color: lightgreen;
   border-color: black;
@@ -54,4 +54,10 @@ body{
 }
 .reglink{
   color: lightgreen;
+}
+.logooo{
+  margin-left: auto;
+  margin-right: auto;
+  height: 300px;
+  width: 300px;
 }

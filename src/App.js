@@ -10,6 +10,7 @@ import axios from 'axios';
 import Constants from './Constants.json';
 import Paanakyma from './Paanakyma';
 import Ravintolanakyma from './Menu';
+import Orderhistory from './Orderhistory';
 
 const jwtFromStorage = window.localStorage.getItem('appAuthData');
 
@@ -33,12 +34,25 @@ const [ menus, setMenus ] = useState([]);
 
   useEffect(() =>{
     const getMenus = async () => {
-      const menut = await axios.get('http://localhost:8080/menus')
+      const menut = await axios.get(Constants.API_ADDRESS + "/menus")
 
       setMenus(menut.data);
     }
 
       getMenus();
+
+   }, []);
+   const [ orders, setOrders ] = useState([]);
+
+  useEffect(() =>{
+    const getOrders = async () => {
+      const orderit = await axios.get(Constants.API_ADDRESS + "/orders")
+
+      setOrders(orderit.data);
+      console.log(orderit.data);
+    }
+
+      getOrders();
 
    }, []);
 
@@ -74,6 +88,7 @@ const [ menus, setMenus ] = useState([]);
             <Route path="/loginRestaurant" element={ <LoginViewRestaurant /> } />
             <Route path="/paanakyma" element={ <Paanakyma ravintolat={ravintolat}/> } />
             <Route path="/ravintolanakyma" element={ <Ravintolanakyma menus={menus}/> } />
+            <Route path="/orderhistory" element={ <Orderhistory orders={orders}/> } />
         </Routes>
       </BrowserRouter>
     </UserAuthContext.Provider>

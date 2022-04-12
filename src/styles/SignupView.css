@@ -12,13 +12,14 @@ h2{
   color: lightgreen;
   font-size: 25px;
   font-family:'Segoe UI', Tahoma, Verdana, sans-serif;
+  margin-top: -50px;
 }
 .signupbutton{
   width: 200px;
   margin-top: 5px;
   size: 100px;
   margin-left: 40px;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   font-size: 18px;
   background-color: lightgreen;
   border-color: black;
