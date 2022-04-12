@@ -11,6 +11,20 @@ const App = (props) => {
   
   const {cartItems, onAdd} = props;
 
+  const pay = (maksu) => {
+    const today = new Date();
+    const date = `${today.getDate()}/${today.getMonth()+1}/${today.getFullYear()}`;
+
+    let tilaaja = " ";
+    let tuotteet = " ";
+
+     for(let i = 0; i < cartItems.length; i++) {
+       let summa = {...Ostoskori[i]}
+       tilaaja = tilaaja + ", " +summa.nimi +" qty: " + summa.qty + " ";
+       tuotteet += summa.qty
+     }
+  }
+
 
   return(
     <BrowserRouter>
@@ -18,14 +32,8 @@ const App = (props) => {
       <Header></Header>
       <div className="row">
         <Routes> 
-          <Route path='/menuravintola'
-              element={
-                <Fragment>
-                    < Menunakyma />
-                    < Ostoskori />
-                </Fragment>
-              }
-            />
+          <Route path="/menuravintola" element = 
+          { <Menunakyma /> } />
         </Routes>
       </div>
       <div>
@@ -46,78 +54,13 @@ export default App
 //<Route path="/menuravintola" element = 
 //{ <Menunakyma /> } />
 
-
-
-/*
-class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      cartItems: []
-    };
-  }
-
-  addToCart=(menu) => {
-    const cartItems = this.state.cartItems.slice();
-    let alreadyInCart = false;
-    cartItems.forEach((item) => {
-      if(item.menuid === menu.menuid) {
-        item.count++;
-        alreadyInCart = true;
-      }
-    });
-    if(!alreadyInCart) {
-      cartItems.push({...menu, count: 1});
-    }
-    this.setState({cartItems});
-  };
-
-
-
-  return(
-    <BrowserRouter>
-      <div className="App">
-        <Header></Header>
-        <div className="row">
-          <Routes> 
-            <Route path="/menuravintola" element = { <Menunakyma addToCart={this.addToCart}></Menunakyma> } />
-          </Routes>
-          { <Ostoskori cartItems={this.state.cartItems}/>}
-        </div>
-        <div>
-          <Routes>
-            <Route path="/ostoskori" element = { <Ostoskori/>} />
-  
-          </Routes>
-        </div>
-    </div>
-    </BrowserRouter>
-  )
-};
-  
-  export default App
+/*<Route path='/menuravintola'
+element={
+  <Fragment>
+      < Menunakyma />
+      < Ostoskori />
+  </Fragment>
+}
+/>
 */
 
-/*
-lenght
-const App = (props) => {
-  
-  const [cartItems, setCartItems] = useState([]);
-  
-  const onAdd = (menu) => {
-    const exist = cartItems.find((x) => x.menuid === menu.menuid)
-    if(exist) {
-      setCartItems(
-        cartItems.map((x) => 
-          x.menuid === menu.menuid ? {...exist, qty: exist.qty +1} : x
-        )
-      );
-    } else {
-      setCartItems([...cartItems, {...menu, qty: 1 }]);
-    }
-  };
-
-  useEffect(() => {
-    onAdd();
-  }, []);
-  */

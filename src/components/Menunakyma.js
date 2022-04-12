@@ -4,7 +4,7 @@ import formatCurrency from "../util";
 import Ostoskori from "./Ostoskori";
 
   
-  export default function Menunakyma(props) {
+  export default function Menunakyma() {
 
       const url = "http://localhost:8080/menus"
       const[ruoat, setMenuRavintola] = useState([])
@@ -17,6 +17,7 @@ import Ostoskori from "./Ostoskori";
       }, []);
 
       const [cartItems, setCartItems] = useState([]);
+      const [total, setTotal] = useState([]);
 
       const addToCart = (menuid, nimi, hinta) => {
 
@@ -37,11 +38,25 @@ import Ostoskori from "./Ostoskori";
           if(!alreadyInCart) {
             cartItems.push({...cart, qty: 1});
         }
+          
         setCartItems(cart);
       }
 
-        return (
-          
+      const removeFromCart = (menuid) => {
+            
+        const deleted = cartItems.filter((cart) => cart.menuid !== menuid);
+          setCartItems(deleted);
+          setTotal(cartItems.length - 1);
+       
+        
+        console.log ("Total of items: ", total);
+       };
+
+       const getTotalCost = (cartItems) => {
+        return cartItems.reduce((totalCost, { hinta: hinta }) => totalCost + parseFloat(hinta), 0);
+      }
+
+return (
           <div>
                 <ul className="menus">
 
@@ -67,85 +82,51 @@ import Ostoskori from "./Ostoskori";
                         </li>
                         ))}
                 </ul>
+
+                
+                  {cartItems.length === 0 ? (
+                    <div className='ostoskori ostoskori-header'>Ostoskori on tyhjä </div>
+                  ) : (
+                    <div className='ostoskori ostoskori-header'>
+                        Sinulla on {cartItems.length} tuotetta ostoskorissa{" "}
+                  </div>
+                    )}
+
+                    <div>
+                      <div className='ostoskori'>
+                          <ul className='cart-items'>
+                              {cartItems.map((ruoat) => (
+                                  <li key={ruoat.menuid}>
+                                      <div>
+                                          <div>{ruoat.nimi}</div>
+                                          <div className='right'>
+                                              {(ruoat.hinta)} € x {ruoat.qty} {" "}
+                                              <button
+                                                  className='button'
+                                                  onClick={() => removeFromCart(ruoat.menuid)}>
+                                                  Poista
+                                              </button>
+                                          </div>
+                                      </div>   
+                                                              
+                                  </li>
+                              ))}
+                          </ul>
+                      </div>
+                      {cartItems.length !== 0 && (
+                        <div className='ostoskori'>
+                            <div className='yhteensa'>
+                                <div>
+                                    Yhteensä:{" "}
+                                    {getTotalCost(cartItems)} {" €"}
+                                </div>
+                                <button className='button primary'>
+                                    Jatka maksamaan
+                                </button>
+                            </div>
+                        </div>
+                      )}
+                </div>
           </div>
         )
   }
-  /*
-    return(
-      <main className="block col-2">
-        <h2>Ruoat: </h2> 
-        <div className="row">
-          <MenuRavintola ></MenuRavintola>
-        </div>
-      </main>
-    )
-  }
-  */
-  
-
-/*
-  return menu.map((menu) => {
-    
-    const ostoskori = Ostoskori;
-    const [cartItems, setCartItems] = useState([]);
-    
-    //const onadd = Ostoskori.onAdd;
-    //const {onadd, ostoskori} = props;
-
-    return (
-      <main className="tuotteet">
-      <div key={menu.menuid}>
-        <h3>{menu.nimiravintola}</h3>
-        <h4>{menu.nimi}</h4>
-        <h4>{menu.tuotekategoria}</h4>
-        <h4>{menu.kuvaus}</h4>
-        <h4>{menu.hinta} €</h4>
-        <button> Osta</button>
-      </div>
-      </main>);
-  })
-};
-*/
-
-//<button onClick={() => ostoskori.onAdd(ostoskori.setCartItems)}  > Osta</button>
-
-/*
-return menut.map((menu, menut) => {
-    const {onAdd} = props;
-    return (
-      <main className="tuotteet">
-      <div key={menut} menu={menu}>
-        <h3>{menu.nimiravintola}</h3>
-        <h4>{menu.nimi}</h4>
-        <h4>{menu.tuotekategoria}</h4>
-        <h4>{menu.kuvaus}</h4>
-        <h4>{menu.hinta} €</h4>
-        <h4>{menu.menuid}</h4>
-
-        <button onClick={() => this.props.addToCart(menu)}
-         className="ostabtn"> 
-         Osta
-         </button>
-
-      </div>
-      </main>);
-  })
-};
-
-/*
-  const [cartItems, setCartItems] = useState([]);
-  
-    const onAdd = (menu) => {
-    const exist = cartItems.find((x) => x.menuid === menu.menuid)
-    if(exist) {
-        setCartItems(
-            cartItems.map((x) => 
-                x.menuid === menu.menuid ? {...exist, qty: exist.qty +1} : x
-            )
-        );
-    } else {
-        setCartItems([...cartItems, {...menu, qty: 1 }]);
-    }
-    };
-
-  */
