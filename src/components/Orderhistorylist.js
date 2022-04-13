@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import Buttonsorderhistory from './Buttonsorderhisotry'
+import _ from 'lodash'
+import Constants from '../Constants.json';
 
 
 export default function Orderhistorylist(props) {
@@ -19,6 +21,7 @@ export default function Orderhistorylist(props) {
     const OrdersToShow = showAll
     ? orders
     : orders.filter(note => note.orderhistoryid.toLowerCase().includes(newNote2) || note.orderhistoryid.toUpperCase().includes(newNote2))
+  
 
     //Tässä pieni funktio, jolla hoidetaan nappien fillteröinti ominaisuus
     //Tämä lähtetetään propseina Buttons komponentille
@@ -36,6 +39,10 @@ export default function Orderhistorylist(props) {
     const orderCustomers = [...new Set(props.orders.map((Val) => Val.tyyppi))];
     console.log(props.orders)
 
+    const filteredOrders = OrdersToShow.filter(order =>
+      order.customer.toLowerCase().includes(Constants.SAHKOPOSTI));
+    
+
   return (
     <div>
         <div className="filtteriPalkki">
@@ -43,7 +50,7 @@ export default function Orderhistorylist(props) {
         </div>
         <div className="historytitle">Tässä näkymässä näet tilaushistoriasi</div>
         <div className="ravintolaElement">
-        { OrdersToShow.map(orders =>
+        { filteredOrders.map(orders =>
             <div key = {orders.orderhistoryid} className="ravintolaListaElement" >
                 <div><span className="orderid">Tilauksen ID: {orders.orderhistoryid}</span></div>
                 <div> <span className="orderlist">Päivämäärä: {orders.pvm} </span> </div>

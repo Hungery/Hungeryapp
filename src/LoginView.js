@@ -9,9 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faSignInAlt,faEnvelope,faLock,faHome} from "@fortawesome/free-solid-svg-icons"
 import logoo from './img/logoo.png';
 
-
-export default function Home(props) {
-
+export default function LoginView() {
   const UserAuthContextValue = useContext(UserAuthContext);
   let navigate = useNavigate();
   const [ loginProcessState, setLoginProcessState ] = useState("idle");
@@ -28,6 +26,9 @@ export default function Home(props) {
       });
       console.log(result);
       console.log(result.data);
+      console.log(result.config.data);
+      const logindata = JSON.parse(result.config.data)
+      Constants.SAHKOPOSTI = logindata.sahkoposti;
       setLoginProcessState("success");
       setTimeout(() => {
         setLoginProcessState("idle")
@@ -39,8 +40,9 @@ export default function Home(props) {
       setLoginProcessState("error");
       setTimeout(() => setLoginProcessState("idle"), 1500);
     }
-  }
 
+  }
+  
   let loginUIControls = null;
   switch(loginProcessState) {
     case "idle":
@@ -100,4 +102,3 @@ export default function Home(props) {
     </div>
   )
 }
-

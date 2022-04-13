@@ -9,7 +9,6 @@ import { useNavigate } from 'react-router-dom';
 export default function Paanakyma(props) {
   const userAuthContextValue = useContext(UserAuthContext);
   let navigate = useNavigate();
-
   if(userAuthContextValue.jwt != null){
   return (
     <div>

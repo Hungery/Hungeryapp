@@ -2,7 +2,7 @@ import LoginView from './LoginView';
 import LoginViewRestaurant from './LoginViewRestaurant';
 import SignupView from './SignupView';
 import SignupViewRestaurant from './SignupViewRestaurant';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React, { useState, useEffect, useContext } from 'react';
 import { UserAuthContext } from './Contexts';
 import Home from './Home';
@@ -46,8 +46,7 @@ const [ menus, setMenus ] = useState([]);
 
   useEffect(() =>{
     const getOrders = async () => {
-      const orderit = await axios.get(Constants.API_ADDRESS + "/orders")
-
+      const orderit = await axios.get(Constants.API_ADDRESS + "/orders" )
       setOrders(orderit.data);
       console.log(orderit.data);
     }
@@ -66,19 +65,21 @@ const [ menus, setMenus ] = useState([]);
       setUserAuthData(newAuthData);
     },
     logout: () => {
+      const clearemail = "Odotetaan sisäänkirjautumista";
+      Constants.SAHKOPOSTI = clearemail;
       window.localStorage.removeItem('appAuthData');
       setUserAuthData({...initialAuthData});
     }
   };
   
   const [ userAuthData, setUserAuthData ] = useState({...initialAuthData});
-
+  console.log(Constants.SAHKOPOSTI);
   return (
     <UserAuthContext.Provider value={ userAuthData }>
       <UserAuthContext.Consumer>
       { value => (<div>Auth status: { value.jwt != null ? "Logged in": "Not logged in" }</div>) }
       </UserAuthContext.Consumer>
-     
+      <div>Kirjautunut käyttäjä:<a>{Constants.SAHKOPOSTI}</a></div>
       <BrowserRouter>
         <Routes>
         <Route path="/" element={ <Home /> } />
