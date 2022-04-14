@@ -1,0 +1,57 @@
+body{
+    display: flex;
+    background-color: #282c34;
+    color: white;
+    padding: 40px;
+    font-family: Arial;
+    text-align: center;
+    flex-direction: column;
+  }
+  .otsikko2{
+    font-size: 30px;
+    color: white;
+    margin-bottom: 100px;
+  }
+  .otsikko1{
+    font-size: 100px;
+    margin-bottom: -5px;
+    color: rgb(85, 242, 85);
+  }
+  .login{
+    font-size: 40px;
+  }
+  .email{
+    margin-left: -85px;
+    font-size: 20px;
+  }
+  .password{
+    margin-left: -70px;
+    font-size: 20px;
+  }
+  .passbox1{
+    margin-left: 5px;
+    margin-top: 5px;
+    width: 200px;
+  }
+  .passbox2{
+    margin-left: 8px;
+    width: 200px;
+  }
+  .loginbutton{
+    width: 200px;
+    margin-top: 5px;
+    size: 100px;
+    margin-left: 40px;
+    margin-bottom: 25px;
+    font-size: 18px;
+    background-color: lightgreen;
+    border-color: black;
+    color: black;
+    border-radius: 100px;
+  }
+  .register{
+    font-size: 25px;
+  }
+  .reglink{
+    color: lightgreen;
+  }

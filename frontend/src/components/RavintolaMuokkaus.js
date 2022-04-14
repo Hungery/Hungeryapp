@@ -3,6 +3,7 @@ import Logopalkki from './Logopalkki'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
+import Constants from './Constants'
 
 
 
@@ -11,14 +12,18 @@ export default function RavintolaMuokkaus() {
     const [ravintolat, setRavintolat] = useState([]);
   
     //Tällä saisi ravintolan tiedot ja tiedot asetettaisiin muuttujii, niin ne ei häipyisi jos tekstikenttä on tyhjä
-  /*useEffect(() =>{
+    //'http://localhost:8080/ravintolat/MahtiBurgerit@mahti.fi'
+ /* useEffect(() =>{
     const getRavintolat = async () => {
-      const raflat = await axios.get('http://localhost:8080/ravintolat/MahtiBurgerit@mahti.fi')
+      const raflat = await axios.get('http://localhost:8080/ravintolat/')
       setRavintolat(raflat.data);
       console.log(raflat.data);
     }
+    
       getRavintolat();
+      
    }, []);*/
+
      /* tää on oikeesti toimiva
     const [nimi, setNimi] = useState(ravintolat.nimi);
     const [osoite, setOsoite] = useState(ravintolat.osoite);
@@ -27,20 +32,25 @@ export default function RavintolaMuokkaus() {
     const [hintataso, setHintataso] = useState(ravintolat.hintataso);
 */
 
-    const [nimi, setNimi] = useState('Hamppi purgerit');
-    const [osoite, setOsoite] = useState('Kotikatu 3');
-    const [tyyppi, setTyyppi] = useState('purjoa');
-    const [aukioloajat, setAukioloajat] = useState('aina auki');
-    const [hintataso, setHintataso] = useState('halpa');
+//Kun ravintola tai käyttäjä kirjautuu sisään, niin se antaa propseina eteenpäin omat tiedot
+// jotka voi osoittaa yllä oleviin muuttujiin.
+
+//Tässä testaan ettää toimii. 
+console.log(ravintolat);
+    const [nimi, setNimi] = useState(Constants.NIMI);
+    const [osoite, setOsoite] = useState(Constants.OSOITE);
+    const [tyyppi, setTyyppi] = useState(Constants.TYYPPI);
+    const [aukioloajat, setAukioloajat] = useState(Constants.AUKIOLOAJAT);
+    const [hintataso, setHintataso] = useState(Constants.HINTATASO);
 
  
     const sahkoposti = useParams();
     console.log(sahkoposti);
-
+    console.log(Constants.SAHKOPOSTI)
    // tällä toimii "http://localhost:8080/ravintolat/MahtiBurgerit@mahti.fi"
     // Tämä varmasti toimii ilman cors ongelmaa... `http://localhost:8080/ravintolat/${sahkoposti} `
     const updateAPIData = async () => {
-        const result = await axios.put("http://localhost:8080/ravintolat/MahtiBurgerit@mahti.fi", { 
+        const result = await axios.put(`http://localhost:8080/ravintolat/${Constants.SAHKOPOSTI} `, { 
             nimi: nimi,
             osoite: osoite,
             tyyppi: tyyppi,
@@ -57,30 +67,34 @@ export default function RavintolaMuokkaus() {
 
 
   return (
-      <div>
+      <div className = "tausta">
           <Logopalkki/>
-    <div>Täälä muokataan ravintolan tietoja</div>
+    <div className = "ravintolaElementti2">
+    <h3 className="logo">Täälä muokataan ravintolan tietoja</h3>
+   
     <form >
-            <label> Ravintolan nimi</label>
-            <input placeholder=" Ravintolan nimi" onChange={(e) => setNimi(e.target.value)}/>
+            <label className = "nappi"> Ravintolan nimi</label>
+            <input className = " tekstikentta2" placeholder=" Ravintolan nimi" onChange={(e) => setNimi(e.target.value)}/>
     </form> 
     <form >
-            <label> Ravintolan Osoite</label>
-            <input placeholder=" Ravintolan osoite" onChange={(e) => setOsoite(e.target.value)} />
+            <label className = "nappi"> Ravintolan Osoite</label>
+            <input className = " tekstikentta2" placeholder=" Ravintolan osoite" onChange={(e) => setOsoite(e.target.value)} />
     </form> 
     <form >
-            <label> Ravintolan Tyyppi</label>
-            <input placeholder=" Ravintolan tyyppi" onChange={(e) => setTyyppi(e.target.value)}/>
+            <label className = "nappi"> Ravintolan Tyyppi</label>
+            <input className = " tekstikentta2" placeholder=" Ravintolan tyyppi" onChange={(e) => setTyyppi(e.target.value)}/>
     </form> 
     <form >
-            <label> Ravintolan aukioloajat</label>
-            <input placeholder=" Ravintolan aukioloajat" onChange={(e) => setAukioloajat(e.target.value)}/>
+            <label className = "nappi"> Ravintolan aukioloajat</label>
+            <input className = " tekstikentta2" placeholder=" Ravintolan aukioloajat" onChange={(e) => setAukioloajat(e.target.value)}/>
     </form> 
     <form >
-            <label> Ravintolan hintataso</label>
-            <input placeholder=" Ravintolanhintataso" onChange={(e) => setHintataso(e.target.value)}/>
+            <label className = "nappi"> Ravintolan hintataso</label>
+            <input  className = " tekstikentta2" placeholder=" Ravintolanhintataso" onChange={(e) => setHintataso(e.target.value)}/>
     </form> 
-    <button type = "submit" onClick={updateAPIData}>Päivitä</button>
+    
+    </div>
+    <button className="nappi"type = "submit" onClick={updateAPIData}>Päivitä</button>
     
 
 
