@@ -13,44 +13,45 @@ export default function RavintolaMuokkaus() {
   
     //Tällä saisi ravintolan tiedot ja tiedot asetettaisiin muuttujii, niin ne ei häipyisi jos tekstikenttä on tyhjä
     //'http://localhost:8080/ravintolat/MahtiBurgerit@mahti.fi'
- /* useEffect(() =>{
-    const getRavintolat = async () => {
-      const raflat = await axios.get('http://localhost:8080/ravintolat/')
+ useEffect(() =>{
+    const getRavintolatById = async () => {
+      const raflat = await axios.get(`http://localhost:8080/ravintolat/${Constants.SAHKOPOSTI}`)
       setRavintolat(raflat.data);
       console.log(raflat.data);
     }
     
-      getRavintolat();
+      getRavintolatById();
       
-   }, []);*/
+   }, []);
 
-     /* tää on oikeesti toimiva
+    //tää on oikeesti toimiva
     const [nimi, setNimi] = useState(ravintolat.nimi);
     const [osoite, setOsoite] = useState(ravintolat.osoite);
     const [tyyppi, setTyyppi] = useState(ravintolat.tyyppi);
     const [aukioloajat, setAukioloajat] = useState(ravintolat.aukioloajat);
     const [hintataso, setHintataso] = useState(ravintolat.hintataso);
-*/
+
 
 //Kun ravintola tai käyttäjä kirjautuu sisään, niin se antaa propseina eteenpäin omat tiedot
 // jotka voi osoittaa yllä oleviin muuttujiin.
 
 //Tässä testaan ettää toimii. 
+/*
 console.log(ravintolat);
     const [nimi, setNimi] = useState(Constants.NIMI);
     const [osoite, setOsoite] = useState(Constants.OSOITE);
     const [tyyppi, setTyyppi] = useState(Constants.TYYPPI);
     const [aukioloajat, setAukioloajat] = useState(Constants.AUKIOLOAJAT);
     const [hintataso, setHintataso] = useState(Constants.HINTATASO);
-
- 
+*/
+   console.log(ravintolat.nimi);
     const sahkoposti = useParams();
     console.log(sahkoposti);
     console.log(Constants.SAHKOPOSTI)
    // tällä toimii "http://localhost:8080/ravintolat/MahtiBurgerit@mahti.fi"
     // Tämä varmasti toimii ilman cors ongelmaa... `http://localhost:8080/ravintolat/${sahkoposti} `
     const updateAPIData = async () => {
-        const result = await axios.put(`http://localhost:8080/ravintolat/${Constants.SAHKOPOSTI} `, { 
+        const result = await axios.put(`http://localhost:8080/ravintolat/${Constants.SAHKOPOSTI}`, { 
             nimi: nimi,
             osoite: osoite,
             tyyppi: tyyppi,
@@ -60,12 +61,6 @@ console.log(ravintolat);
         }, [] ); 
         console.log(result);
     }
-    
-    const data = {nimi, osoite, tyyppi, aukioloajat, hintataso};
-    console.log(data);
-
-
-
   return (
       <div className = "tausta">
           <Logopalkki/>
