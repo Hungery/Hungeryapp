@@ -1,0 +1,7 @@
+get http://localhost:8080/ravintolat
+
+################################################################
+
+
+put http://localhost:8080/ravintolat/Mahti Burgerit
+
