@@ -7,6 +7,7 @@ import axios from 'axios'
 import {useEffect, useState} from 'react'
 import Kayttaja from './Kayttaja'
 import RavintolaMuokkaus from './components/RavintolaMuokkaus';
+import KayttajaMuokkaus from './components/KayttajaMuokkaus'
 
 
 
@@ -39,6 +40,7 @@ return(
       <Route path="/Paanakyma/:nimi" element = { <RavintolaIDnakyma ravintolat = {ravintolat}/> } />
       <Route path="/kayttaja" element = { <Kayttaja/> } />
       <Route path="/ravintolat/:sahkoposti" element = { <RavintolaMuokkaus/> }/>
+      <Route path="/kayttaja/:sahkoposti" element = { <KayttajaMuokkaus/> }/>
     </Routes>
   </div>
   </BrowserRouter>
