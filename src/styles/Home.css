@@ -12,17 +12,71 @@
       font-size: 30px;
   }
 .welcome{
-    margin-top: 10px;
+    margin-top: -300px;
     font-size: 50px;
     display: inline-block;
   }
   .mustdo{
     color: lightblue;
     font-size: 35px;
+    margin-bottom: 20px;
+  }
+  .mustdo2{
+    color: lightblue;
+    font-size: 35px;
+    margin-top: px;
   }
   .home{
     font-size: 30px;
     margin-left: -1700px;
     margin-top: -60px;
   }
+  .logox{
+    margin-left: auto;
+    margin-right: auto;
+    height: 500px;
+    width: 500px;
+    margin-bottom: -70px;
+  }
+  .nappix{
+    font-size: 25px;
+    background-color: rgb(204, 201, 186);
+    border-radius: 12px;
+    border: 2px solid black;
+    transition-duration: 0.6s;
+    font-weight: bold;
+    padding: 10px 34px;
+    font-family: 'Courier New', Courier, monospace;
+    color:rgb(5, 4, 0);
+    margin: 5px;
+    margin-left: -1650px;
+  }
+  .nappix:hover{
+    background-color: rgb(235, 111, 111);
+    box-shadow: 0 8px 9px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  }
   
+  .nappix:focus{
+    background-color: red;
+  }
+  .nappixy{
+    font-size: 25px;
+    background-color: rgb(204, 201, 186);
+    border-radius: 12px;
+    border: 2px solid black;
+    transition-duration: 0.6s;
+    font-weight: bold;
+    padding: 10px 34px;
+    font-family: 'Courier New', Courier, monospace;
+    color:rgb(5, 4, 0);
+    margin: 5px;
+    margin-bottom: 30px;
+  }
+  .nappixy:hover{
+    background-color: rgb(235, 111, 111);
+    box-shadow: 0 8px 9px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  }
+  
+  .nappixy:focus{
+    background-color: red;
+  }

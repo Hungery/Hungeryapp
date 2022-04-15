@@ -7,6 +7,7 @@ import Constants from './Constants.json';
 import {UserAuthContext} from './Contexts'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faSignInAlt,faEnvelope,faLock,faHome} from "@fortawesome/free-solid-svg-icons"
+import logoo from './img/logoo.png';
 
 
 export default function Home(props) {
@@ -27,11 +28,14 @@ export default function Home(props) {
       });
       console.log(result);
       console.log(result.data);
+      console.log(result.config.data);
+      const logindata = JSON.parse(result.config.data)
+      Constants.SAHKOPOSTI = logindata.sahkoposti;
       setLoginProcessState("success");
       setTimeout(() => {
         setLoginProcessState("idle")
         UserAuthContextValue.login(result.data.token);
-        navigate("/", { replace: true });
+        navigate("/ravintolat/:sahkoposti", { replace: true });
       }, 1500);
     } catch (error) {
       console.error(error.message);
@@ -65,13 +69,8 @@ export default function Home(props) {
 
   return (
     <div>
-      <div><span className="home"> <Link to="/"style={{color: 'lightgreen'}}><FontAwesomeIcon icon={faHome}/>Etusivu</Link></span></div>
-      <div>
-        <span className="otsikko1">Hungery</span>
-      </div>
-      <div>
-      <span className="otsikko2">Vegaanista kasviruokaa jokaiselle</span>
-      </div>
+      <div><span className="nappix"> <Link to="/"style={{color: 'black'}}><FontAwesomeIcon icon={faHome}/>ETUSIVU</Link></span></div>
+      <img alt="logox" className="logox" src={logoo} />
       <div>
         <span className="login">Ravintolan sisäänkirjautuminen</span>
       </div>
@@ -90,8 +89,10 @@ export default function Home(props) {
           { loginUIControls }
         </div>
         <div>
-           <span className="register">Eikö sinulla ollutkaan vielä käyttäjää? <Link to="/signup" class="reglink"> Luo sellainen tästä</Link></span>
+           <span className="register">Eikö sinulla ollutkaan vielä käyttäjää ravintolallesi? </span>
       </div>
+      <div>-</div>
+      <div><Link to="/signupRestaurant" className="nappixy"> Luo sellainen tästä</Link></div>
       </form>
     </div>
   )

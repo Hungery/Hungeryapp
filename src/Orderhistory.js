@@ -1,20 +1,21 @@
 import React, { useContext } from 'react'
-import './styles/Paanakyma.css'
-import RavintolaLista from './components/RavintolaLista'
-import Logopalkki from './components/Logopalkki'
+import './styles/Orderhistory.css'
+import Orderhistorylist from './components/Orderhistorylist'
+import Logopalkkiorders from './components/Logopalkkiorders'
 import { UserAuthContext } from './Contexts';
 import { useNavigate } from 'react-router-dom';
 
 
-export default function Paanakyma(props) {
+export default function Orderhistory(props) {
   const userAuthContextValue = useContext(UserAuthContext);
   let navigate = useNavigate();
+
   if(userAuthContextValue.jwt != null){
   return (
     <div>
-      <Logopalkki/>
-    <div className="tausta">
-        <RavintolaLista ravintolat = {props.ravintolat} />
+      <Logopalkkiorders/>
+    <div className="taust">
+        <Orderhistorylist orders = {props.orders} />
     </div>
     </div>
   )

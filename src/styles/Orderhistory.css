@@ -1,23 +1,24 @@
-.logopalkki{
+.logopalk{
     display: flex;
     background-color: rgb(32, 32, 32);
     height: flex;
     align-items: center;
   }
   
-  .logopalkki > * {
+  .logopalk > * {
     margin-right: 10px;
   }
   
-  .logo{
+  .logoo{
     margin-left: auto;
     margin-right: auto;
     height: 200px;
     width: 200px;
   }
   
-  .ravintolaListaElementti{
-    width: 500px;
+  
+  .ravintolaListaElement{
+    width: 1000px;
     padding: 15px;
     margin: 5px;
     border: 2px solid lightgrey;
@@ -28,21 +29,20 @@
     background-color: lightgreen;
     transition-duration: 0.9s;
     text-decoration: none;
-    color: rgb(32, 32, 32);;
-    font-weight: bold;
+    color: rgb(32, 32, 32);
     
   }
   
-  .ravintolaListaElementti:hover{
+  .ravintolaListaElement:hover{
     background-color: rgb(224, 255, 239);
     color: rgb(190, 64, 15);
     
   }
   
-  .ravintolaElementti{
-    display: flex;
+  .ravintolaElement{
+    display: inline-block;
     flex-wrap: wrap;
-  
+    
   }
   
   .filtteriPalkki{
@@ -53,8 +53,8 @@
     align-items: center;
   }
   
-  .tausta{
-    background-color: rgb(32, 32, 32)
+  .taust{
+    background-color: rgb(32, 32, 32);
     
   }
   
@@ -92,6 +92,37 @@
     font-family: 'Courier New', Courier, monospace;
     font-size: 24px;
   }
-  .restaurantname{
-      font-size: 30px;
+  .orderid{
+      font-size: 13px;
   }
+
+  .orderlist{
+    font-weight: bold;
+    font-size: 30px;
+  }
+
+  .historytitle{
+    font-size: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: lightgreen;
+  }
+
+  .nappitil{
+    background-color: rgb(204, 201, 186);
+    border-radius: 12px;
+    border: 2px solid black;
+    transition-duration: 0.6s;
+    font-weight: bold;
+    padding: 10px 34px;
+    font-family: 'Courier New', Courier, monospace;
+    color:rgb(5, 4, 0);
+    margin: 5px
+    
+  }
+  .nappitil:hover{
+    background-color: rgb(235, 111, 111);
+    box-shadow: 0 8px 9px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  }
+  
+ 

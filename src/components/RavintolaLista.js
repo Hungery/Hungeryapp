@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import Buttons from './Buttons'
+import Constants from '../Constants'
 
 
 export default function RavintolaLista(props) {
@@ -50,9 +51,13 @@ export default function RavintolaLista(props) {
         </div>
         <div className="ravintolaElementti">
         { ravintolatToShow.map(ravintolat =>
-            <Link to="/ravintolanakyma" key = {ravintolat.nimi} className="ravintolaListaElementti" >
+            <Link to="/ravintolanakyma" key = {ravintolat.nimi}>
+              <button className="ravintolaListaElementti" onClick={() => Constants.RAVINTOLA = ravintolat.nimi}>
                 <div><span className="restaurantname">{ravintolat.nimi}</span></div>
                 <div> <span className="restauranttype">{ravintolat.tyyppi} </span> </div> 
+                <div> <span className="restauranttype">Aukioloaika:{ravintolat.aukioloajat} </span> </div> 
+                <div> <span className="restauranttype">Hintataso:{ravintolat.hintataso} </span> </div> 
+                </button>
             </Link>
             )} 
         </div> 

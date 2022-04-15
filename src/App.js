@@ -2,7 +2,7 @@ import LoginView from './LoginView';
 import LoginViewRestaurant from './LoginViewRestaurant';
 import SignupView from './SignupView';
 import SignupViewRestaurant from './SignupViewRestaurant';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React, { useState, useEffect, useContext } from 'react';
 import { UserAuthContext } from './Contexts';
 import Home from './Home';
@@ -10,6 +10,10 @@ import axios from 'axios';
 import Constants from './Constants.json';
 import Paanakyma from './Paanakyma';
 import Ravintolanakyma from './Menu';
+import Orderhistory from './Orderhistory';
+import Orderhistoryrestaurant from './Orderhistoryrestaurant';
+import RavintolaMuokkaus from './RavintolaMuokkaus';
+import KayttajaMuokkaus from './KayttajaMuokkaus'
 
 const jwtFromStorage = window.localStorage.getItem('appAuthData');
 
@@ -33,12 +37,25 @@ const [ menus, setMenus ] = useState([]);
 
   useEffect(() =>{
     const getMenus = async () => {
-      const menut = await axios.get('http://localhost:8080/menus')
+      const menut = await axios.get(Constants.API_ADDRESS + "/menus")
 
       setMenus(menut.data);
     }
 
       getMenus();
+
+   }, []);
+   
+   const [ orders, setOrders ] = useState([]);
+
+  useEffect(() =>{
+    const getOrders = async () => {
+      const orderit = await axios.get(Constants.API_ADDRESS + "/orders" )
+      setOrders(orderit.data);
+      console.log(orderit.data);
+    }
+
+      getOrders();
 
    }, []);
 
@@ -52,19 +69,21 @@ const [ menus, setMenus ] = useState([]);
       setUserAuthData(newAuthData);
     },
     logout: () => {
+      const clearemail = "Odotetaan sisäänkirjautumista";
+      Constants.SAHKOPOSTI = clearemail;
       window.localStorage.removeItem('appAuthData');
       setUserAuthData({...initialAuthData});
     }
   };
   
   const [ userAuthData, setUserAuthData ] = useState({...initialAuthData});
-
+  console.log(Constants.SAHKOPOSTI);
   return (
     <UserAuthContext.Provider value={ userAuthData }>
       <UserAuthContext.Consumer>
       { value => (<div>Auth status: { value.jwt != null ? "Logged in": "Not logged in" }</div>) }
       </UserAuthContext.Consumer>
-     
+      <div>Kirjautunut käyttäjä:<a>{Constants.SAHKOPOSTI}</a></div>
       <BrowserRouter>
         <Routes>
         <Route path="/" element={ <Home /> } />
@@ -74,6 +93,10 @@ const [ menus, setMenus ] = useState([]);
             <Route path="/loginRestaurant" element={ <LoginViewRestaurant /> } />
             <Route path="/paanakyma" element={ <Paanakyma ravintolat={ravintolat}/> } />
             <Route path="/ravintolanakyma" element={ <Ravintolanakyma menus={menus}/> } />
+            <Route path="/orderhistory" element={ <Orderhistory orders={orders}/> } />
+            <Route path="/orderhistoryrestaurant" element={ <Orderhistoryrestaurant orders={orders}/> } />
+            <Route path="/ravintolat/:sahkoposti" element = { <RavintolaMuokkaus/> }/>
+      <Route path="/kayttaja/:sahkoposti" element = { <KayttajaMuokkaus/> }/>
         </Routes>
       </BrowserRouter>
     </UserAuthContext.Provider>

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faPhone,faEnvelope,faLock,faUser,faHome} from "@fortawesome/free-solid-svg-icons"
+import logoo from './img/logoo.png';
 
 
 
@@ -63,13 +64,8 @@ export default function SignupView() {
 
   return (
     <div>
-      <div><span className="home"> <Link to="/"style={{color: 'lightgreen'}}><FontAwesomeIcon icon={faHome}/>Etusivu</Link></span></div>
-      <div>
-        <span className="otsikko1">Hungery</span>
-      </div>
-      <div>
-      <span className="otsikko2">Vegaanista kasviruokaa jokaiselle</span>
-      </div>
+      <div><span className="nappix"> <Link to="/"style={{color: 'black'}}><FontAwesomeIcon icon={faHome}/>ETUSIVU</Link></span></div>
+      <img alt="logox" className="logox" src={logoo} />
       <div><span className="kayttajanLuonti"> Käyttäjän luonti </span></div>
       <form onSubmit={ handleSignupSubmit }>
         <div>
@@ -104,13 +100,15 @@ export default function SignupView() {
         </div>
           { signupUIControls }
           <div/>
-          <div>
+          <div className="oliko">
            Onko sinulla sittenkin jo käyttäjätunnus?
-            <Link to="/login"style={{color: 'lightgreen'}}> Mene kirjautumaan tästä</Link><br />
             <div/>
-            <div>Tahdotko luoda uuden tunnuksen ravintolallesi?
-              <Link to="/signupRestaurant"style={{color: 'lightgreen'}}> Luo sellainen tästä</Link>
-            </div>
+            <div>-</div>
+            <div><Link className="nappixy" to="/login"style={{color: 'black'}}> Mene kirjautumaan tästä</Link></div>
+            <div>-</div>
+            <div>Tahdotko luoda uuden tunnuksen ravintolallesi?</div>
+            <div>-</div>
+            <div> <Link className="nappixy" to="/signupRestaurant"style={{color: 'black'}}> Luo sellainen tästä</Link></div>
         </div>
       </form>
     </div>
