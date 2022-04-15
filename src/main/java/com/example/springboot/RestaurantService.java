@@ -39,6 +39,19 @@ public class RestaurantService {
         restaurantRepo.save(restaurant);
         return true;
     }
+    public Restaurant getRavintolaById(String sahkoposti) {
+        Restaurant restaurant;
+        System.out.println("**jepajeee" + sahkoposti);
+        restaurant = restaurantRepo.findById(sahkoposti).orElse(null);
+        System.out.println("**jepajeee" + restaurant.tyyppi);
+        return restaurant;
+    }
+
+    public Boolean setRavintola(Restaurant restaurant) {
+        System.out.println("**lallatilaaa" + restaurant.nimi);
+        restaurantRepo.save(restaurant);
+        return true;
+    }
 
 
 }

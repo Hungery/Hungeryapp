@@ -5,6 +5,7 @@ import com.example.springboot.security.CustomerSecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -69,6 +70,18 @@ public class CustomerRestAPI {
         );
 
         return new ResponseEntity<>( "User registered", HttpStatus.OK );
+    }
+
+    @PutMapping("/customers/{sahkoposti:.+}")
+    public ResponseEntity<Customer> updateCustomer(@PathVariable(value = "sahkoposti") String sahkoposti,
+                                                   @Validated @RequestBody Customer customerDetails) {
+        System.out.println("**jepajeee" + sahkoposti);
+        Customer customer = customerService.getCustomer(sahkoposti);
+        customer.setEtunimi(customerDetails.getEtunimi());
+        customer.setOsoite(customerDetails.getOsoite());
+        customer.setPuhnro(customerDetails.getPuhnro());
+        customerService.setCustomer(customer);
+        return ResponseEntity.ok(customer);
     }
 
 

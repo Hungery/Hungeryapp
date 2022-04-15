@@ -28,6 +28,54 @@ public class Customer {
     @Enumerated(EnumType.STRING)
     public Role role;
 
+    public String getSahkoposti() {
+        return sahkoposti;
+    }
+
+    public void setSahkoposti(String sahkoposti) {
+        this.sahkoposti = sahkoposti;
+    }
+
+    public String getEtunimi() {
+        return etunimi;
+    }
+
+    public void setEtunimi(String etunimi) {
+        this.etunimi = etunimi;
+    }
+
+    public String getSukunimi() {
+        return sukunimi;
+    }
+
+    public void setSukunimi(String sukunimi) {
+        this.sukunimi = sukunimi;
+    }
+
+    public String getPuhnro() {
+        return puhnro;
+    }
+
+    public void setPuhnro(String puhnro) {
+        this.puhnro = puhnro;
+    }
+
+    public String getOsoite() {
+        return osoite;
+    }
+
+    public void setOsoite(String osoite) {
+        this.osoite = osoite;
+    }
+
+    public String getSalasana() {
+        return salasana;
+    }
+
+    public void setSalasana(String salasana) {
+        this.salasana = salasana;
+    }
+
     public Customer() {
     }
 

@@ -32,12 +32,18 @@ public class CustomerService {
     public List<Customer> getCustomers(){
         return customerRepo.findAll();
     }
+
     public Customer getCustomer(String sahkoposti){
         Customer customer;
         customer = customerRepo.findById(sahkoposti).orElse(null);
         return customer;
     }
     public Boolean addNewCustomer(Customer customer){
+        customerRepo.save(customer);
+        return true;
+    }
+    public Boolean setCustomer(Customer customer) {
+        System.out.println("**lallatilaaa" + customer.etunimi);
         customerRepo.save(customer);
         return true;
     }

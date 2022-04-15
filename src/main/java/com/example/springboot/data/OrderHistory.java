@@ -20,5 +20,14 @@ public class OrderHistory {
     @Column(name = "kpl")
     public BigInteger kpl;
 
+    @Column(name = "menuid")
+    public BigInteger menuid;
+
+    @Column(name = "restaurant")
+    public String restaurant;
+
+    @Column(name = "customer")
+    public String customer;
+
     public OrderHistory(){}
 }

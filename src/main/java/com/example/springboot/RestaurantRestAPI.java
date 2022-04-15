@@ -6,6 +6,7 @@ import com.example.springboot.security.RestaurantSecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -72,4 +73,19 @@ public class RestaurantRestAPI {
     public List<Restaurant> getRestaurants(){
         return restaurantService.getRestaurants();
     }
+
+    @PutMapping("/ravintolat/{sahkoposti:.+}")
+    public ResponseEntity<Restaurant> updateRavintola(@PathVariable(value = "sahkoposti") String sahkoposti,
+                                                     @Validated @RequestBody Restaurant ravintolaDetails) {
+        System.out.println("**jepajeee" + sahkoposti);
+        Restaurant restaurant = restaurantService.getRavintolaById(sahkoposti);
+        restaurant.setNimi(ravintolaDetails.getNimi());
+        restaurant.setOsoite(ravintolaDetails.getOsoite());
+        restaurant.setTyyppi(ravintolaDetails.getTyyppi());
+        restaurant.setAukioloajat(ravintolaDetails.getAukioloajat());
+        restaurant.setHintataso(ravintolaDetails.getHintataso());
+        restaurantService.setRavintola(restaurant);
+        return ResponseEntity.ok(restaurant);
+    }
+
 }
