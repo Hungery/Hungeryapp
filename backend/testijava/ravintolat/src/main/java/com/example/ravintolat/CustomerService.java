@@ -15,7 +15,7 @@ public class CustomerService {
     @Autowired
     CustomerRepository customerRepo;
 
-    CustomerRepository customerRepository;
+    // CustomerRepository customerRepository;
 
     @PostConstruct
     public void init() {
@@ -33,6 +33,7 @@ public class CustomerService {
     public Customer getCustomer(String sahkoposti) {
         Customer customer;
         customer = customerRepo.findById(sahkoposti).orElse(null);
+        System.out.println("**lallatilaaa" + customer.etunimi);
         return customer;
     }
 

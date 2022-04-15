@@ -9,29 +9,42 @@ import Constants from './Constants'
 
 export default function RavintolaMuokkaus() {
 
-    const [ravintolat, setRavintolat] = useState([]);
+  const [ravintolat, setRavintolat] = useState([]);
+  const [nimi, setNimi] = useState(ravintolat.nimi);
+  const [osoite, setOsoite] = useState(ravintolat.osoite);
+  const [tyyppi, setTyyppi] = useState(ravintolat.tyyppi);
+  const [aukioloajat, setAukioloajat] = useState(ravintolat.aukioloajat);
+  const [hintataso, setHintataso] = useState(ravintolat.hintataso);
+
+
   
     //Tällä saisi ravintolan tiedot ja tiedot asetettaisiin muuttujii, niin ne ei häipyisi jos tekstikenttä on tyhjä
     //'http://localhost:8080/ravintolat/MahtiBurgerit@mahti.fi'
+    //`http://localhost:8080/ravintolat/${Constants.SAHKOPOSTI}`
  useEffect(() =>{
     const getRavintolatById = async () => {
-      const raflat = await axios.get(`http://localhost:8080/ravintolat/${Constants.SAHKOPOSTI}`)
+      const raflat = await axios.get("http://localhost:8080/ravintolat/MahtiBurgerit@mahti.fi")
       setRavintolat(raflat.data);
+      setNimi(raflat.data.nimi);
+      setOsoite(raflat.data.osoite);
+      setTyyppi(raflat.data.tyyppi);
+      setAukioloajat(raflat.data.aukioloajat);
+      setHintataso(raflat.data.hintataso);
       console.log(raflat.data);
+      console.log(raflat.data.nimi);
     }
     
       getRavintolatById();
       
    }, []);
 
+   console.log(ravintolat);
+   console.log(ravintolat.nimi);
     //tää on oikeesti toimiva
-    const [nimi, setNimi] = useState(ravintolat.nimi);
-    const [osoite, setOsoite] = useState(ravintolat.osoite);
-    const [tyyppi, setTyyppi] = useState(ravintolat.tyyppi);
-    const [aukioloajat, setAukioloajat] = useState(ravintolat.aukioloajat);
-    const [hintataso, setHintataso] = useState(ravintolat.hintataso);
+  
 
 
+  console.log(nimi);
 //Kun ravintola tai käyttäjä kirjautuu sisään, niin se antaa propseina eteenpäin omat tiedot
 // jotka voi osoittaa yllä oleviin muuttujiin.
 
@@ -45,13 +58,15 @@ console.log(ravintolat);
     const [hintataso, setHintataso] = useState(Constants.HINTATASO);
 */
    console.log(ravintolat.nimi);
+   console.log(nimi);
     const sahkoposti = useParams();
     console.log(sahkoposti);
     console.log(Constants.SAHKOPOSTI)
+    console.log(ravintolat)
    // tällä toimii "http://localhost:8080/ravintolat/MahtiBurgerit@mahti.fi"
     // Tämä varmasti toimii ilman cors ongelmaa... `http://localhost:8080/ravintolat/${sahkoposti} `
     const updateAPIData = async () => {
-        const result = await axios.put(`http://localhost:8080/ravintolat/${Constants.SAHKOPOSTI}`, { 
+        const result = await axios.put("http://localhost:8080/ravintolat/MahtiBurgerit@mahti.fi", { 
             nimi: nimi,
             osoite: osoite,
             tyyppi: tyyppi,

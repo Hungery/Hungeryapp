@@ -9,24 +9,44 @@ import Constants2 from './Constants2'
 
 export default function KayttajaMuokkaus() {
 
-    const [etunimi, setEtunimi] = useState(Constants2.ETUNIMI);
-    const [sukunimi, setSukunimi] = useState(Constants2.SUKUNIMI);
-    const [osoite, setOsoite] = useState(Constants2.OSOITE);
-    const [puhnro, setPuhnro] = useState(Constants2.PUHNRO);
+  const [kayttaja, setKayttaja] = useState([]);
+
+
+  useEffect(() =>{
+    const getCustomer = async () => {
+      const kayttajat = await axios.get(`http://localhost:8080/customers/${Constants2.SAHKOPOSTI}`)
+      setKayttaja(kayttajat.data);
+      setEtunimi(kayttajat.data.etunimi);
+      setSukunimi(kayttajat.data.sukunimi);
+      setOsoite(kayttajat.data.osoite);
+      setPuhnro(kayttajat.data.puhnro);
+      console.log(kayttajat.data);
+    }
+    
+      getCustomer();
+      
+   }, []);
+
+    const [etunimi1, setEtunimi] = useState(kayttaja.etunimi);
+    const [sukunimi1, setSukunimi] = useState(kayttaja.sukunimi);
+    const [osoite1, setOsoite] = useState(kayttaja.osoite);
+    const [puhnro1, setPuhnro] = useState(kayttaja.puhnro);
  
     console.log(Constants2.SAHKOPOSTI)
-   // tällä toimii "http://localhost:8080/ravintolat/MahtiBurgerit@mahti.fi"
+    console.log(kayttaja.etunimi)
+   // tällä toimii "http://localhost:8080/ravintolat/mkyllonen@gmail.com"
+   // pitäs olla tämätt `http://localhost:8080/customers/${Constants2.SAHKOPOSTI} `
     const updateAPIData = async () => {
         const result = await axios.put(`http://localhost:8080/customers/${Constants2.SAHKOPOSTI} `, { 
-            etunimi: etunimi,
-            sukunimi: sukunimi,
-            osoite: osoite,
-            puhnro: puhnro
+            etunimi: etunimi1,
+            sukunimi: sukunimi1,
+            osoite: osoite1,
+            puhnro: puhnro1
         }, [] ); 
         console.log(result);
     }
-    const data = {etunimi, sukunimi, osoite, puhnro};
-    console.log(data);
+  
+    console.log(kayttaja);
 
 
 
