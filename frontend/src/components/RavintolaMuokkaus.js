@@ -66,7 +66,7 @@ console.log(ravintolat);
    // tällä toimii "http://localhost:8080/ravintolat/MahtiBurgerit@mahti.fi"
     // Tämä varmasti toimii ilman cors ongelmaa... `http://localhost:8080/ravintolat/${sahkoposti} `
     const updateAPIData = async () => {
-        const result = await axios.put("http://localhost:8080/ravintolat/MahtiBurgerit@mahti.fi", { 
+        const result = await axios.put(`http://localhost:8080/ravintolat/${sahkoposti} `, { 
             nimi: nimi,
             osoite: osoite,
             tyyppi: tyyppi,
