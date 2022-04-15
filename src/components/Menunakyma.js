@@ -2,131 +2,268 @@ import React, {useState, useEffect} from "react";
 import { Link } from 'react-router-dom'
 import formatCurrency from "../util";
 import Ostoskori from "./Ostoskori";
-
   
   export default function Menunakyma() {
 
       const url = "http://localhost:8080/menus"
-      const[ruoat, setMenuRavintola] = useState([])
 
+      const [ menus, setMenus ] = useState([]);
+      const[ruoat, setMenuRavintola] = useState([])
+      const [cartItems, setCartItems] = useState([]);
+
+      
       useEffect(async() => {
-        const menu = await 
+        const menus = await 
         fetch(url).then((res) =>
         res.json())
-        setMenuRavintola(menu);
-      }, []);
-
-      const [cartItems, setCartItems] = useState([]);
-      const [total, setTotal] = useState([]);
+        setMenuRavintola(menus);
+      }, []); 
+      
 
       const addToCart = (menuid, nimi, hinta) => {
 
+/*
         let cart = [...cartItems, {
           menuid : menuid,
           nimi : nimi,
           hinta : hinta,
           qty : 1
         }];
+*/
+
+
+        const alreadyInCart = cartItems.find((ruoat) => ruoat.menuid === menuid);
+        if (alreadyInCart) {
+          setCartItems(
+            cartItems.map((ruoat) => 
+            ruoat.menuid === menuid 
+            ? {...alreadyInCart, qty: alreadyInCart.qty +1}
+            : ruoat)
+          );
+        }
+          else {
+            setCartItems([...cartItems, {...menuid, nimi, hinta, qty: 1}]);
+          }
+    };
+
+    const removeFromCart = (menuid, nimi, hinta) => {
+
+/*
+      let cart = [...cartItems, {
+        menuid : menuid,
+        nimi : nimi,
+        hinta : hinta,
+        qty : 1
+      }];
+*/
+
+      const alreadyInCart = cartItems.find((ruoat) => 
+      ruoat.menuid === menuid);
+
+      if(alreadyInCart.qty === 1) {
+        setCartItems(cartItems.filter((ruoat) => 
+        ruoat.menuid !== menuid));
+
+      } else {
+        setCartItems (
+          cartItems.map((ruoat) => 
+            ruoat.menuid === menuid 
+          ? {...alreadyInCart, qty: alreadyInCart.qty -1}
+          : ruoat
+          )
+        );
+      }
+
+    };
+
+      const getTotalCost = (cartItems) => {
+        return cartItems.reduce((totalCost, { hinta: hinta }) => totalCost + parseFloat(hinta), 0);
+      }
+
+return (
+  <div>
+
+    <div ruoat={ruoat} cartItems={cartItems} addToCart={addToCart} removeFromCart={removeFromCart}/>
+
+
+    <ul className="menus">
+      { ruoat.map((ruoat) => (
+        <li key={ruoat.menuid}>
+          <div className="menu">
+            <a
+              href={"#" + ruoat.menuid}>
+              <div>{ruoat.nimiravintola}</div>
+              <p>{ruoat.nimi}</p>
+              <div>{ruoat.kuvaus}</div>
+            </a>
+
+            <div className="menu-price">
+              <div>{(ruoat.hinta)} € </div>
+
+              <button 
+                onClick={() => addToCart(ruoat.menuid, ruoat.nimi, ruoat.hinta, ruoat.qty)} 
+                  className="button primary">
+                    Liää ostoskoriin
+              </button>
+
+            </div>
+          </div>
+        </li>
+        )
+      )
+      }
+    </ul>
+
+                
+    {cartItems.length === 0 ? (
+      <div className='ostoskori ostoskori-header'>Ostoskori on tyhjä </div>
+      ) : (
+      <div className='ostoskori ostoskori-header'>
+        Sinulla on {cartItems.length} tuotetta ostoskorissa{" "}
+      </div>
+          )}
+
+            <div>
+              <div className='ostoskori'>
+                <ul className='cart-items'>
+                  {cartItems.map((ruoat, index) => (
+                    <li key={index}>
+                      <div>
+                        <div>{ruoat.nimi}</div>
+                        <div className='right'>
+                          {(ruoat.hinta)} € {" "}
+                          <button
+                            className='button'
+                              onClick={() => removeFromCart(ruoat.menuid)}>
+                                Poista
+                          </button>
+                        </div>
+                      </div>   
+                                                              
+                    </li>
+                    ))}
+                </ul>
+              </div>
+              
+              {cartItems.length !== 0 && (
+                <div className='ostoskori'>
+                  <div className='yhteensa'>
+                    <div>
+                      Yhteensä:{" "}
+                      {getTotalCost(cartItems)} {" €"}
+                    </div>
+                    <div>
+                      <Link to="/ostoskori"><button
+                        className='button primary'
+                          onClick={() => ruoat.getTotalCost(cartItems)}>
+                            Jatka maksamaan </button>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+                )}
+            </div>
+  </div>      
+  )
+}
+
+
+
+  /*       const addToCart = (menuid, nimi, hinta) => {
+        
+        let cart = [...cartItems, {
+          menuid : menuid,
+          nimi : nimi,
+          hinta : hinta,
+          count : 1
+        }];
+        
 
         let alreadyInCart = false;
         cartItems.forEach((ruoat) => {
           if(ruoat.menuid === cart.menuid) {
-            ruoat.qty++;
+            ruoat.count++;
             alreadyInCart = true;
           }
         });
           if(!alreadyInCart) {
-            cartItems.push({...cart, qty: 1});
+            cartItems.push({...cart, count: 1});
         }
           
         setCartItems(cart);
       }
 
-      const removeFromCart = (menuid) => {
-            
-        const deleted = cartItems.filter((cart) => cart.menuid !== menuid);
-          setCartItems(deleted);
-          setTotal(cartItems.length - 1);
-       
-        
-        console.log ("Total of items: ", total);
-       };
 
-       const getTotalCost = (cartItems) => {
-        return cartItems.reduce((totalCost, { hinta: hinta }) => totalCost + parseFloat(hinta), 0);
+      
+      addToCart = (menu) => {
+        const cartItems = this.state.cartItems.slice();
+        let alreadyInCart = false;
+        cartItems.forEach((item) => {
+          if(item.menuid === menu.menuid) {
+            item.count++;
+            alreadyInCart = true;
+          }
+        });
+        if(!alreadyInCart) {
+          cartItems.push({...menu, count: 1});
+        }
+        this.setState({cartItems});
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));
       }
 
-return (
-          <div>
-                <ul className="menus">
+ */
+  
+/*
 
-                    {ruoat.map(ruoat => (
-                        <li key={ruoat.menuid}>
-                            <div className="menu">
-                                <a
-                                href={"#" + ruoat.menuid}
-                                >
-                                <div>{ruoat.nimiravintola}</div>
-                                <p>{ruoat.nimi}</p>
-                                <div>{ruoat.kuvaus}</div>
-                                </a>
-                                <div className="menu-price">
-                                <div>{(ruoat.hinta)} €</div>
-                                <button 
-                                    onClick={() => addToCart(ruoat.menuid, ruoat.nimi, ruoat.hinta, ruoat.qty)} 
-                                    className="button primary">
-                                    Lisää ostoskoriin
-                                </button>
-                                </div>
-                            </div>
-                        </li>
-                        ))}
-                </ul>
-
-                
-                  {cartItems.length === 0 ? (
-                    <div className='ostoskori ostoskori-header'>Ostoskori on tyhjä </div>
-                  ) : (
-                    <div className='ostoskori ostoskori-header'>
-                        Sinulla on {cartItems.length} tuotetta ostoskorissa{" "}
-                  </div>
-                    )}
-
-                    <div>
-                      <div className='ostoskori'>
-                          <ul className='cart-items'>
-                              {cartItems.map((ruoat) => (
-                                  <li key={ruoat.menuid}>
-                                      <div>
-                                          <div>{ruoat.nimi}</div>
-                                          <div className='right'>
-                                              {(ruoat.hinta)} € x {ruoat.qty} {" "}
-                                              <button
-                                                  className='button'
-                                                  onClick={() => removeFromCart(ruoat.menuid)}>
-                                                  Poista
-                                              </button>
-                                          </div>
-                                      </div>   
-                                                              
-                                  </li>
-                              ))}
-                          </ul>
-                      </div>
-                      {cartItems.length !== 0 && (
-                        <div className='ostoskori'>
-                            <div className='yhteensa'>
-                                <div>
-                                    Yhteensä:{" "}
-                                    {getTotalCost(cartItems)} {" €"}
-                                </div>
-                                <button className='button primary'>
-                                    Jatka maksamaan
-                                </button>
-                            </div>
-                        </div>
-                      )}
-                </div>
-          </div>
-        )
+class Menunakyma extends Component {
+  constructor (props) {
+    super(props)
+    this.getTotalCost = this.getTotalCost.bind(this)
   }
+  
+  handleMenu () {
+    
+    axios.get("http://localhost:8080/menus")
+    .then((response) =>{
+      const data = response.data;
+      this.setState({menus: data});
+      console.log('state', this.state);
+    })
+    .catch(()=>{
+      alert('error retrieving data');
+    });
+  }
+  
+  componentDidMount = () =>{
+    this.getArticles();
+  }
+  */
+
+  /*
+  <div>
+  <ul className="menus">
+  {this.props.menus.map((menu) => (
+      <li key={menu.menuid}>
+          <div className="menu">
+              <a
+              href={"#" + menu.menuid}
+              >
+              <div>{menu.nimiravintola}</div>
+              <img src={menu.kuva} alt={menu.nimi}></img>
+              <p>{menu.nimi}</p>
+              <div>{menu.kuvaus}</div>
+              </a>
+              <div className="menu-price">
+              <div>{menu.hinta}</div>
+              <button 
+                  onClick={() => this.props.addToCart(menu)} 
+                  className="button primary">
+                  Lisää ostoskoriin
+              </button>
+              </div>
+          </div>
+      </li>
+      ))}
+</ul>
+</div>
+*/

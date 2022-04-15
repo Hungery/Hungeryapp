@@ -1,0 +1,195 @@
+body {
+    background-color: rgb(214, 255, 214);
+  }
+  
+  .yläpalkki {
+    background-color: rgb(157, 255, 157);
+    display: flex;
+    flex-direction: row;
+    height: 150px;
+    align-content: center;
+    padding: 20px;
+  }
+  
+  .ruokakoribtn {
+    background-color: rgb(255, 232, 205);
+    width: 100px;
+    height: 50px;
+    margin: 50px 0px 50px 20px;
+    border-width: 10px;
+    border-color: rgb(252, 244, 235);
+    cursor: pointer;
+  }
+  
+  .ruokakoribtn:hover {
+    background-color: rgb(188, 255, 188);
+    border: 10px solid rgb(107, 255, 107);
+  }
+  
+  .edellinenbtn {
+    background-color: rgb(255, 232, 205);
+    width: 100px;
+    height: 50px;
+    margin: 50px 20px 50px 0px;
+    border-width: 10px;
+    border-color: rgb(252, 244, 235);
+    cursor: pointer;
+  }
+  
+  .edellinenbtn:hover {
+    background-color: rgb(188, 255, 188);
+    border: 10px solid rgb(107, 255, 107);
+  }
+  
+  .header {
+    text-align: center;
+    font-size: 400%;
+    font-weight: bolder;
+    height: auto;
+    width: 20000px;
+    margin: auto;
+  }
+  
+  .alapalkki {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(252, 244, 235);
+    min-width: 50%;
+    margin: 0px 300px 0px 300px;
+    height: 500px;
+  }
+  
+  .ravintolannimi {
+    padding: 50px;
+    font-size: larger;
+    font-weight: bold;
+  }
+  
+  .kuva {
+    border-width: 10px;
+    border-style: solid;
+    border-color: rgb(255, 232, 205);
+    padding: 100px;
+    margin-bottom: 20px;
+  }
+  
+  .menu {
+    padding: 0px;
+  }
+  
+  .slider{
+    width: 10%;
+  }
+  
+  .Tuote {
+    width: 500px;
+    height: 120px;
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: row;
+    padding: 10px 25px;
+    background-color: rgb(255, 232, 205);
+    border: 10px solid rgb(255, 232, 205);
+  }
+  
+  .Tuote:hover {
+    background-color: rgb(188, 255, 188);
+    border: 10px solid rgb(157, 255, 157);
+  }
+  
+  .tuoteright {
+    text-align: right;
+    width: 450px;
+  }
+  
+  .tuoteleft {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding: 17px 0px;
+    width: 150px;
+  }
+  
+  .tuoteleft2 {
+    display: flex;
+    flex-direction: row;
+    width: 200px;
+  }
+  
+  .tuoteleft1 {
+    width: 100px;
+  }
+  
+  .button {
+    background-color: rgb(107, 255, 107);
+    border: none;
+    color: white;
+    font-weight: bolder;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background-color: rgb(157, 255, 157);
+  }
+  
+  .button1 {
+    font: 300;
+  }
+  
+  .count {
+    background-color: rgb(157, 255, 157);
+    font-size: 16px;
+    padding: 5px 10px;
+  }
+  
+  .title {
+    font-size: larger;
+    font-weight: bold;
+  }
+
+
+/*Ostoskori*/
+.menu-price{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-price div,
+.menu-price button {
+  text-align: center;
+  flex: 1;
+}
+
+.menu-price div {
+  font-size: 2rem;
+}
+.button{
+  font-weight: bold;
+  padding: 1rem;
+  border: 0.1rem rgb(0, 61, 28) solid;
+  background-color: rgb(219, 11, 11);
+  cursor: pointer;
+}
+
+.button:hover{
+  font-weight: bold;
+  border: 0.2rem rgb(0, 252, 147) solid;
+
+}
+.button.primary{
+  background-color: rgb(125, 245, 125);
+  color: rgb(9, 24, 12);
+}
+
+.button.header{
+  background-color: rgb(0, 61, 28);
+  color:rgb(125, 245, 125);
+  border: 0.1rem rgb(216, 110, 40) solid;
+}

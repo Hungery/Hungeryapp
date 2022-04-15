@@ -1,43 +1,45 @@
-import { BrowserRouter , Routes , Route } from 'react-router-dom'
+import { BrowserRouter , Routes , Route, Link } from 'react-router-dom'
 import './App.css'
 import Header from './components/Header';
+import Menu from './components/Menu'
 import Ostoskori from './components/Ostoskori';
 import Menunakyma from './components/Menunakyma';
-import axios from "axios";
 import React, {useState, useEffect, Fragment, } from "react";
+import axios from "axios";
 
 
-const App = (props) => {
+const App = () => {
   
-  const {cartItems, onAdd} = props;
+/*
+  const [ menus, setMenus ] = useState([]);
 
-  const pay = (maksu) => {
-    const today = new Date();
-    const date = `${today.getDate()}/${today.getMonth()+1}/${today.getFullYear()}`;
+  useEffect(() =>{
+    const getMenus = async () => {
+      const menus = await axios.get('http://localhost:8080/menus')
 
-    let tilaaja = " ";
-    let tuotteet = " ";
+      setMenus(menus.data);
+    }
 
-     for(let i = 0; i < cartItems.length; i++) {
-       let summa = {...Ostoskori[i]}
-       tilaaja = tilaaja + ", " +summa.nimi +" qty: " + summa.qty + " ";
-       tuotteet += summa.qty
-     }
-  }
+      getMenus(menus);
 
+   }, []);
+   */
 
   return(
+    
     <BrowserRouter>
     <div className="App">
       <Header></Header>
       <div className="row">
-        <Routes> 
+        <Routes > 
           <Route path="/menuravintola" element = 
-          { <Menunakyma /> } />
+            {<Menunakyma />} />
         </Routes>
       </div>
       <div>
         <Routes>
+          <Route path="/ostoskori" element = 
+            { <Ostoskori /> } />
         </Routes>
       </div>
   </div>
@@ -45,22 +47,17 @@ const App = (props) => {
 )
 };
 
+
 export default App
 
 //<Route path="/menuravintola" element = { <Menunakyma>onAdd={onAdd}</Menunakyma> } />
 //{ <Ostoskori onAdd= {onAdd} cartItems={cartItems}/>}
 //<Route path="/ostoskori" element = { <Ostoskori /> } />
+/*
 
-//<Route path="/menuravintola" element = 
-//{ <Menunakyma /> } />
+<Route path="/menuravintola" element = 
+{<><Menu menus={menus} /><Menunakyma/></>} />
+</Routes>
 
-/*<Route path='/menuravintola'
-element={
-  <Fragment>
-      < Menunakyma />
-      < Ostoskori />
-  </Fragment>
-}
-/>
 */
 
