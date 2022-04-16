@@ -14,7 +14,9 @@
 	<name>spring-boot</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>9</java.version>
+		<maven.compiler.target>9</maven.compiler.target>
+		<maven.compiler.source>9</maven.compiler.source>
 	</properties>
 	<dependencies>
 		<dependency>
