@@ -1,14 +1,16 @@
 import React from 'react'
 import '../styles/Tuote.css'
 export default function Tuote(props) {
+
+  function onButtonClick(element) {
+    props.itemClickedEvent(element);
+  }
  
   return (
     <div className='menu'>
 
       <div className='alapalkki'>
-        <div className='ravintolannimi'>{ props.nimiravintola }</div>
-        <div className='kuva'>kuva</div>
-
+      
         <div className='Tuote'>
 
         <div className='tuoteleft'>
