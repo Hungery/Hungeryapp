@@ -67,13 +67,14 @@ export default function RavintolaMuokkaus() {
         <div className = "tausta">
             <Logopalkkirestaurant/>
 
-        <div className = "tiedotSivussa">
-        <div><h3>Ravintolan tiedot</h3> 
-               <p>Ravintolan nimi: {nimi}</p>
-               <p>Ravintolan osoite: {osoite}</p>
-               <p>Ravintolan tyyppi:  {tyyppi}</p>
-               <p>Ravintolan aukioloajat: {aukioloajat}</p>
-               <p>Ravintolan hintataso: {hintataso}</p>
+        <div  className = "tiedotSivussa">
+        <div className = "tiedot">
+                <h3>Ravintolan tiedot</h3> 
+               <p>Ravintolan nimi: Mahtitij isjtih jsithjitrsh{nimi}</p>
+               <p>Ravintolan osoite:  rthrthrthrthtrh{osoite}</p>
+               <p>Ravintolan tyyppi:  rthrthrthrthtrh{tyyppi}</p>
+               <p>Ravintolan aukioloajat:rthrtrthrthrthrthtr {aukioloajat}</p>
+               <p>Ravintolan hintataso:rthrthrthrthtrh {hintataso}</p>
         </div> 
       <div className = "ravintolaElementti2" style={{width: '100%'}}>
       

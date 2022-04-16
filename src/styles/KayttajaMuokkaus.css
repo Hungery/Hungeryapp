@@ -28,6 +28,11 @@
 
 .tiedotSivussa{
     display: flex;
-    width: auto;
 
+}
+
+.tiedot{
+    display: flex;
+    flex-direction: column;
+    width: 24%;
 }

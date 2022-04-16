@@ -53,7 +53,18 @@ export default function KayttajaMuokkaus() {
     return (
         <div className = "tausta">
             <Logopalkkiuser/>
-      <div className = "ravintolaElementti2">
+
+            <div className = "tiedotSivussa">
+            <div className = "tiedot">
+                <h3>Kayttäjän tiedot</h3> 
+               <p>Etunimi: {etunimi1} </p>
+               <p>Sukunimi:{sukunimi1} </p>
+               <p>Osoite: {osoite1} </p>
+               <p>Puhelin numero: {puhnro1} </p>
+
+        </div>
+        
+      <div className = "ravintolaElementti2" style={{width: '100%'}}>
       <h3 className="logo">Täälä muokataan asiakastietoja</h3>
      
       <form >
@@ -72,10 +83,11 @@ export default function KayttajaMuokkaus() {
               <label className = "nappi"> Puhelinnumero</label>
               <input className = " tekstikentta2" placeholder=" Puhelin numero" onChange={(e) => setPuhnro(e.target.value)}/>
       </form> 
-      </div>
       <button className="nappi"type = "submit" onClick={updateAPIData}>Päivitä tiedot</button>
+      </div>
       
-  
+      
+      </div>
   
       </div>
     )
