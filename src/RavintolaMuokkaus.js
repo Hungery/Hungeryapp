@@ -23,7 +23,7 @@ export default function RavintolaMuokkaus() {
       //`http://localhost:8080/ravintolat/${Constants.SAHKOPOSTI}`
    useEffect(() =>{
       const getRavintolatById = async () => {
-        const raflat = await axios.get(Constants.API_ADDRESS + `/${Constants.SAHKOPOSTI} `)
+        const raflat = await axios.get(`http://localhost:8080/ravintolat/${Constants.SAHKOPOSTI}`)
         setRavintolat(raflat.data);
         setNimi(raflat.data.nimi);
         setOsoite(raflat.data.osoite);
@@ -39,24 +39,10 @@ export default function RavintolaMuokkaus() {
      }, []);
   
      console.log(ravintolat);
-     console.log(ravintolat.nimi);
-      //tää on oikeesti toimiva
-    
-  
+     console.log(ravintolat.nimi);  
   
     console.log(nimi);
-  //Kun ravintola tai käyttäjä kirjautuu sisään, niin se antaa propseina eteenpäin omat tiedot
-  // jotka voi osoittaa yllä oleviin muuttujiin.
-  
-  //Tässä testaan ettää toimii. 
-  /*
-  console.log(ravintolat);
-      const [nimi, setNimi] = useState(Constants.NIMI);
-      const [osoite, setOsoite] = useState(Constants.OSOITE);
-      const [tyyppi, setTyyppi] = useState(Constants.TYYPPI);
-      const [aukioloajat, setAukioloajat] = useState(Constants.AUKIOLOAJAT);
-      const [hintataso, setHintataso] = useState(Constants.HINTATASO);
-  */
+
      console.log(ravintolat.nimi);
      console.log(nimi);
       const sahkoposti = useParams();
@@ -65,8 +51,9 @@ export default function RavintolaMuokkaus() {
       console.log(ravintolat)
      // tällä toimii "http://localhost:8080/ravintolat/MahtiBurgerit@mahti.fi"
       // Tämä varmasti toimii ilman cors ongelmaa... `http://localhost:8080/ravintolat/${sahkoposti} `
+      // Tämä varmasti toimii ilman cors ongelmaa... `http://localhost:8080/ravintolat/${Constants.SAHKOPOSTI} `
       const updateAPIData = async () => {
-          const result = await axios.put(Constants.API_ADDRESS + `/${Constants.SAHKOPOSTI} `, { 
+          const result = await axios.put(`http://localhost:8080/ravintolat/${Constants.SAHKOPOSTI}`, { 
               nimi: nimi,
               osoite: osoite,
               tyyppi: tyyppi,
@@ -79,8 +66,19 @@ export default function RavintolaMuokkaus() {
     return (
         <div className = "tausta">
             <Logopalkkirestaurant/>
-      <div className = "ravintolaElementti2">
+
+        <div className = "tiedotSivussa">
+        <div><h3>Ravintolan tiedot</h3> 
+               <p>Ravintolan nimi: {nimi}</p>
+               <p>Ravintolan osoite: {osoite}</p>
+               <p>Ravintolan tyyppi:  {tyyppi}</p>
+               <p>Ravintolan aukioloajat: {aukioloajat}</p>
+               <p>Ravintolan hintataso: {hintataso}</p>
+        </div> 
+      <div className = "ravintolaElementti2" style={{width: '100%'}}>
+      
       <h3 className="logo">Täälä muokataan ravintolan tietoja</h3>
+       
      
       <form >
               <label className = "nappi"> Ravintolan nimi</label>
@@ -102,13 +100,25 @@ export default function RavintolaMuokkaus() {
               <label className = "nappi"> Ravintolan hintataso</label>
               <input  className = " tekstikentta2" placeholder=" Ravintolanhintataso" onChange={(e) => setHintataso(e.target.value)}/>
       </form> 
-      
-      </div>
       <button className="nappi"type = "submit" onClick={updateAPIData}>Päivitä</button>
+      </div>
       
-  
+      
+        </div>
   
       </div>
     )
   }
   
+    //Kun ravintola tai käyttäjä kirjautuu sisään, niin se antaa propseina eteenpäin omat tiedot
+  // jotka voi osoittaa yllä oleviin muuttujiin.
+  
+  //Tässä testaan ettää toimii. 
+  /*
+  console.log(ravintolat);
+      const [nimi, setNimi] = useState(Constants.NIMI);
+      const [osoite, setOsoite] = useState(Constants.OSOITE);
+      const [tyyppi, setTyyppi] = useState(Constants.TYYPPI);
+      const [aukioloajat, setAukioloajat] = useState(Constants.AUKIOLOAJAT);
+      const [hintataso, setHintataso] = useState(Constants.HINTATASO);
+  */
