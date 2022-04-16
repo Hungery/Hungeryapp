@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../styles/Tuote.css'
 export default function Tuote(props) {
 
-  function onButtonClick(element) {
-    props.itemClickedEvent(element);
+  const [count, setCount] = useState(0);
+
+  if (count < 0) {
+
   }
- 
+
   return (
     <div className='menu'>
 
@@ -15,19 +17,19 @@ export default function Tuote(props) {
 
         <div className='tuoteleft'>
           <div className='tuoteleft2'>
-          <button type="button" className='button'>+</button>
-          <div className='count'> &nbsp;{ props.qty }&nbsp; </div>
-          <button type="button" className='button'>-</button>
+          <button type="button" className='button2' onClick={ ()=> setCount(count+1) }>+</button>
+          <div className='count'> &nbsp;{ count }&nbsp; </div>
+          <button type="button" className='button2' onClick={ ()=> setCount(count-1) }>-</button>
           </div>
           <div className='tuoteleft1'>
-          <button type="button1" className='button'>lisää ostokoriin</button>
+          <button type="button1" className='button1'>lisää ostokoriin</button>
           </div>
         </div>
         
         <div className='tuoteright'>
           <div className='title'>{ props.nimi }</div>
-          <div>{ props.kuvaus }</div>
-          <div>${ props.hinta }</div>
+          <div className='kuvaus'>{ props.kuvaus }</div>
+          <div className='hinta'>{ props.hinta }€</div>
         </div>
 
       </div>
