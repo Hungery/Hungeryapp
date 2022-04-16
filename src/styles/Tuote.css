@@ -1,0 +1,105 @@
+  .alapalkki {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #282c34;
+    min-width: 50%;
+    margin: 0px 300px 0px 300px;
+    height: auto;
+  }
+  
+  .ravintolannimi {
+    padding: 50px;
+    font-size: 250%;
+    font-weight: bold;
+    color: lightgreen;
+  }
+  
+  .kuva {
+    border-width: 10px;
+    border-style: solid;
+    border-color: lightgreen;
+    padding: 258px;
+    margin-bottom: 20px;
+  }
+  
+  .menu {
+    padding: 0px;
+  }
+  
+  .slider{
+    width: 10%;
+  }
+  
+  .Tuote {
+    width: 500px;
+    height: 120px;
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: row;
+    padding: 10px 25px;
+    background-color: lightgreen;
+    border: 10px solid lightgreen;
+    color: black;
+  }
+  
+  .Tuote:hover {
+    background-color: rgb(188, 255, 188);
+    border: 10px solid rgb(157, 255, 157);
+  }
+  
+  .tuoteright {
+    text-align: right;
+    width: 450px;
+  }
+  
+  .tuoteleft {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding: 17px 0px;
+    width: 150px;
+  }
+  
+  .tuoteleft2 {
+    display: flex;
+    flex-direction: row;
+    width: 200px;
+  }
+  
+  .tuoteleft1 {
+    width: 100px;
+  }
+  
+  .button {
+    background-color: rgb(107, 255, 107);
+    border: none;
+    color: black;
+    font-weight: bolder;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background-color: rgb(157, 255, 157);
+  }
+  
+  .button1 {
+    font: 300;
+  }
+  
+  .count {
+    background-color: rgb(157, 255, 157);
+    font-size: 16px;
+    padding: 5px 10px;
+  }
+  
+  .title {
+    font-size: larger;
+    font-weight: bold;
+  }
+  
