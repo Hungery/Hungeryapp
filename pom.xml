@@ -17,6 +17,7 @@
 		<java.version>11</java.version>
 		<maven.compiler.target>11</maven.compiler.target>
 		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.release>11</maven.compiler.release>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -84,10 +85,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>11</source>
-					<target>11</target>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
