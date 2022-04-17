@@ -79,6 +79,7 @@ export default function RavintolaMuokkaus() {
     return (
         <div className = "tausta">
             <Logopalkkirestaurant/>
+            
       <div className = "ravintolaElementti2">
       <h3 className="logo">Täälä muokataan ravintolan tietoja</h3>
      

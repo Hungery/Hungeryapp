@@ -11,6 +11,7 @@ export default function Logopalkkirestaurant() {
       <button className="nappi" onClick={() => userAuthContextValue.logout()} ><Link style={{color: 'black'}} to="/"> Kirjaudu ulos</Link> </button>
       <img alt="logo" className="logoo" src={logoo} />
       <Link to="/orderhistoryrestaurant" className="nappi"> Ravintolan tilaushistoria</Link>
+      <Link to="/menu" className="nappi"> Menun luonti</Link>
       </div>
     </div>
   )

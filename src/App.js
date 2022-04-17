@@ -14,6 +14,7 @@ import Orderhistory from './Orderhistory';
 import Orderhistoryrestaurant from './Orderhistoryrestaurant';
 import RavintolaMuokkaus from './RavintolaMuokkaus';
 import KayttajaMuokkaus from './KayttajaMuokkaus'
+import MenuLuonti from './MenuLuonti.js'
 
 const jwtFromStorage = window.localStorage.getItem('appAuthData');
 
@@ -96,7 +97,8 @@ const [ menus, setMenus ] = useState([]);
             <Route path="/orderhistory" element={ <Orderhistory orders={orders}/> } />
             <Route path="/orderhistoryrestaurant" element={ <Orderhistoryrestaurant orders={orders}/> } />
             <Route path="/ravintolat/:sahkoposti" element = { <RavintolaMuokkaus/> }/>
-      <Route path="/kayttaja/:sahkoposti" element = { <KayttajaMuokkaus/> }/>
+            <Route path="/kayttaja/:sahkoposti" element = { <KayttajaMuokkaus/> }/>
+            <Route path="/menu" element = { <MenuLuonti/> }/>
         </Routes>
       </BrowserRouter>
     </UserAuthContext.Provider>
