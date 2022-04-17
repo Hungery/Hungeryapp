@@ -1,15 +1,15 @@
-import React, {useState, useEffect, Component} from "react";
+import React, {useState, useEffect} from "react";
 import { Link } from 'react-router-dom'
 import axios from "axios";
 import '../Ostoskori.css'
+import { LibraryBooksOutlined } from "@mui/icons-material";
 
-export default function Ostoskori(props, qty, decrementCount, menuid) {
+export default function Ostoskori(props) {
     const {cartItems, onAdd, onRemove, setCartItems} = props;
-    const itemsPrice = cartItems.reduce((a, c) => a + c.hinta * c.qty, 0);
-    const shippingPrice = 5;
-    const totalPrice = itemsPrice + shippingPrice;
+    const {totalPrice, tuotteetkpl, itemsPrice, shippingPrice} = props;
 
-    const[ruoat, setMenuRavintola] = useState([])
+
+    const[ruoat, setMenuRavintola] = useState([]);
 
     useEffect(() =>{
       const getMenus = async () => {
@@ -43,29 +43,40 @@ export default function Ostoskori(props, qty, decrementCount, menuid) {
             </div>
           ))}
 
+        {laskut.map((kori) => (
 
-          {cartItems.length !== 0 && (
-            <>
-            <hr></hr>
-            <div className="row">
-              <div className="col2">Tuotteiden hinta </div>
-              <div className="col1 text-right">{itemsPrice} €</div>
-            </div>
-            <div className="row">
-              <div className="col2">Kuljetusmaksu </div>
-              <div className="col1 text-right">{shippingPrice} €</div>
-            </div>
-            <div className="row">
-              <div className="col2">
-                <strong> YHTEENSÄ </strong> 
+            {kori.tuotteetkpl !== 0 && (
+              <>
+              <hr></hr>
+              <div>Sinulla on ostoskorissa {tuotteetkpl} kpl tuotteita</div>
+              <hr></hr>
+              <div className="row">
+                <div className="col2">Tuotteiden hinta </div>
+                <div className="col1 text-right">{itemsPrice} €</div>
               </div>
-              <div className="col1 text-right">
-                <strong> {totalPrice} €</strong>
+              <div className="row">
+                <div className="col2">Kuljetusmaksu </div>
+                <div className="col1 text-right">{shippingPrice} €</div>
               </div>
-            </div>
-            </>
+              <div className="row">
+                <div className="col2">
+                  <strong> YHTEENSÄ </strong> 
+                </div>
+                <div className="col1 text-right">
+                  <strong> {totalPrice} €</strong>
+                </div>
+              </div>
+              <Link to="/loppunakyma" 
+                totalPrice={totalPrice}
+                cartItems={cartItems}
+                tuotteetkpl={tuotteetkpl}
+              >
+              <button>Maksa tuotteesi</button></Link>
+              </>
+            )}
 
-          )}
+        )
+        )}
 
         </aside>   
     

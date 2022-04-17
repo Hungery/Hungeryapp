@@ -1,8 +1,9 @@
 import React from "react";
 import '../Ostoskori.css'
-import { BrowserRouter , Routes , Route } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import ShoppingCartSharpIcon from '@mui/icons-material/ShoppingCartSharp';
 import '../Ostoskori.css'
+
 
 export default function Header(props) {
     
@@ -16,10 +17,11 @@ export default function Header(props) {
                 </a>
             </div>
             <div className="reuna">
-                <a href="/ostoskori">
+                <div href="/ostoskori">
+                    <Link to="/ostoskori">
                     <ShoppingCartSharpIcon className="icon" fontSize="large"/>{ ' '}
-                    {countCartItems ? ( <span className="counter">{countCartItems}</span> ) : ( '')}
-                    </a> {''}
+                    {countCartItems ? ( <span className="counter">{countCartItems}</span> ) : ( '')}</Link>
+                    </div> {''}
                     <a href="/kirjaudu"><button className="button header">Kirjaudu</button></a> 
             </div>
         </header>

@@ -3,16 +3,16 @@ import './App.css'
 import Header from './components/Header';
 import Ostoskori from './components/Ostoskori';
 import Menunakyma from './components/Menunakyma';
-import React, {useState, useEffect, Fragment, } from "react";
+import Loppunakyma from './components/Loppunakyma';
+import React, {useState, useEffect} from "react";
 import axios from "axios";
 
 
-const App = () => {
+const App = (props) => {
+  //const {totalPrice, tuotteetkpl, itemsPrice, shippingPrice} = props;
 
   const [cartItems, setCartItems] = useState([]);
   const [ruoat, setMenuRavintola] = useState([]);
-  const [totalPrice, setTotalPrice] = useState(0);
-  const [Products, setProducts] = useState([]) 
 
   useEffect(() =>{
     const getMenus = async () => {
@@ -38,7 +38,6 @@ const onRemove = (menuid) => {
       }
       setCartItems(newCartItems);
     }
-
 };
 const onAdd = (menuid,nimi,hinta) => { 
   let newCartItems = [...cartItems]
@@ -58,6 +57,15 @@ const onAdd = (menuid,nimi,hinta) => {
   }
 }
 
+const laskut = () => {
+  const itemsPrice = cartItems.reduce((a, c) => a + c.hinta * c.qty, 0);
+  const tuotteetkpl = cartItems.reduce((a, c) => a + c.qty, 0);
+  const shippingPrice = 5;
+  const totalPrice = itemsPrice + shippingPrice;
+}
+
+
+
   return(
     
     
@@ -70,15 +78,30 @@ const onAdd = (menuid,nimi,hinta) => {
             {<><Menunakyma onAdd={onAdd}/><Ostoskori 
               onAdd={onAdd} 
               onRemove={onRemove} 
-
               cartItems={cartItems}
+              setCartItems={setCartItems}
             /></>} />
         </Routes>
       </div>
       <div>
         <Routes>
           <Route path="/ostoskori" element = 
-            { <Ostoskori /> } />
+            { <Ostoskori 
+              onAdd={onAdd} 
+              onRemove={onRemove} 
+              cartItems={cartItems}
+              laskut={laskut}
+            /> } />
+        </Routes>
+      </div>
+      <div>
+        <Routes>
+          <Route path="/loppunakyma" element = 
+            { <Loppunakyma 
+              totalPrice={totalPrice}
+              cartItems={cartItems}
+              tuotteetkpl={tuotteetkpl}
+            /> } />
         </Routes>
       </div>
   </div>
