@@ -11,6 +11,8 @@ const App = () => {
 
   const [cartItems, setCartItems] = useState([]);
   const [ruoat, setMenuRavintola] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [Products, setProducts] = useState([]) 
 
   useEffect(() =>{
     const getMenus = async () => {
@@ -20,106 +22,41 @@ const App = () => {
       getMenus(ruoat);
 
    }, []);
-/*
-  const onRemove = (menuid) => {
-    const exist = cartItems.find((x) => x.menuid === menuid);
-    if(exist.qty === 1) {
-      setCartItems(cartItems.filter((x) => x.menuid !== menuid));
-    } else {
-      setCartItems(
-        cartItems.map((x) => 
-          x.menuid === menuid ? {...exist, qty: exist.qty - 1} : x
-        )
-      );
-    }
-  };
-*/
-/*
-  const onRemove = (menuid) => {
-
-    const product = {
-      menuid : menuid,
-      nimi : nimi,
-      hinta : hinta,
-      qty : 1
-    };
-
-    const cartCopy = cartItems.filter((product) => menuid !== product.id);
-
-    setCartItems(cartCopy);
-  };
-
-  const decrementCount = (menuid) => {
-    const cartCopy = cartItems.slice();
-
-    const index = cartCopy.findIndex((product) => menuid === product.id);
-
-    const pr = cartCopy[index];
-    cartCopy[index] = { ...pr, qty: pr.qty - 1 };
-
-    setCartItems(cartCopy);
-  };
-*/
-
-  const onAdd = (menuid, nimi, hinta) => {
-    
-            const alreadyInCart = cartItems.find((ruoat) => ruoat.menuid === menuid);
-            if (alreadyInCart) {
-              setCartItems(
-                cartItems.map((ruoat) => 
-                ruoat.menuid === menuid 
-                ? {...alreadyInCart, qty: alreadyInCart.qty +1}
-                : ruoat)
-              );
-            }
-              else {
-                setCartItems([...cartItems, {...menuid, nimi, hinta, qty: 1}]);
-              }
-        };
 
 
-/*
-  const onRemove = (menuid) => {
-
-          const alreadyInCart = cartItems.find((ruoat) => 
-          ruoat.menuid === menuid);
-    
-          if(alreadyInCart.qty === 1) {
-            setCartItems(cartItems.filter((ruoat) => 
-            ruoat.menuid !== menuid));
-    
-          } else {
-            setCartItems (
-              cartItems.map((ruoat) => 
-                ruoat.menuid === menuid 
-              ? {...alreadyInCart, qty: alreadyInCart.qty -1}
-              : ruoat
-              )
-            );
-          }
-    
-        };
-*/
 const onRemove = (menuid) => {
-  let newCartItems = [...cartItems];
-  let ruoat = newCartItems.findIndex(ruoat => ruoat.menuid === menuid);
-  let deleteAll = cartItems.findIndex(ruoat => ruoat.menuid === menuid);
+  const newCartItems = [...cartItems];
+  const ruoat = newCartItems.findIndex(cart => cart.menuid === menuid);
 
     if(ruoat !== -1) {
-      let del = {...newCartItems[ruoat]}
-      let sub = {...cartItems[deleteAll]}
-
-      if(del.qty <= 1) {
+      const remove = {...newCartItems[ruoat]}
+      if(remove.qty <= 1) {
         newCartItems.splice(ruoat, 1);
       } else {
-        del.hinta -= sub.hinta;
-        del.qty = del.qty-1;
-        newCartItems[ruoat] =del;
+        remove.qty = remove.qty-1;
+        newCartItems[ruoat] = remove;
       }
       setCartItems(newCartItems);
     }
 
 };
+const onAdd = (menuid,nimi,hinta) => { 
+  let newCartItems = [...cartItems]
+  let ruoat = newCartItems.findIndex(cart => cart.menuid === menuid)
+  if(ruoat === -1){
+    newCartItems = [...cartItems, {
+      menuid : menuid,
+      qty : 1,
+      nimi : nimi,
+      hinta : hinta
+    }]; setCartItems(newCartItems);
+  } else { 
+    let additions = {...newCartItems[ruoat]}
+      additions.qty = additions.qty+1;
+      newCartItems[ruoat] = additions;
+      setCartItems(newCartItems);
+  }
+}
 
   return(
     
