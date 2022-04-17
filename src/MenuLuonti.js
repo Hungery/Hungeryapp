@@ -1,12 +1,9 @@
 import React from 'react'
-import Logopalkkiuser from './components/Logopalkkiuser'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './styles/KayttajaMuokkaus.css'
 import Constants from './Constants'
-import Logopalkkirestaurant from './components/Logopalkkirestaurant'
-import Logopalkkimenu from './components/Logopalkkimenu'
-import Logopalkki from './components/Logopalkki'
+import LogopalkkiMenunluonti from './components/LogopalkkiMenunluonti'
 
 export default function MenuLuonti() {
 
@@ -16,9 +13,9 @@ export default function MenuLuonti() {
     const [nimiravintola, setNimiravintola] = useState(Constants.SAHKOPOSTI);
     const [hinta, setHinta] = useState("");
 
-    
+
     const updateAPIData = async () => {
-        const result = await axios.post(`http://localhost:8080/menus/${Constants.SAHKOPOSTI} `, { 
+        const result = await axios.post("http://localhost:8080/menus ", { 
             nimi: nimi,
             kuvaus: kuvaus,
             tuotekategoria: kategoria,
@@ -32,7 +29,7 @@ export default function MenuLuonti() {
 
   return (
         <div className = "tausta">
-            <Logopalkkirestaurant/>
+            <LogopalkkiMenunluonti/>
             
       <div className = "ravintolaElementti2">
       <h3 className="logo">Täälä luodaan uusi ruoka</h3>
