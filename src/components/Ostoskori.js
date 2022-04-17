@@ -1,62 +1,124 @@
 import React, {useState, useEffect, Component} from "react";
 import { Link } from 'react-router-dom'
-import Menunakyma from './Menunakyma';
-import formatCurrency from '../util';
+import axios from "axios";
+import '../Ostoskori.css'
 
-export default function Ostoskori(props) {
+export default function Ostoskori(props, qty, decrementCount, menuid) {
+    const {cartItems, onAdd, onRemove, setCartItems} = props;
+    const itemsPrice = cartItems.reduce((a, c) => a + c.hinta * c.qty, 0);
+    const shippingPrice = 5;
+    const totalPrice = itemsPrice + shippingPrice;
 
-    const {getTotalCost, cartItems} = props;
-    const [total, setTotal] = useState([]);
+    const[ruoat, setMenuRavintola] = useState([])
 
-      const pay = (total) => {
-
-          {props.getTotalCost(cartItems)}
-          props.setTotal(total);
-        
-
-         const today = new Date();
-         const date = `${today.getDate()}/${today.getMonth()+1}/${today.getFullYear()}`;
-         let cart = " ";
-
-          for(let i = 0; i < cartItems.length; i++) {
-            let sum = {...cartItems[i]}
-            cart = cart +" tuotteita: " + sum.qty + " ";
-            cartItems += sum.qty
-          }
+    useEffect(() =>{
+      const getMenus = async () => {
+        const ruoat = await axios.get('http://localhost:8080/menus')
+        setMenuRavintola(ruoat.data);
       }
-       
+        getMenus(ruoat);
+  
+     }, []);
+
 
     return (
-      <div>
-        {cartItems.length !== 0 && (
-          <div>
-              <div className='ostoskori'>
-                  <div className='yhteensa'>
-                    <div>
-                      Yhteensä:{" "}
-                      {total(cartItems)}
-                    </div>
-
-                     <button 
-                        className='button primary'>
-                        Tilaa
-                      </button>
-                      
-                  </div>
+      <aside className="block col1">
+        <h1> Ostoskori </h1>
+        <div>{cartItems.length === 0 && 
+          <h2 >Ostoskori on tyhjä </h2>} </div>
+          {cartItems.map((ruoat, index) => (
+            <div key={index} className="row">
+              <div className="col2">{ruoat.nimi}</div>
+              <div className="col2">
+                <button onClick={() =>onAdd(ruoat.menuid, ruoat.nimi, ruoat.hinta)} className="add">
+                  +
+                </button>
+                <button onClick={() =>onRemove(ruoat.menuid)} className="add">
+                  -
+                </button>
               </div>
-        </div>
-                    )}
-      </div>
+              <div className="col2 text-right"> 
+                {ruoat.qty} x {ruoat.hinta} €
+              </div>
+            </div>
+          ))}
 
+
+          {cartItems.length !== 0 && (
+            <>
+            <hr></hr>
+            <div className="row">
+              <div className="col2">Tuotteiden hinta </div>
+              <div className="col1 text-right">{itemsPrice} €</div>
+            </div>
+            <div className="row">
+              <div className="col2">Kuljetusmaksu </div>
+              <div className="col1 text-right">{shippingPrice} €</div>
+            </div>
+            <div className="row">
+              <div className="col2">
+                <strong> YHTEENSÄ </strong> 
+              </div>
+              <div className="col1 text-right">
+                <strong> {totalPrice} €</strong>
+              </div>
+            </div>
+            </>
+
+          )}
+
+        </aside>   
+    
     )
-      /*
-      <div>
-         <div className='maksa'>
-
-                  <p>{this.props.getTotalCost()} €</p>
-
-          </div>
-      </div>
-    */
     
   }
+
+
+  /*
+        <aside className="block col1">
+        <h1> Ostoskori </h1>
+        <div>{cartItems.length === 0 && 
+          <h2 >Ostoskori on tyhjä </h2>} </div>
+          {cartItems.map((cart, index) => (
+            <div key={index} className="row">
+              <div className="col2">{cart.nimi}</div>
+              <div className="col2">
+                <button onClick={() =>onAdd(cart.menuid, cart.nimi, cart.hinta)} className="add">
+                  +
+                </button>
+                <button onClick={() =>onRemove(cart.menuid, cart.nimi, cart.hinta)} className="remove">
+                  -
+                </button>
+              </div>
+              <div className="col2 text-right"> 
+                {cart.qty} x {cart.hinta} €
+              </div>
+            </div>
+          ))}
+
+
+          {cartItems.length !== 0 && (
+            <>
+            <hr></hr>
+            <div className="row">
+              <div className="col2">Tuotteiden hinta </div>
+              <div className="col1 text-right">{itemsPrice} €</div>
+            </div>
+            <div className="row">
+              <div className="col2">Kuljetusmaksu </div>
+              <div className="col1 text-right">{shippingPrice} €</div>
+            </div>
+            <div className="row">
+              <div className="col2">
+                <strong> YHTEENSÄ </strong> 
+              </div>
+              <div className="col1 text-right">
+                <strong> {totalPrice} €</strong>
+              </div>
+            </div>
+            </>
+
+          )}
+
+        </aside>   
+*/

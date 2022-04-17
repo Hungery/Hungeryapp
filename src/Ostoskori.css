@@ -1,0 +1,148 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1, h2, h3 {
+  margin: .5rem 0;
+
+}
+
+h1 {
+  font-size:  1.5rem;
+}
+
+h2 {
+  font-size:  1.2rem;
+}
+
+h3 {
+  font-size:  1rem;
+}
+
+a{
+  text-decoration: none;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.col1 {
+  flex: 1;
+}
+
+.col2 {
+  flex: 2;
+}
+
+.block {
+  background-color: rgb(174, 245, 174);
+  padding: none;
+  margin: .5rem;
+  border-radius: .5rem;
+}
+
+.row.center {
+  align-items: center;
+}
+
+img.small {
+  max-height: 8rem;
+}
+.button{
+  font-size: .8rem;
+  font-weight: bold;
+  padding: .2rem;
+  margin: .1rem;
+  border-radius: .5rem;
+  border: .2rem rgb(0, 61, 28) solid;
+  background-color: rgb(0, 252, 147);
+  cursor: pointer;
+}
+
+.button.add {
+  background-color: rgb(0, 252, 147);
+  width: 1.5rem;
+}
+
+.button.remove {
+  background-color: rgb(219, 11, 11);
+  width: 1.5rem;
+}
+
+
+.text-right {
+  text-align: right;
+}
+
+button:hover{
+  font-weight: bold;
+  border: 0.2rem rgb(0, 252, 147) solid;
+}
+
+button.primary{
+  background-color: rgb(125, 245, 125);
+  color: rgb(9, 24, 12);
+}
+
+/*Header*/
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  grid-area: header;
+  background-color: rgb(125, 245, 125);
+  color: rgb(0, 61, 28);
+  padding: 1rem;
+  margin: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+header a {
+  color: rgb(0, 61, 28);
+  text-decoration: none;
+}
+
+.button.header{
+  font-size: 15px;
+  font-weight: 750;
+  background-color: rgb(58, 133, 231);
+  color:rgb(0, 0, 0);
+  border: 0.2rem rgb(177, 134, 233) solid;
+  width: 6rem;
+  height: 2.5rem;
+}
+
+button.header:hover{
+  font-weight: 800;
+  border: 0.2rem rgb(0, 252, 147) solid
+}
+
+.reuna{
+  display: flex;
+  flex-direction: row;
+}
+
+.icon {
+  color: rgb(58, 133, 231);
+  font-size: 20px;
+}
+
+.icon:hover {
+  color: rgb(152, 70, 219)
+}
+
+.badge {
+  background-color: rgb(219, 11, 11);
+  width: 1.5rem;
+}
+
+.counter {
+  font-size: 15px;
+  background: #ff0000;
+  color: #fff;
+  padding: 0 5px;
+  vertical-align: top;
+  margin-left: -10px; 
+}
