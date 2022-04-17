@@ -28,11 +28,14 @@ export default function Home(props) {
       });
       console.log(result);
       console.log(result.data);
+      console.log(result.config.data);
+      const logindata = JSON.parse(result.config.data)
+      Constants.SAHKOPOSTI = logindata.sahkoposti;
       setLoginProcessState("success");
       setTimeout(() => {
         setLoginProcessState("idle")
         UserAuthContextValue.login(result.data.token);
-        navigate("/", { replace: true });
+        navigate("/ravintolat/:sahkoposti", { replace: true });
       }, 1500);
     } catch (error) {
       console.error(error.message);

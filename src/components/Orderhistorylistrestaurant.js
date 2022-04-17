@@ -1,15 +1,14 @@
 import React from 'react'
 import { useState } from 'react'
-import Buttonsorderhistory from './Buttonsorderhisotry'
+import Buttonsorderhistoryrestaurant from './Buttonsorderhisotry'
 import Constants from '../Constants.json';
 
 
-export default function Orderhistorylist(props) {
+export default function Orderhistorylistrestaurant(props) {
     const [orders, setOrders] = useState(props.orders)
     const [showAll] = useState(true)
     const [newNote2] = useState('' )
     console.log(props.orders)
-
 
     //  console.log(Orders)
     const OrdersToShow = showAll
@@ -33,17 +32,17 @@ export default function Orderhistorylist(props) {
     const orderCustomers = [...new Set(props.orders.map((Val) => Val.tyyppi))];
     console.log(props.orders)
 
-    const filteredOrders = OrdersToShow.filter(order =>
-      order.customer.includes(Constants.SAHKOPOSTI));
+    const filteredOrders = OrdersToShow.filter(orders =>
+      orders.restaurant.includes(Constants.SAHKOPOSTI));
       console.log(filteredOrders);
     
 
   return (
     <div>
         <div className="filtteriPalkki">
-        <Buttonsorderhistory  setOrders ={setOrders} filterItem = {filterItem} orderCustomers = {orderCustomers} orders = {props.orders}/>
+        <Buttonsorderhistoryrestaurant  setOrders ={setOrders} filterItem = {filterItem} orderCustomers = {orderCustomers} orders = {props.orders}/>
         </div>
-        <div className="historytitle">Tässä näkymässä näet tilaushistoriasi</div>
+        <div className="historytitle">Tässä näkymässä näet ravintolasi tilaushistorian</div>
         <div className="ravintolaElement">
         { filteredOrders.map(orders =>
             <div key = {orders.orderhistoryid} className="ravintolaListaElement" >

@@ -1,72 +1,26 @@
-.yläpalkki {
-    background-color: rgb(157, 255, 157);
-    display: flex;
-    flex-direction: row;
-    height: 150px;
-    align-content: center;
-    padding: 20px;
-  }
-  
-  .ruokakoribtn {
-    background-color: rgb(255, 232, 205);
-    width: 100px;
-    height: 50px;
-    margin: 50px 0px 50px 20px;
-    border-width: 10px;
-    border-color: rgb(252, 244, 235);
-    cursor: pointer;
-  }
-  
-  .ruokakoribtn:hover {
-    background-color: rgb(188, 255, 188);
-    border: 10px solid rgb(107, 255, 107);
-  }
-  
-  .edellinenbtn {
-    background-color: rgb(255, 232, 205);
-    width: 100px;
-    height: 50px;
-    margin: 50px 20px 50px 0px;
-    border-width: 10px;
-    border-color: rgb(252, 244, 235);
-    cursor: pointer;
-  }
-  
-  .edellinenbtn:hover {
-    background-color: rgb(188, 255, 188);
-    border: 10px solid rgb(107, 255, 107);
-  }
-  
-  .header {
-    text-align: center;
-    font-size: 400%;
-    font-weight: bolder;
-    height: auto;
-    width: 20000px;
-    margin: auto;
-  }
-  
   .alapalkki {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(252, 244, 235);
+    background-color: #282c34;
     min-width: 50%;
     margin: 0px 300px 0px 300px;
-    height: 500px;
+    height: auto;
   }
   
   .ravintolannimi {
     padding: 50px;
-    font-size: larger;
+    font-size: 250%;
     font-weight: bold;
+    color: lightgreen;
   }
   
   .kuva {
     border-width: 10px;
     border-style: solid;
-    border-color: rgb(255, 232, 205);
-    padding: 100px;
+    border-color: rgb(32, 32, 32);
+    padding: 200px;
+    margin: 0px 500px;
     margin-bottom: 20px;
   }
   
@@ -79,19 +33,20 @@
   }
   
   .Tuote {
-    width: 500px;
+    width: 600px;
     height: 120px;
     margin-bottom: 25px;
     display: flex;
     flex-direction: row;
     padding: 10px 25px;
-    background-color: rgb(255, 232, 205);
-    border: 10px solid rgb(255, 232, 205);
+    background-color: lightgreen;
+    border: 5px solid rgb(32, 32, 32);
+    color: black;
   }
   
   .Tuote:hover {
     background-color: rgb(188, 255, 188);
-    border: 10px solid rgb(157, 255, 157);
+    border: 5px solid rgb(157, 255, 157);
   }
   
   .tuoteright {
@@ -103,7 +58,7 @@
     display: flex;
     flex-direction: column;
     text-align: left;
-    padding: 17px 0px;
+    padding: 10px 0px;
     width: 150px;
   }
   
@@ -118,9 +73,9 @@
   }
   
   .button {
-    background-color: rgb(107, 255, 107);
+    background-color: lightgrey;
     border: none;
-    color: white;
+    color: black;
     font-weight: bolder;
     padding: 5px 15px;
     text-align: center;
@@ -131,21 +86,62 @@
   }
   
   .button:hover {
-    background-color: rgb(157, 255, 157);
+    background-color: rgb(235, 111, 111);
+    box-shadow: 0 8px 9px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   }
   
   .button1 {
-    font: 300;
+    border-radius: 12px;
+    border: 2px solid black;
+    font-weight: bolder;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  .button1:hover {
+    background-color: rgb(235, 111, 111);
+    box-shadow: 0 8px 9px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  }
+
+  .button2 {
+    border-radius: 12px;
+    border: 2px solid black;
+    font-weight: bolder;
+    padding: 5px 15px;
+    margin-bottom: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  .button2:hover {
+    background-color: rgb(235, 111, 111);
+    box-shadow: 0 8px 9px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   }
   
   .count {
-    background-color: rgb(157, 255, 157);
-    font-size: 16px;
+    font-size: 25px;
     padding: 5px 10px;
   }
   
   .title {
     font-size: larger;
     font-weight: bold;
+    margin-bottom: 7px;
+  }
+
+  .hinta {
+    font-size: 150%;
+    font-weight: bolder;
+  }
+
+  .kuvaus {
+    height: 60px;
   }
   

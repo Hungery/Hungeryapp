@@ -1,19 +1,25 @@
 import React from 'react'
 import Tuote from './components/Tuote'
-import { Link } from 'react-router-dom';
+import Constants from './Constants'
+import Logopalkkimenu from './components/Logopalkkimenu'
+import './styles/Tuote.css'
 
 
 export default function Menu(props) {
+
+  console.log(Constants.RAVINTOLA);
+
+  const filteredRestaurants= props.menus.filter(menus =>
+    menus.nimiravintola.includes(Constants.RAVINTOLA));
+    console.log(filteredRestaurants);
     
   return (
     <div>
-      <div className='yläpalkki'>
-      <Link to="/paanakyma"><button className='edellinenbtn'>edellinen</button></Link>
-      <div className='header'>HUNGERY</div>
-        <Link to="/ostoskori"><button className='ruokakoribtn'>ostoskori</button></Link>
-      </div>
-        <div className='menu'>
-                { props.menus.map( p => <Tuote nimi={p.nimi} nimiravintola={p.nimiravintola} kuvaus={p.kuvaus} hinta={p.hinta} kuva={p.kuva} qty={p.qty}/>) }    
+      <Logopalkkimenu/>
+        <div className='menu' >
+          <div className='ravintolannimi'>{ Constants.RAVINTOLA }</div>
+          <div className='kuva'>kuva</div>
+          { filteredRestaurants.map( p => <Tuote nimi={p.nimi} nimiravintola={p.nimiravintola} kuvaus={p.kuvaus} hinta={p.hinta} kuva={p.kuva} />) }    
         </div>
     </div>
   )

@@ -7,14 +7,11 @@ function Ravintolanakyma() {
 
 
    return (
-    <BrowserRouter>
     <div className="App">
-      
         <div>
         <Menu menus={ menus } />
         </div>
     </div>
-    </BrowserRouter>
   );
 }
 

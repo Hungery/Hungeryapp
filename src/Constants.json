@@ -1,8 +1,5 @@
 {
   "API_ADDRESS": "http://localhost:8080",
-  "SAHKOPOSTI":"",
-  "ETUNIMI":"",
-  "SUKUNIMI":"",
-  "PUHNRO":"",
-  "OSOITE":""
+  "SAHKOPOSTI":"Odotetaan kirjautumista",
+  "RAVINTOLA":""
 }

@@ -11,6 +11,9 @@ import Constants from './Constants.json';
 import Paanakyma from './Paanakyma';
 import Ravintolanakyma from './Menu';
 import Orderhistory from './Orderhistory';
+import Orderhistoryrestaurant from './Orderhistoryrestaurant';
+import RavintolaMuokkaus from './RavintolaMuokkaus';
+import KayttajaMuokkaus from './KayttajaMuokkaus'
 
 const jwtFromStorage = window.localStorage.getItem('appAuthData');
 
@@ -42,6 +45,7 @@ const [ menus, setMenus ] = useState([]);
       getMenus();
 
    }, []);
+   
    const [ orders, setOrders ] = useState([]);
 
   useEffect(() =>{
@@ -90,6 +94,9 @@ const [ menus, setMenus ] = useState([]);
             <Route path="/paanakyma" element={ <Paanakyma ravintolat={ravintolat}/> } />
             <Route path="/ravintolanakyma" element={ <Ravintolanakyma menus={menus}/> } />
             <Route path="/orderhistory" element={ <Orderhistory orders={orders}/> } />
+            <Route path="/orderhistoryrestaurant" element={ <Orderhistoryrestaurant orders={orders}/> } />
+            <Route path="/ravintolat/:sahkoposti" element = { <RavintolaMuokkaus/> }/>
+      <Route path="/kayttaja/:sahkoposti" element = { <KayttajaMuokkaus/> }/>
         </Routes>
       </BrowserRouter>
     </UserAuthContext.Provider>
