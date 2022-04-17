@@ -3,10 +3,23 @@ import axios from "axios";
 import Constants from '../Constants.json';
 
 export default function Loppunakyma (props) {
-    const {totalPrice, cartItems, setCartItems, tuotteetkpl} = props;
+    const { cartItems, setCartItems} = props;
     const[tilaukset, setOrderHistory] = useState([]);
     const[ruoat, setMenuRavintola] = useState([]);
     const [post, setPost] = useState([]);
+
+    const itemsPrice = cartItems.reduce((a, c) => a + c.hinta * c.qty, 0);
+    const tuotteetkpl = cartItems.reduce((a, c) => a + c.qty, 0);
+    const shippingPrice = 5;
+    const totalPrice = itemsPrice + shippingPrice;
+
+
+    const today = new Date();
+    const datetime = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + ' ' + today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+    
+
+    console.log(datetime);
+
 
     useEffect(() =>{
       const getMenus = async () => {
@@ -16,43 +29,20 @@ export default function Loppunakyma (props) {
         getMenus(ruoat);
      }, []);
 
-    const baseURL = 'http://localhost:8080/addorderhistory';
 
-    useEffect(() =>{
-     const setOrderHistory = async () => {
-       const tilaukset = await axios.get(`${baseURL}`).then((tilaukset) => {
-         setOrderHistory(tilaukset.data)
-       });
-     }
-    }, []);
-
-    function putOrderHistory() {
-     axios
-       .put(`${baseURL}/`, {
-         pvm : Date,
-         hinta : totalPrice,
-         kpl : tuotteetkpl,
-         orderhistoryid : tilaukset.orderhistoryid,
-         menuid : ruoat.menuid,
-         restaurant : ruoat.nimiravintola,
-         customer : Constants.SAHKOPOSTI,
-       })
-       .then((tilaukset) => {
-         setPost(tilaukset.data);
-       });
-   }
  
    if (!post) return "No post!"
 
     return (
         <main className="block col2">
-          <h1> Tilauksesi on tulossa </h1>
-          <h3>{post.Date}</h3>
-          <h3>{totalPrice}</h3>
-          <h3>{tuotteetkpl}</h3>
-          <h3>{tilaukset.orderhistoryid}</h3>
+          <h1> Tilauksesi on matkalla... </h1>
+
+          <h3>Hinta: {totalPrice} €</h3>
+          <h3>Tilattu: {datetime} </h3>
+          <h3>Tuotteita: {tuotteetkpl} kpl</h3>
           <h3>{ruoat.menuid}</h3>
-          <h3>{Constants.SAHKOPOSTI}</h3>
+          <h3>Ravintolasta: {Constants.RAVINTOLA}</h3>         
+          <h3>Käyttäjälle: {Constants.SAHKOPOSTI}</h3>
         </main>    
       );
 }

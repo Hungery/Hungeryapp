@@ -1,5 +1,9 @@
 {
     "API_ADDRESS": "http://localhost:8080",
     "SAHKOPOSTI":"krantanen@gmail.com",
-    "RAVINTOLA":""
+    "RAVINTOLA":"Reinikaisen unelma",
+    "SAHKOPOSTIRAV": "PizzeriaVertti@vertti.fi",
+    "PVM": "", 
+    "HINTA": "", 
+    "KPL": "" 
 }

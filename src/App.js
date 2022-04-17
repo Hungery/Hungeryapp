@@ -9,7 +9,9 @@ import axios from "axios";
 
 
 const App = (props) => {
-  //const {totalPrice, tuotteetkpl, itemsPrice, shippingPrice} = props;
+  const {totalPrice, tuotteetkpl, itemsPrice, shippingPrice} = props;
+
+  
 
   const [cartItems, setCartItems] = useState([]);
   const [ruoat, setMenuRavintola] = useState([]);
@@ -56,18 +58,7 @@ const onAdd = (menuid,nimi,hinta) => {
       setCartItems(newCartItems);
   }
 }
-
-const laskut = () => {
-  const itemsPrice = cartItems.reduce((a, c) => a + c.hinta * c.qty, 0);
-  const tuotteetkpl = cartItems.reduce((a, c) => a + c.qty, 0);
-  const shippingPrice = 5;
-  const totalPrice = itemsPrice + shippingPrice;
-}
-
-
-
   return(
-    
     
     <BrowserRouter>
     <div className="App">
@@ -80,6 +71,7 @@ const laskut = () => {
               onRemove={onRemove} 
               cartItems={cartItems}
               setCartItems={setCartItems}
+              
             /></>} />
         </Routes>
       </div>
@@ -90,7 +82,11 @@ const laskut = () => {
               onAdd={onAdd} 
               onRemove={onRemove} 
               cartItems={cartItems}
-              laskut={laskut}
+              totalPrice={totalPrice}
+              tuotteetkpl={tuotteetkpl}
+              itemsPrice={itemsPrice}
+              shippingPrice={shippingPrice}
+
             /> } />
         </Routes>
       </div>

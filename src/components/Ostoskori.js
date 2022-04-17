@@ -2,13 +2,32 @@ import React, {useState, useEffect} from "react";
 import { Link } from 'react-router-dom'
 import axios from "axios";
 import '../Ostoskori.css'
-import { LibraryBooksOutlined } from "@mui/icons-material";
+import Constants from '../Constants.json';
+import { useNavigate } from "react-router-dom";
 
 export default function Ostoskori(props) {
+  const today = new Date();
+  const datetime = today.getFullYear() + '-' + '0'+(today.getMonth() + 1) + '-' + today.getDate() + ' ' + today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+    let navigate = useNavigate();
     const {cartItems, onAdd, onRemove, setCartItems} = props;
-    const {totalPrice, tuotteetkpl, itemsPrice, shippingPrice} = props;
+    const[tilaukset, setOrderHistory] = useState([]);
+    const [ signupProcessState, setSignupProcessState ] = useState("idle");
 
+      const itemsPrice = cartItems.reduce((a, c) => a + c.hinta * c.qty, 0);
+      const tuotteetkpl = cartItems.reduce((a, c) => a + c.qty, 0);
+      const shippingPrice = 5;
+      const totalPrice = itemsPrice + shippingPrice;
 
+      Constants.KPL = tuotteetkpl;
+      Constants.HINTA = totalPrice;
+      Constants.PVM = datetime;
+
+      console.log(datetime);
+      console.log(totalPrice);
+      console.log(tuotteetkpl);
+      console.log(Constants.RAVINTOLA);
+      console.log(Constants.SAHKOPOSTI);
+      
     const[ruoat, setMenuRavintola] = useState([]);
 
     useEffect(() =>{
@@ -19,6 +38,56 @@ export default function Ostoskori(props) {
         getMenus(ruoat);
   
      }, []);
+
+     const putOrderHistory = async (event) => {
+      event.preventDefault();
+      setOrderHistory("processing");
+      try {
+        const result = await axios.post(Constants.API_ADDRESS + '/addorderhistory', {
+          pvm: datetime, 
+          hinta: totalPrice, 
+          kpl: tuotteetkpl, 
+          restaurant: Constants.SAHKOPOSTIRAV, 
+          customer: Constants.SAHKOPOSTI
+        });
+        console.log(result);
+        setOrderHistory("success");
+        setTimeout(() => {
+          setOrderHistory("idle")
+          navigate("/loppunakyma",
+           { replace: true });
+        }, 1500);
+      } catch (error) {
+        console.error(error);
+        setOrderHistory("error");
+        setTimeout(() => setOrderHistory("idle"), 1500);
+
+      }
+    };
+
+    console.log(datetime);
+
+    let signupUIControls = null;
+    switch(signupProcessState) {
+      case "idle":
+        signupUIControls = <button className="signupbutton" type="submit">Maksa tilaus</button>
+        break;
+  
+      case "processing":
+        signupUIControls = <span style={{color: 'blue'}}>Lähetetään tilausta...</span>
+        break;
+  
+      case "success":
+        signupUIControls = <span style={{color: 'green'}}>Tilaus lähetetty</span>
+        break;
+  
+      case "error":
+        signupUIControls = <span style={{color: 'red'}}>Tilauksen luonti epäonnistui</span>
+        break;
+  
+      default:
+        signupUIControls = <button className="signupbutton" type="submit">Maksa tilaus</button>
+    }
 
 
     return (
@@ -43,13 +112,12 @@ export default function Ostoskori(props) {
             </div>
           ))}
 
-        {laskut.map((kori) => (
-
-            {kori.tuotteetkpl !== 0 && (
+            {cartItems.length !== 0 && (
               <>
               <hr></hr>
               <div>Sinulla on ostoskorissa {tuotteetkpl} kpl tuotteita</div>
               <hr></hr>
+              <form onSubmit={putOrderHistory}>
               <div className="row">
                 <div className="col2">Tuotteiden hinta </div>
                 <div className="col1 text-right">{itemsPrice} €</div>
@@ -66,17 +134,20 @@ export default function Ostoskori(props) {
                   <strong> {totalPrice} €</strong>
                 </div>
               </div>
-              <Link to="/loppunakyma" 
-                totalPrice={totalPrice}
-                cartItems={cartItems}
-                tuotteetkpl={tuotteetkpl}
-              >
-              <button>Maksa tuotteesi</button></Link>
+
+
+              
+
+              
+              <div>{signupUIControls}</div>
+              </form>
+
+
+
               </>
             )}
 
-        )
-        )}
+
 
         </aside>   
     

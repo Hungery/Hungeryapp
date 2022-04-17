@@ -4,6 +4,7 @@ import '../Ostoskori.css'
 import Ostoskori from "./Ostoskori";
 import data from '../data.json';
 import axios from "axios";
+import Constants from '../Constants.json';
   
   export default function Menunakyma(props) {
     const {onAdd} = props;
