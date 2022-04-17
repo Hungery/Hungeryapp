@@ -30,4 +30,14 @@ public class OrderHistory {
     public String customer;
 
     public OrderHistory(){}
+
+    public OrderHistory(Date pvm, Double hinta, BigInteger kpl, String restaurant, String customer) {
+        this.pvm = pvm;
+        this.hinta = hinta;
+        this.kpl = kpl;
+        this.restaurant = restaurant;
+        this.customer = customer;
+    }
 }
+
+

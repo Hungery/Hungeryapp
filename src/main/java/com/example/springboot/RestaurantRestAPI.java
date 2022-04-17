@@ -88,4 +88,12 @@ public class RestaurantRestAPI {
         return ResponseEntity.ok(restaurant);
     }
 
+    @GetMapping("/ravintolat/{sahkoposti:.+}")
+
+    public Restaurant getRestaurants(@PathVariable(value = "sahkoposti") String sahkoposti) {
+
+        return restaurantService.getRestaurant(sahkoposti);
+
+    }
+
 }

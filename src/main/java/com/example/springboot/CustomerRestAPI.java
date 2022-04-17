@@ -8,8 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 @CrossOrigin(origins={ "http://localhost:3000"})
@@ -82,6 +80,13 @@ public class CustomerRestAPI {
         customer.setPuhnro(customerDetails.getPuhnro());
         customerService.setCustomer(customer);
         return ResponseEntity.ok(customer);
+    }
+    @GetMapping("/customers/{sahkoposti:.+}")
+
+    public Customer getCustomerById(@PathVariable(value = "sahkoposti") String sahkoposti) {
+
+        return customerService.getCustomer(sahkoposti);
+
     }
 
 
