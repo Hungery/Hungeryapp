@@ -1,0 +1,135 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "array",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": [],
+    "examples": [
+        [
+            {
+                "orderhistoryid": 1,
+                "pvm": "2022-01-27T22:00:00.000+00:00",
+                "hinta": 9.0,
+                "kpl": 1,
+                "menuid": 2,
+                "restaurant": "SamponBurgerit@sampo.fi",
+                "customer": "mkyllonen@gmail.com"
+            },
+            {
+                "orderhistoryid": 2,
+                "pvm": "2022-02-14T22:00:00.000+00:00",
+                "hinta": 15.0,
+                "kpl": 1,
+                "menuid": 3,
+                "restaurant": "PizzeriaVertti@vertti.fi",
+                "customer": "krantanen@gmail.com"
+            }
+        ]
+    ],
+    "items": {
+        "$id": "#/items",
+        "anyOf": [
+            {
+                "$id": "#/items/anyOf/0",
+                "type": "object",
+                "title": "The first anyOf schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": {},
+                "examples": [
+                    {
+                        "orderhistoryid": 1,
+                        "pvm": "2022-01-27T22:00:00.000+00:00",
+                        "hinta": 9.0,
+                        "kpl": 1,
+                        "menuid": 2,
+                        "restaurant": "SamponBurgerit@sampo.fi",
+                        "customer": "mkyllonen@gmail.com"
+                    }
+                ],
+                "required": [
+                    "orderhistoryid",
+                    "pvm",
+                    "hinta",
+                    "kpl",
+                    "menuid",
+                    "restaurant",
+                    "customer"
+                ],
+                "properties": {
+                    "orderhistoryid": {
+                        "$id": "#/items/anyOf/0/properties/orderhistoryid",
+                        "type": "integer",
+                        "title": "The orderhistoryid schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": 0,
+                        "examples": [
+                            1
+                        ]
+                    },
+                    "pvm": {
+                        "$id": "#/items/anyOf/0/properties/pvm",
+                        "type": "string",
+                        "title": "The pvm schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "2022-01-27T22:00:00.000+00:00"
+                        ]
+                    },
+                    "hinta": {
+                        "$id": "#/items/anyOf/0/properties/hinta",
+                        "type": "number",
+                        "title": "The hinta schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": 0.0,
+                        "examples": [
+                            9.0
+                        ]
+                    },
+                    "kpl": {
+                        "$id": "#/items/anyOf/0/properties/kpl",
+                        "type": "integer",
+                        "title": "The kpl schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": 0,
+                        "examples": [
+                            1
+                        ]
+                    },
+                    "menuid": {
+                        "$id": "#/items/anyOf/0/properties/menuid",
+                        "type": "integer",
+                        "title": "The menuid schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": 0,
+                        "examples": [
+                            2
+                        ]
+                    },
+                    "restaurant": {
+                        "$id": "#/items/anyOf/0/properties/restaurant",
+                        "type": "string",
+                        "title": "The restaurant schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "SamponBurgerit@sampo.fi"
+                        ]
+                    },
+                    "customer": {
+                        "$id": "#/items/anyOf/0/properties/customer",
+                        "type": "string",
+                        "title": "The customer schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "mkyllonen@gmail.com"
+                        ]
+                    }
+                },
+                "additionalProperties": true
+            }
+        ]
+    }
+}
