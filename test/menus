@@ -1,0 +1,135 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "array",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": [],
+    "examples": [
+        [
+            {
+                "menuid": 4,
+                "nimi": "Rössypotut",
+                "kuvaus": "Veripaltusta sekä perunoista ja sianlihasta valmistettu maukas keitto",
+                "kuva": null,
+                "tuotekategoria": "Fine Dinign",
+                "nimiravintola": "The Fantastik",
+                "hinta": 30.0
+            },
+            {
+                "menuid": 5,
+                "nimi": "Rekkamiehen valinta",
+                "kuvaus": "Tripla naudanlihapihvillä varustettu burgeri, jonka välistä löytyy paistettu muna, sipulia, pekonia ja herkkumajoneesia.",
+                "kuva": null,
+                "tuotekategoria": "Hampurilaiset",
+                "nimiravintola": "Mahti Burgerit",
+                "hinta": 11.0
+            }
+        ]
+    ],
+    "items": {
+        "$id": "#/items",
+        "anyOf": [
+            {
+                "$id": "#/items/anyOf/0",
+                "type": "object",
+                "title": "The first anyOf schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": {},
+                "examples": [
+                    {
+                        "menuid": 4,
+                        "nimi": "Rössypotut",
+                        "kuvaus": "Veripaltusta sekä perunoista ja sianlihasta valmistettu maukas keitto",
+                        "kuva": null,
+                        "tuotekategoria": "Fine Dinign",
+                        "nimiravintola": "The Fantastik",
+                        "hinta": 30.0
+                    }
+                ],
+                "required": [
+                    "menuid",
+                    "nimi",
+                    "kuvaus",
+                    "kuva",
+                    "tuotekategoria",
+                    "nimiravintola",
+                    "hinta"
+                ],
+                "properties": {
+                    "menuid": {
+                        "$id": "#/items/anyOf/0/properties/menuid",
+                        "type": "integer",
+                        "title": "The menuid schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": 0,
+                        "examples": [
+                            4
+                        ]
+                    },
+                    "nimi": {
+                        "$id": "#/items/anyOf/0/properties/nimi",
+                        "type": "string",
+                        "title": "The nimi schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "Rössypotut"
+                        ]
+                    },
+                    "kuvaus": {
+                        "$id": "#/items/anyOf/0/properties/kuvaus",
+                        "type": "string",
+                        "title": "The kuvaus schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "Veripaltusta sekä perunoista ja sianlihasta valmistettu maukas keitto"
+                        ]
+                    },
+                    "kuva": {
+                        "$id": "#/items/anyOf/0/properties/kuva",
+                        "type": "null",
+                        "title": "The kuva schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": null,
+                        "examples": [
+                            null
+                        ]
+                    },
+                    "tuotekategoria": {
+                        "$id": "#/items/anyOf/0/properties/tuotekategoria",
+                        "type": "string",
+                        "title": "The tuotekategoria schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "Fine Dinign"
+                        ]
+                    },
+                    "nimiravintola": {
+                        "$id": "#/items/anyOf/0/properties/nimiravintola",
+                        "type": "string",
+                        "title": "The nimiravintola schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "The Fantastik"
+                        ]
+                    },
+                    "hinta": {
+                        "$id": "#/items/anyOf/0/properties/hinta",
+                        "type": "number",
+                        "title": "The hinta schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": 0.0,
+                        "examples": [
+                            30.0
+                        ]
+                    }
+                },
+                "additionalProperties": true
+            }
+        ]
+    }
+}
